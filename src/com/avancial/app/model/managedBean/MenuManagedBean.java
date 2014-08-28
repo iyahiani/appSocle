@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import com.avancial.socle.resources.constants.ConstantSocle;
 
+
 /**
  * Managed Bean de gestion de la page liste utilisateurs public
  * 
