@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/pages/template/layout.xhtml">
+	<ui:define name="contenu">
+		<h:head>
+
+			<title>#{msg.p_app_titre}</title>
+		</h:head>
+
+		<h:body>
+
+			<h:form>
+				<p:accordionPanel value="#{listeApplication.listeApplication}" activeIndex="-1"
+					var="appli">
+
+					<p:tab title="#{appli.libelleApplication}">
+
+						<p:tabView value="#{appli.applicationPlateformeBeans}"
+							var="plateform">
+
+							<p:tab
+								title="#{plateform.applicationPlatformTypeBean.libelleApplicationPlateformeType}">
+								<h:panelGrid columns="1" cellpadding="5">
+
+									<f:facet name="header">
+										<p:graphicImage name="#{appli.cheminApplicationLogo}"
+											style="max-height:100px" />
+									</f:facet>
+
+									<p:fieldset legend="#{msg.p_app_description}" toggleable="true" collapsed="true"
+										toggleSpeed="500" columns="1"
+										style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_server}" style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.applicationServerBean.libelleServeur}" />
+									</p:fieldset>
+
+									<p:fieldset legend="#{msg.p_app_hoteurl}" toggleable="true" collapsed="true"
+										toggleSpeed="800" style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_hote}"
+											style="font-weight: bold" />
+										<h:outputText value="#{plateform.hostApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_url}"
+											style="font-weight: bold" />
+										<a href="#{plateform.urlApplicationPlateforme}">#{plateform.urlApplicationPlateforme}</a>
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_context_root}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.contextRootApplicationPlateforme}" />
+									</p:fieldset>
+
+
+									<p:fieldset legend="#{msg.p_app_directory}" toggleable="true" collapsed="true" rendered="#{ihmManagedBean.isLogged()}"
+										toggleSpeed="50" style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_application}"
+											style="font-weight: bold" />
+										<h:outputText value="#{plateform.hostApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_log_application}"
+											style="font-weight: bold" />
+										<h:outputText value="#{plateform.repAppLogApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_temporaly}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.repAppTmpApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_files}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.repAppDocApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_data}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.repAppDataApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_apache_log}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.repApacheLogApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_tomcat_log}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.repTomcatLogApplicationPlateforme}" />
+									</p:fieldset>
+
+
+									<p:fieldset legend="#{msg.p_app_livraison_partage_reseau}" collapsed="true" rendered="#{ihmManagedBean.isLogged()}"
+										toggleable="true" toggleSpeed="500"
+										style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_partage_reseau}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.repReseauLivraisonApplicationPlateforme}" />
+									</p:fieldset>
+
+
+									<p:fieldset legend="#{msg.p_app_livraison_ftp}" collapsed="true" rendered="#{ihmManagedBean.isLogged()}"
+										toggleable="true" toggleSpeed="500"
+										style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_livraison_hote}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.hostFtpApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_livraison_login}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.loginFtpApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_livraison_password}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.passwordFtpApplicationPlateforme}" />
+									</p:fieldset>
+
+
+									<p:fieldset legend="#{msg.p_app_livraison_tomcat}" collapsed="true" rendered="#{ihmManagedBean.isLogged()}"
+										toggleable="true" toggleSpeed="500"
+										style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_url_tomcat_manager}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.tomcatManagerUrlApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_login_tomcat_manager}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.tomcatManagerLoginApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_password_tomcat_manager}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.tomcatManagerMotDepasseApplicationPlateforme}" />
+									</p:fieldset>
+
+
+									<p:fieldset legend="#{msg.p_app_mysqlweb}" toggleable="true" collapsed="true" rendered="#{ihmManagedBean.isLogged()}"
+										toggleSpeed="500" style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_mysql_web_hote}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.mysqlWebHostApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_login_mysqlweb}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.mysqlWebLoginApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_password_mysqlweb}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.mysqlWebMotDePasseApplicationPlateforme}" />
+									</p:fieldset>
+
+
+									<p:fieldset legend="#{msg.p_app_mysql_dba}" toggleable="true" collapsed="true" rendered="#{ihmManagedBean.isLogged()}"
+										toggleSpeed="500" style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_url_mysql_phpmyadmin}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.mysqlDbaHostApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_hote_mysqldba}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.mysqlDbaLoginApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_password_mysqldba}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.mysqlDbaMotDePasseApplicationPlateforme}" />
+									</p:fieldset>
+
+
+									<p:fieldset legend="#{msg.p_app_robot_nagios}" collapsed="true" rendered="#{ihmManagedBean.isLogged()}"
+										toggleable="true" toggleSpeed="500"
+										style="max-width:100%; min-width:100%">
+										<h:outputText value="#{msg.p_app_login_robot_nagios}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.nagiosLogionApplicationPlateforme}" />
+										<pre></pre>
+										<h:outputText value="#{msg.p_app_password_nagios}"
+											style="font-weight: bold" />
+										<h:outputText
+											value="#{plateform.nagiosMotDePasseApplicationPlateforme}" />
+									</p:fieldset>
+
+
+								</h:panelGrid>
+							</p:tab>
+						</p:tabView>
+
+					</p:tab>
+				</p:accordionPanel>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

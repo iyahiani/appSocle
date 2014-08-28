@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<body>
+	<h:form id="formHeader">
+		<p:growl id="growl" />
+		<p:layout style="max-height:100px;">
+			<p:layoutUnit position="west" minSize="100">
+				<h:graphicImage name="private/image/avancialLogo.gif"
+					id="avancialLogo" />
+				<h:panelGrid columns="2">
+					<h:commandLink action="#{ihmManagedBean.setLanguage('fr')}">
+						<h:graphicImage name="private/langue/fr.png" />
+					</h:commandLink>
+					<h:commandLink action="#{ihmManagedBean.setLanguage('en')}">
+						<h:graphicImage name="private/langue/en.png" />
+					</h:commandLink>
+				</h:panelGrid>
+			</p:layoutUnit>
+			<p:layoutUnit position="center">
+				<h:panelGrid columns="1">
+					<h:outputText value="#{msg.libelle_bienvenue} #{ihmManagedBean.currentUser.nomUser}."
+						rendered="#{ihmManagedBean.isLogged()}" />
+					<h:outputText
+						value="#{msg.libelle_email} #{ihmManagedBean.currentUser.mailUser}."
+						rendered="#{ihmManagedBean.isLogged()}" />
+				</h:panelGrid>
+
+			</p:layoutUnit>
+			<p:layoutUnit position="east" resizable="true">
+				<p:commandButton type="submit" value="#{msg.libelle_deconnexion}"
+					action="#{ihmManagedBean.logout()}"
+					rendered="#{ihmManagedBean.isLogged()}" update="formHeader" />
+				<p:commandButton type="submit" value="#{msg.libelle_connexion}"
+					action="#{ihmManagedBean.goLogin}"
+					rendered="#{!ihmManagedBean.isLogged()}" update="formHeader" />
+			</p:layoutUnit>
+		</p:layout>
+	</h:form>
+
+</body>
+</html>
