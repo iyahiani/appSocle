@@ -27,100 +27,109 @@ import com.avancial.socle.resources.constants.ConstantSocle;
 @RequestScoped
 public class LoginManagedBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private String login;
-	private String password;
+   private static final long serialVersionUID = 1L;
+   private String login;
+   private String password;
 
-	@Inject
-	private IhmManagedBean ihmManagedBean;
+   @Inject
+   private IhmManagedBean ihmManagedBean;
 
-	// Dao de gestion des utilisateurs
-	private UtilisateurDao utilisateurDao = new UtilisateurDao();
+   // Dao de gestion des utilisateurs
+   private UtilisateurDao utilisateurDao = new UtilisateurDao();
 
-	/**
-	 * Initialisation de l'url courante
-	 */
-	@PostConstruct
-	public void init() {
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		if (ihmManagedBean.getOriginalURL() == null) {
-			ihmManagedBean.setOriginalURL((String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI));
-			if (ihmManagedBean.getOriginalURL() == null) {
-				ihmManagedBean.setOriginalURL(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURL().toString());
-			}
-		}
-	}
+   /**
+    * Initialisation de l'url courante
+    */
+   @PostConstruct
+   public void init() {
+      ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+      if (ihmManagedBean.getOriginalURL() == null) {
+         ihmManagedBean.setOriginalURL((String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI));
+         if (ihmManagedBean.getOriginalURL() == null) {
+            ihmManagedBean.setOriginalURL(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURL().toString());
+         }
+      }
+   }
 
-	/**
-	 * Execute la connexion
-	 * 
-	 * @throws IOException
-	 */
-	public void login() throws IOException {
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+   /**
+    * Execute la connexion
+    * 
+    * @throws IOException
+    */
+   public void login() throws IOException {
+      ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+      HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
-		try {
-			request.login(login, password);
-			ihmManagedBean.setCurrentUser(utilisateurDao.getUserByLogin(login));
-			String url = ihmManagedBean.getOriginalURL();
-			ihmManagedBean.setOriginalURL(null);
-			externalContext.redirect(url);
-		} catch (ServletException e) {
-			ContextController.addErrorMessage("login_connexion_erreur");
-		}
-	}
+      try {
+         request.login(login, password);
+         ihmManagedBean.setCurrentUser(utilisateurDao.getUserByLogin(login));
+         String url = ihmManagedBean.getOriginalURL();
+         ihmManagedBean.setOriginalURL(null);
+         externalContext.redirect(url);
+      } catch (ServletException e) {
+         ContextController.addErrorMessage("login_connexion_erreur");
+      }
+   }
 
-	/**
-	 * Execute la déconnexion et renvoi l'utilisateur sur la page d'accueil
-	 * 
-	 * @return l'url de la page d'accueil
-	 */
-	public String logout() {
-		try {
-			HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-			request.logout();
-			ihmManagedBean.setCurrentUser(null);
-			ContextController.addInfoMessage("login_deconnexion_ok");
-		} catch (ServletException e) {
-		}
-		return ConstantSocle.NAVIGATION_ACCUEIL.toString();
-	}
+   /**
+    * Execute la déconnexion et renvoi l'utilisateur sur la page d'accueil
+    * 
+    * @return l'url de la page d'accueil
+    */
+   public String logout() {
+      try {
+         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+         request.logout();
+         ihmManagedBean.setCurrentUser(null);
+         ContextController.addInfoMessage("login_deconnexion_ok");
+      } catch (ServletException e) {
+      }
+      return ConstantSocle.NAVIGATION_ACCUEIL.toString();
+   }
 
-	/**
-	 * getter password
-	 * 
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
+   /**
+    * Gère le bouton annuler pour retourner à la page d'accueil
+    * 
+    * @return l'url de la page d'accueil
+    */
+   public String cancel() {
+      return ConstantSocle.NAVIGATION_ACCUEIL.toString();
+   }
 
-	/**
-	 * setter the password
-	 * 
-	 * @param password
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+   /**
+    * getter password
+    * 
+    * @return the password
+    */
+   public String getPassword() {
+      return password;
+   }
 
-	/**
-	 * getter login
-	 * 
-	 * @return the login
-	 */
-	public String getLogin() {
-		return login;
-	}
+   /**
+    * setter the password
+    * 
+    * @param password
+    */
+   public void setPassword(String password) {
+      this.password = password;
+   }
 
-	/**
-	 * setter the login
-	 * 
-	 * @param login
-	 */
-	public void setLogin(String login) {
-		this.login = login;
-	}
+   /**
+    * getter login
+    * 
+    * @return the login
+    */
+   public String getLogin() {
+      return login;
+   }
+
+   /**
+    * setter the login
+    * 
+    * @param login
+    */
+   public void setLogin(String login) {
+      this.login = login;
+   }
 
 }
