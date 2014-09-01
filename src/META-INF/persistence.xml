@@ -6,9 +6,6 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<non-jta-data-source>java:comp/env/jdbc/socle</non-jta-data-source>
-	<!--	
-	  	<class >com.avancial.socle.model.bean.UtilisateurBean</class>
-	-->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 
