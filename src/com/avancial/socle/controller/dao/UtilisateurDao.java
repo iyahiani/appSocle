@@ -33,7 +33,7 @@ public class UtilisateurDao {
 	 */
 	public UtilisateurBean getUserByLogin(String login) {
 
-		Query requete = entityManager.createQuery("SELECT user FROM UtilisateurBean WHERE loginUser = :login'");
+		Query requete = entityManager.createQuery("SELECT user FROM UtilisateurBean user WHERE user.loginUser = :login");
 		requete.setParameter("login", login);
 
 		return (UtilisateurBean) requete.getSingleResult();

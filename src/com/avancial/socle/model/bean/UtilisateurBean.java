@@ -17,12 +17,12 @@ public class UtilisateurBean {
 	
 	@Id
 	private Long idUser;
+	private String nomUser;
+    private String prenomUser;
     private String loginUser;
     private String passwordUser;
-    private String nomUser;
-    private String prenomUser;
-    private String cpUser;
     private String mailUser;
+    private String cpUser;
     private String telephonePro1User;
     private String telephonePro2User;
     private String telephonePortable1User;
@@ -31,7 +31,7 @@ public class UtilisateurBean {
     private String adresseNomRueUser;
     private String adresseComplement1User;
     private String adresseComplement2User;
-    private String adresseCodepostalUser;
+    private String adresseCodePostalUser;
     private String adresseVilleUser;
     private String attribut1User;
     private String attribut2User;
@@ -147,10 +147,10 @@ public class UtilisateurBean {
 		this.adresseComplement2User = adresseComplement2User;
 	}
 	public String getAdresseCodepostalUser() {
-		return adresseCodepostalUser;
+		return adresseCodePostalUser;
 	}
 	public void setAdresseCodepostalUser(String adresseCodepostalUser) {
-		this.adresseCodepostalUser = adresseCodepostalUser;
+		this.adresseCodePostalUser = adresseCodepostalUser;
 	}
 	public String getAdresseVilleUser() {
 		return adresseVilleUser;
