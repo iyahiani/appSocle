@@ -123,8 +123,8 @@ public class IhmManagedBean implements Serializable {
     *           to string
     */
    public void setLanguage(String language) {
-      locale = new Locale(language);
-      FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+      this.locale = new Locale(language);
+      FacesContext.getCurrentInstance().getViewRoot().setLocale(this.locale);
    }
 
    /**
@@ -142,6 +142,8 @@ public class IhmManagedBean implements Serializable {
     * @return the locale
     */
    public Locale getLocale() {
+	   if (null==this.locale)
+		   this.locale=new Locale(FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage());
       return locale;
    }
 }
