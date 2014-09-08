@@ -18,10 +18,10 @@
 
 
 	<property name="source.src" location="${source}/src" />
-	<property name="dest.src" location="/src" />
+	<property name="dest.src" location="src" />
 
 
-	<property name="dest.src.otherResources" location="/OtherResources" />
+	<property name="dest.src.otherResources" location="OtherResources" />
 
 
 
@@ -47,8 +47,8 @@
 		<echo>init du projet</echo>
 
 		<echo>Copie des sources</echo>
-		<copy todir="${dest.src}">
-			<fileset file="${source.src}/"></fileset>
+		<copy todir="${dest.src}" verbose="true" overwrite="true">
+			<fileset dir="${source.src}"></fileset>
 		</copy>
 
 		<echo>Copie Web-Content</echo>
