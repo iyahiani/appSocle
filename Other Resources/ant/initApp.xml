@@ -1,0 +1,77 @@
+<project name="appSocle" default="init" basedir=".">
+	<description>
+		Création d'un nouveau projet
+	</description>
+
+
+	<property name="source" location="D:\Users/${user.name}/Desktop/appSocle" />
+
+
+	<property name="source.webcontent" location="${source}/WebContent" />
+	<property name="dest.webcontent" location="WebContent/" />
+
+	<property name="source.webcontent.webinf" location="${source.webcontent}/WEB-INF" />
+	<property name="dest.webcontent.webinf" location="${dest.webcontent}/WEB-INF/" />
+
+	<property name="source.webcontent.metainf" location="${source.webcontent}/META-INF" />
+	<property name="dest.webcontent.metainf" location="${dest.webcontent}/META-INF/" />
+
+
+	<property name="source.src" location="${source}/src" />
+	<property name="dest.src" location="/src" />
+
+
+	<property name="dest.src.otherResources" location="/OtherResources" />
+
+
+
+
+	<property name="dest.webcontent.wsdl" location="${dest.webcontent}/wsdl/" />
+
+
+	<property name="dest.doc" location="doc" />
+
+	<property name="sauve" location="${source}/sauve"></property>
+
+
+	<target name="check_was" unless="file.exists">
+		<!-- Vérification du repértoire source -->
+		<available type="dir" property="file.exists" file="${source}"></available>
+	</target>
+
+	<target name="update-failed" depends="check_was" if="${file.exists}">
+
+	</target>
+
+	<target name="init">
+		<echo>init du projet</echo>
+
+		<echo>Copie des sources</echo>
+		<copy todir="${dest.src}">
+			<fileset file="${source.src}/"></fileset>
+		</copy>
+
+		<echo>Copie Web-Content</echo>
+
+		<echo>Copie du pom.xml</echo>
+		<copy todir=".">
+			<fileset file="${source}/pom.xml"></fileset>
+		</copy>
+
+		<echo>Copie du répertoire WEB-INF</echo>
+		<copy todir="${dest.webcontent.webinf}" verbose="true" overwrite="true">
+			<fileset dir="${source.webcontent.webinf}" />
+		</copy>
+
+		<echo>Creation du répertoire Other Ressources</echo>
+		<mkdir dir="${dest.src.otherResources}" />
+
+		<echo>Copie du répertoire META-INF</echo>
+		<copy todir="${dest.webcontent.metainf}" verbose="true"
+			overwrite="true">
+			<fileset dir="${source.webcontent.metainf}" />
+		</copy>
+	</target>
+
+
+</project>
