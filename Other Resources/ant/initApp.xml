@@ -3,6 +3,10 @@
 		Création d'un nouveau projet
 	</description>
 
+	<!-- Pour systèmes Unix
+	<property name="source" location="/Users/${user.name}/Desktop/appSocle" />
+	-->
+	<property name="source" location="D:\Users/${user.name}/Desktop/appSocle" />
 
 	<property name="source" location="D:\Users/${user.name}/Desktop/appSocle" />
 
