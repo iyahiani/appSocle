@@ -43,10 +43,10 @@ public class LoginManagedBean implements Serializable {
    @PostConstruct
    public void init() {
       ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-      if (ihmManagedBean.getOriginalURL() == null) {
-         ihmManagedBean.setOriginalURL((String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI));
-         if (ihmManagedBean.getOriginalURL() == null) {
-            ihmManagedBean.setOriginalURL(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURL().toString());
+      if (this.ihmManagedBean.getOriginalURL() == null) {
+         this.ihmManagedBean.setOriginalURL((String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI));
+         if (this.ihmManagedBean.getOriginalURL() == null) {
+            this.ihmManagedBean.setOriginalURL(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURL().toString());
          }
       }
    }
@@ -61,10 +61,10 @@ public class LoginManagedBean implements Serializable {
       HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
       try {
-         request.login(login, password);
-         ihmManagedBean.setCurrentUser(utilisateurDao.getUserByLogin(login));
-         String url = ihmManagedBean.getOriginalURL();
-         ihmManagedBean.setOriginalURL(null);
+         request.login(this.login, this.password);
+         this.ihmManagedBean.setCurrentUser(this.utilisateurDao.getUserByLogin(this.login));
+         String url = this.ihmManagedBean.getOriginalURL();
+         this.ihmManagedBean.setOriginalURL(null);
          externalContext.redirect(url);
       } catch (ServletException e) {
          ContextController.addErrorMessage("login_connexion_erreur");
@@ -80,7 +80,7 @@ public class LoginManagedBean implements Serializable {
       try {
          HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
          request.logout();
-         ihmManagedBean.setCurrentUser(null);
+         this.ihmManagedBean.setCurrentUser(null);
          ContextController.addInfoMessage("login_deconnexion_ok");
       } catch (ServletException e) {
       }
@@ -102,7 +102,7 @@ public class LoginManagedBean implements Serializable {
     * @return the password
     */
    public String getPassword() {
-      return password;
+      return this.password;
    }
 
    /**
@@ -120,7 +120,7 @@ public class LoginManagedBean implements Serializable {
     * @return the login
     */
    public String getLogin() {
-      return login;
+      return this.login;
    }
 
    /**
