@@ -1,7 +1,5 @@
 package com.avancial.socle.controller.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -15,29 +13,27 @@ import com.avancial.socle.model.bean.UtilisateurBean;
  */
 public class UtilisateurDao {
 
-	private EntityManager entityManager;
+   private EntityManager entityManager;
 
-	/**
-	 * Constructor
-	 */
-	public UtilisateurDao() {
-		entityManager = AbstractEntityManager.getInstance().getEntityManager();
-	}
+   /**
+    * Constructor
+    */
+   public UtilisateurDao() {
+      this.entityManager = AbstractEntityManager.getInstance().getEntityManager();
+   }
 
+   /**
+    * Retourne un UserBean à partir du login
+    * 
+    * @param login
+    * @return l'utilisateur ayant comme login le parametre
+    */
+   public UtilisateurBean getUserByLogin(String login) {
 
-	/**
-	 * Retourne un UserBean à partir du login
-	 * 
-	 * @param login
-	 * @return l'utilisateur ayant comme login le parametre
-	 */
-	public UtilisateurBean getUserByLogin(String login) {
+      Query requete = this.entityManager.createQuery("SELECT user FROM UtilisateurBean user WHERE user.loginUser = :login");
+      requete.setParameter("login", login);
 
-		Query requete = entityManager.createQuery("SELECT user FROM UtilisateurBean user WHERE user.loginUser = :login");
-		requete.setParameter("login", login);
+      return (UtilisateurBean) requete.getSingleResult();
 
-		return (UtilisateurBean) requete.getSingleResult();
-		
-		
-	}
+   }
 }

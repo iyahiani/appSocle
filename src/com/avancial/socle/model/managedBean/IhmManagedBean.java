@@ -21,14 +21,14 @@ import com.avancial.socle.resources.constants.ConstantSocle;
  * @author guillaume.bouziou
  * 
  */
-@Named()
+@Named("ihmManagedBean")
 @SessionScoped
 public class IhmManagedBean implements Serializable {
 
    private static final long serialVersionUID = 1L;
-   private UtilisateurBean currentUser;
-   private String originalURL;
-   private Locale locale;
+   private UtilisateurBean   currentUser;
+   private String            originalURL;
+   private Locale            locale;
 
    /**
     * Teste si il y a un utilisateur de connecté
@@ -51,6 +51,7 @@ public class IhmManagedBean implements Serializable {
          this.setCurrentUser(null);
          ContextController.addInfoMessage("login_deconnexion_ok");
       } catch (ServletException e) {
+         e.printStackTrace();
       }
       return ConstantSocle.NAVIGATION_ACCUEIL.toString();
    }
@@ -77,7 +78,7 @@ public class IhmManagedBean implements Serializable {
     * @return the currentUser
     */
    public UtilisateurBean getCurrentUser() {
-      return currentUser;
+      return this.currentUser;
    }
 
    /**
@@ -95,7 +96,7 @@ public class IhmManagedBean implements Serializable {
     * @return the originalURL
     */
    public String getOriginalURL() {
-      return originalURL;
+      return this.originalURL;
    }
 
    /**
@@ -142,8 +143,8 @@ public class IhmManagedBean implements Serializable {
     * @return the locale
     */
    public Locale getLocale() {
-	   if (null==this.locale)
-		   this.locale=new Locale(FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage());
-      return locale;
+      if (null == this.locale)
+         this.locale = new Locale(FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage());
+      return this.locale;
    }
 }

@@ -7,7 +7,6 @@ import javax.inject.Named;
 
 import com.avancial.socle.resources.constants.ConstantSocle;
 
-
 /**
  * Managed Bean de gestion de la page liste utilisateurs public
  * 
@@ -16,11 +15,15 @@ import com.avancial.socle.resources.constants.ConstantSocle;
  */
 @Named("menu")
 @SessionScoped
-public class MenuManagedBean implements Serializable{
+public class MenuManagedBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	public String goAccueil() {
-		return ConstantSocle.NAVIGATION_ACCUEIL.toString();
-	}
+   public String goAccueil() {
+      return ConstantSocle.NAVIGATION_ACCUEIL.toString();
+   }
+
+   public String goMdpOublie() {
+      return ConstantSocle.NAVIGATION_MDPOUBLIE.toString();
+   }
 }
