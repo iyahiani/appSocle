@@ -23,28 +23,41 @@
 
 	<property name="source.src" location="${source}/src" />
 	<property name="dest.src" location="src" />
-	<property name="source.src.socle" location="${source}/src/socle" />
-	<property name="dest.src.socle" location="src/socle" />
+	<property name="source.src.socle" location="${source}/src/com/avancial/socle" />
+	<property name="dest.src.socle" location="src/com/avancial/socle/" />
 
-	<property name="dest.otherResources.socle" location="OtherResources/socle" />
-
+	<property name="dest.otherResources" location="Other Resources" />
+	<property name="source.otherResources" location="${source}/Other Resources/" />
 
 
 
 	<property name="dest.webcontent.wsdl" location="${dest.webcontent}/wsdl/" />
 
 
-	<property name="dest.doc" location="doc" />
-
 	<target name="commun">
 		<echo>Copie des sources</echo>
-			
-			
-			
 		<copy todir="${dest.src.socle}" verbose="true" overwrite="true">
 			<fileset dir="${source.src.socle}">
 			</fileset>
 		</copy>
+
+	
+		<echo>Copie des resources</echo>
+		<copy todir="${dest.otherResources}" verbose="true" overwrite="true">
+			<fileset dir="${source.otherResources}">
+				<exclude name="socle/"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="update">
+		<echo>update du projet</echo>
+		<delete dir="${dest.src.socle}">
+		</delete>
+		<mkdir dir="${dest.src.socle}" />
+		<antcall target="commun">
+		</antcall>
 	</target>
 
 
@@ -89,12 +102,6 @@
 		<copy todir="${dest.webcontent.metainf}" verbose="true" overwrite="true">
 			<fileset dir="${source.webcontent.metainf}" />
 		</copy>
-	</target>
-
-	<target name="update">
-		<echo>update du projet</echo>
-		<antcall target="commun">
-		</antcall>
 	</target>
 
 
