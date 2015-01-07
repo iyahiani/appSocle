@@ -107,7 +107,7 @@
 		<echo>Copie Web-Content</echo>
 
 		<echo>Copie du pom.xml</echo>
-		<copy todir=".">
+		<copy todir="." overwrite="true">
 			<fileset file="${source}/pom.xml">
 			</fileset>
 		</copy>
