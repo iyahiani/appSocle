@@ -15,40 +15,40 @@ import javax.persistence.Persistence;
  */
 public class AbstractEntityManager {
 
-	private static AbstractEntityManager instance;
+   private static AbstractEntityManager instance;
 
-	private static final String PERSISTENCE_UNIT_NAME = "persistence_socle";
-	private EntityManagerFactory emf;
-	private EntityManager em;
+   private static final String          PERSISTENCE_UNIT_NAME = "persistence_socle";
+   private EntityManagerFactory         emf;
+   private EntityManager                em;
 
-	/**
-	 * Constructor
-	 */
-	private AbstractEntityManager() {
-		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		em = emf.createEntityManager();
-	}
+   /**
+    * Constructor
+    */
+   private AbstractEntityManager() {
+      this.emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+      this.em = this.emf.createEntityManager();
+   }
 
-	/**
-	 * Retourne l'instance courante
-	 * 
-	 * @return l'instance courante
-	 */
-	public static synchronized AbstractEntityManager getInstance() {
-		if (instance == null) {
-			instance = new AbstractEntityManager();
-		}
+   /**
+    * Retourne l'instance courante
+    * 
+    * @return l'instance courante
+    */
+   public static synchronized AbstractEntityManager getInstance() {
+      if (instance == null) {
+         instance = new AbstractEntityManager();
+      }
 
-		return instance;
-	}
+      return instance;
+   }
 
-	/**
-	 * Getter de l'entityManager
-	 * 
-	 * @return l'entityManager
-	 */
-	public EntityManager getEntityManager() {
-		return em;
-	}
+   /**
+    * Getter de l'entityManager
+    * 
+    * @return l'entityManager
+    */
+   public EntityManager getEntityManager() {
+      return this.em;
+   }
 
 }

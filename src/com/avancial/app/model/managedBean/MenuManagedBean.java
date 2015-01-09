@@ -19,11 +19,11 @@ public class MenuManagedBean implements Serializable {
 
    private static final long serialVersionUID = 1L;
 
-   public String goAccueil() {
+   public static String goAccueil() {
       return ConstantSocle.NAVIGATION_ACCUEIL.toString();
    }
 
-   public String goMdpOublie() {
+   public static String goMdpOublie() {
       return ConstantSocle.NAVIGATION_MDPOUBLIE.toString();
    }
 }
