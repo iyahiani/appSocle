@@ -14,7 +14,7 @@ import com.avancial.socle.params.exception.ParamNotFoundException;
  * @author bruno
  *
  */
-public class FacadeParamGetter {
+public class ParamGetterBean {
    private Map<String, Map<String, IParamBean>> mapParamBean;
 
    /**
@@ -23,7 +23,7 @@ public class FacadeParamGetter {
     * @param listeParam
     * 
     */
-   public FacadeParamGetter() {
+   public ParamGetterBean() {
       this.mapParamBean = new HashMap<>();
    }
 
