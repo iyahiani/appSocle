@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "socle_user")
-public class UtilisateurBean {
+public class UtilisateurDataBean {
 
    @Id
    private Long            idUser;
@@ -46,10 +46,10 @@ public class UtilisateurBean {
 
    @OneToOne
    @JoinColumn(name = "idUserCreateUser")
-   private UtilisateurBean userCreateUser;
+   private UtilisateurDataBean userCreateUser;
    @OneToOne
    @JoinColumn(name = "idUserUpdateUser")
-   private UtilisateurBean userUpdateUser;
+   private UtilisateurDataBean userUpdateUser;
 
    private String          robotUser;
    private String          tomcatRoleUser;
@@ -255,19 +255,19 @@ public class UtilisateurBean {
       this.dateLastUpdateUtilisateurUser = dateLastUpdateUtilisateurUser;
    }
 
-   public UtilisateurBean getUserCreateUser() {
+   public UtilisateurDataBean getUserCreateUser() {
       return this.userCreateUser;
    }
 
-   public void setUserCreateUser(UtilisateurBean userCreateUser) {
+   public void setUserCreateUser(UtilisateurDataBean userCreateUser) {
       this.userCreateUser = userCreateUser;
    }
 
-   public UtilisateurBean getUserUpdateUser() {
+   public UtilisateurDataBean getUserUpdateUser() {
       return this.userUpdateUser;
    }
 
-   public void setUserUpdateUser(UtilisateurBean userUpdateUser) {
+   public void setUserUpdateUser(UtilisateurDataBean userUpdateUser) {
       this.userUpdateUser = userUpdateUser;
    }
 
