@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.avancial.socle.controller.dao;
+package com.avancial.socle.data.controller.dao;
 
 import javax.persistence.EntityManager;
 

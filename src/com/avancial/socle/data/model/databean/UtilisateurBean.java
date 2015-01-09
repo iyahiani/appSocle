@@ -1,4 +1,4 @@
-package com.avancial.socle.model.bean;
+package com.avancial.socle.data.model.databean;
 
 import java.util.Date;
 

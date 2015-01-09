@@ -11,7 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.avancial.socle.model.bean.UtilisateurBean;
+import com.avancial.socle.data.model.databean.UtilisateurBean;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.ConstantSocle;
 

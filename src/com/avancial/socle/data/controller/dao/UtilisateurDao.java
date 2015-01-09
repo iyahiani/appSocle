@@ -1,8 +1,8 @@
-package com.avancial.socle.controller.dao;
+package com.avancial.socle.data.controller.dao;
 
 import javax.persistence.Query;
 
-import com.avancial.socle.model.bean.UtilisateurBean;
+import com.avancial.socle.data.model.databean.UtilisateurBean;
 
 /**
  * Classe DAO pour l'objet métier Utilisateur

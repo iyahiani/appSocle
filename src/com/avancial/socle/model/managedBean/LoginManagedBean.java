@@ -13,7 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.avancial.socle.controller.dao.UtilisateurDao;
+import com.avancial.socle.data.controller.dao.UtilisateurDao;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.ConstantSocle;
 
