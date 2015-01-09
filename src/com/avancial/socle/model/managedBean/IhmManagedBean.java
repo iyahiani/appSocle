@@ -113,7 +113,7 @@ public class IhmManagedBean implements Serializable {
     * 
     * @return locale to string
     */
-   public String getLanguage() {
+   public static String getLanguage() {
       return FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
    }
 
