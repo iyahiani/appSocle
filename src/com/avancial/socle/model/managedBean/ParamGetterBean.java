@@ -29,6 +29,7 @@ public class ParamGetterBean implements Serializable {
     */
    private static final long                    serialVersionUID = 1L;
    private Map<String, Map<String, IParamBean>> mapParamBean;
+   private String                               pathToWebInf;
 
    /**
     * Initialise la structure qui va accueillir les paramBean
@@ -39,18 +40,27 @@ public class ParamGetterBean implements Serializable {
     */
    public ParamGetterBean() throws Exception {
       this.mapParamBean = new HashMap<>();
-      String filePath = "";
+      this.initPathToWebInf();
+
+      // On instancie les Paramètres du socle
+      ParamReaderFileGeneric socle = new ParamReaderFileGeneric(this.pathToWebInf + "/classes/com/avancial/socle/resources/socle.properties");
+      socle.loadParams("socle");
+      this.add(socle);
+   }
+
+   /**
+    * 
+    */
+   private void initPathToWebInf() {
+      String path = "";
       String WEBINF = "WEB-INF";
       URL url = ParamGetterBean.class.getResource("ParamGetterBean.class");
 
       String className = url.getFile();
 
-      filePath = className.substring(0, className.indexOf(WEBINF) + WEBINF.length());
+      path = className.substring(0, className.indexOf(WEBINF) + WEBINF.length());
+      this.pathToWebInf = path;
 
-      // On instancie les Paramètres du socle
-      ParamReaderFileGeneric socle = new ParamReaderFileGeneric(filePath + "/classes/com/avancial/socle/resources/socle.properties");
-      socle.loadParams("socle");
-      this.add(socle);
    }
 
    /**
@@ -86,4 +96,13 @@ public class ParamGetterBean implements Serializable {
       }
       throw new ParamCollectionNotLoadedException(paramType);
    }
+
+   /**
+    * @return Le chemin d'accès au répertoire Web-inf de l'application
+    */
+   public String getPathToWebInf() {
+
+      return this.pathToWebInf;
+   }
+
 }
