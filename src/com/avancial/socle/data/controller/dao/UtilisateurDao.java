@@ -2,7 +2,7 @@ package com.avancial.socle.data.controller.dao;
 
 import javax.persistence.Query;
 
-import com.avancial.socle.data.model.databean.UtilisateurBean;
+import com.avancial.socle.data.model.databean.UtilisateurDataBean;
 
 /**
  * Classe DAO pour l'objet métier Utilisateur
@@ -18,12 +18,12 @@ public class UtilisateurDao extends AbstractDao {
     * @param login
     * @return l'utilisateur ayant comme login le parametre
     */
-   public UtilisateurBean getUserByLogin(String login) {
+   public UtilisateurDataBean getUserByLogin(String login) {
 
-      Query requete = this.getEntityManager().createQuery("SELECT user FROM UtilisateurBean user WHERE user.loginUser = :login");
+      Query requete = this.getEntityManager().createQuery("SELECT user FROM UtilisateurDataBean user WHERE user.loginUser = :login");
       requete.setParameter("login", login);
 
-      return (UtilisateurBean) requete.getSingleResult();
+      return (UtilisateurDataBean) requete.getSingleResult();
 
    }
 }
