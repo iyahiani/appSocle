@@ -107,7 +107,7 @@ public class ParamGetterBean implements Serializable {
    /**
     * @return Le chemin d'accès au répertoire Web-inf de l'application
     */
-   public String getPathToWebInf() {
+   protected String getPathToWebInf() {
 
       return this.pathToWebInf;
    }

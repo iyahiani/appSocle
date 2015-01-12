@@ -13,7 +13,8 @@
 ParamGetter
 --
 --
-+getParam(type : String, nom : String): Bean
++getParam(type : String, nom : String): IParamBean
++add(iParamReader: IParamReader)
 --
 </panel_attributes>
     <additional_attributes/>
