@@ -273,20 +273,6 @@ appsocle.params::IParamBean
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>780</y>
-      <w>230</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>ParamFichierBean
---
-#nom: String
-#valeur: String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>10</x>
       <y>470</y>
       <w>290</w>
