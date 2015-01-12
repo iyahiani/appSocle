@@ -8,6 +8,9 @@ import java.util.Collection;
 import com.avancial.socle.params.beans.IParamBean;
 
 /**
+ * Interface de chargement et de récupération de paramètres
+ * 
+ * 
  * @author bruno
  *
  */

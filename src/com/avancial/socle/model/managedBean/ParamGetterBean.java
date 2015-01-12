@@ -18,6 +18,10 @@ import com.avancial.socle.params.exception.ParamCollectionNotLoadedException;
 import com.avancial.socle.params.exception.ParamNotFoundException;
 
 /**
+ * Classe implémentant un point unique de gestion des paramètres. Inspiré du
+ * design patttern Facade. <br>
+ * Voir{@link IParamBean, IParamReader}
+ * 
  * @author bruno
  *
  */
@@ -49,7 +53,8 @@ public class ParamGetterBean implements Serializable {
    }
 
    /**
-    * 
+    * Permet de récupérer le chemin d'accès au répertoire web-inf. Utilisé pour
+    * atteindre les fichiers de paramètres (.properties)
     */
    private void initPathToWebInf() {
       String path = "";
@@ -64,6 +69,8 @@ public class ParamGetterBean implements Serializable {
    }
 
    /**
+    * Ajouter un reader de paramètre à la collection
+    * 
     * @param iParamReader
     */
    public void add(IParamReader iParamReader) {
