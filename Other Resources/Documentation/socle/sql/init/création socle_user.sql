@@ -1,0 +1,41 @@
+CREATE TABLE `socle_user` (
+  `idUser` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DateCreateUser` datetime DEFAULT NULL,
+  `DateUpdateUser` datetime DEFAULT NULL,
+  `adresseCodePostalUser` varchar(255) DEFAULT NULL,
+  `adresseComplement1User` varchar(255) DEFAULT NULL,
+  `adresseComplement2User` varchar(255) DEFAULT NULL,
+  `adresseNomRueUser` varchar(255) DEFAULT NULL,
+  `adresseNumeroRueUser` varchar(255) DEFAULT NULL,
+  `adresseVilleUser` varchar(255) DEFAULT NULL,
+  `attribut1User` varchar(255) DEFAULT NULL,
+  `attribut2User` varchar(255) DEFAULT NULL,
+  `attribut3User` varchar(255) DEFAULT NULL,
+  `attribut4User` varchar(255) DEFAULT NULL,
+  `attribut5User` varchar(255) DEFAULT NULL,
+  `commentaireUtilisateurUser` varchar(255) DEFAULT NULL,
+  `cpUser` varchar(255) DEFAULT NULL,
+  `dateLastUpdateUtilisateurUser` datetime DEFAULT NULL,
+  `fax1User` varchar(255) DEFAULT NULL,
+  `loginUser` varchar(255) DEFAULT NULL,
+  `mailUser` varchar(255) DEFAULT NULL,
+  `nomUser` varchar(255) DEFAULT NULL,
+  `passwordUser` varchar(255) DEFAULT NULL,
+  `prenomUser` varchar(255) DEFAULT NULL,
+  `robotUser` varchar(255) DEFAULT NULL,
+  `telephonePortable1User` varchar(255) DEFAULT NULL,
+  `telephonePro1User` varchar(255) DEFAULT NULL,
+  `telephonePro2User` varchar(255) DEFAULT NULL,
+  `tomcatRoleUser` varchar(255) DEFAULT NULL,
+  `idUserCreateUser` bigint(20) DEFAULT NULL,
+  `idUserUpdateUser` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`idUser`),
+  KEY `FK_8ebaq9vtxpb2fjh1va627lrcp` (`idUserCreateUser`),
+  KEY `FK_f5l06ewyl5xc4gpyk2gkbysmi` (`idUserUpdateUser`),
+  CONSTRAINT `FK_8ebaq9vtxpb2fjh1va627lrcp` FOREIGN KEY (`idUserCreateUser`) REFERENCES `socle_user` (`idUser`),
+  CONSTRAINT `FK_f5l06ewyl5xc4gpyk2gkbysmi` FOREIGN KEY (`idUserUpdateUser`) REFERENCES `socle_user` (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+
+REPLACE INTO socle_user ( `idUser`, `DateCreateUser`, `DateUpdateUser`, `adresseCodePostalUser`, `adresseComplement1User`, `adresseComplement2User`, `adresseNomRueUser`, `adresseNumeroRueUser`, `adresseVilleUser`, `attribut1User`, `attribut2User`, `attribut3User`, `attribut4User`, `attribut5User`, `commentaireUtilisateurUser`, `cpUser`, `dateLastUpdateUtilisateurUser`, `fax1User`, `loginUser`, `mailUser`, `nomUser`, `passwordUser`, `prenomUser`, `robotUser`, `telephonePortable1User`, `telephonePro1User`, `telephonePro2User`, `tomcatRoleUser`, `idUserCreateUser`, `idUserUpdateUser` ) VALUES ( 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL, 'admin', 'admin', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL );

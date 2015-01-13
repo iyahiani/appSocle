@@ -11,7 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.avancial.socle.model.bean.UtilisateurBean;
+import com.avancial.socle.data.model.databean.UtilisateurDataBean;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.ConstantSocle;
 
@@ -25,10 +25,10 @@ import com.avancial.socle.resources.constants.ConstantSocle;
 @SessionScoped
 public class IhmManagedBean implements Serializable {
 
-   private static final long serialVersionUID = 1L;
-   private UtilisateurBean   currentUser;
-   private String            originalURL;
-   private Locale            locale;
+   private static final long   serialVersionUID = 1L;
+   private UtilisateurDataBean currentUser;
+   private String              originalURL;
+   private Locale              locale;
 
    /**
     * Teste si il y a un utilisateur de connecté
@@ -77,7 +77,7 @@ public class IhmManagedBean implements Serializable {
     * 
     * @return the currentUser
     */
-   public UtilisateurBean getCurrentUser() {
+   public UtilisateurDataBean getCurrentUser() {
       return this.currentUser;
    }
 
@@ -86,7 +86,7 @@ public class IhmManagedBean implements Serializable {
     * 
     * @param currentUser
     */
-   public void setCurrentUser(UtilisateurBean currentUser) {
+   public void setCurrentUser(UtilisateurDataBean currentUser) {
       this.currentUser = currentUser;
    }
 
@@ -113,6 +113,8 @@ public class IhmManagedBean implements Serializable {
     * 
     * @return locale to string
     */
+   // Ne pas passer en static, ça plante dans les pages
+   @SuppressWarnings("static-method")
    public String getLanguage() {
       return FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
    }

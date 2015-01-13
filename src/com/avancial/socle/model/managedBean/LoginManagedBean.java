@@ -13,7 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.avancial.socle.controller.dao.UtilisateurDao;
+import com.avancial.socle.data.controller.dao.UtilisateurDao;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.ConstantSocle;
 
@@ -28,14 +28,14 @@ import com.avancial.socle.resources.constants.ConstantSocle;
 public class LoginManagedBean implements Serializable {
 
    private static final long serialVersionUID = 1L;
-   private String login;
-   private String password;
+   private String            login;
+   private String            password;
 
    @Inject
-   private IhmManagedBean ihmManagedBean;
+   private IhmManagedBean    ihmManagedBean;
 
    // Dao de gestion des utilisateurs
-   private UtilisateurDao utilisateurDao = new UtilisateurDao();
+   private UtilisateurDao    utilisateurDao   = new UtilisateurDao();
 
    /**
     * Initialisation de l'url courante
@@ -83,6 +83,7 @@ public class LoginManagedBean implements Serializable {
          this.ihmManagedBean.setCurrentUser(null);
          ContextController.addInfoMessage("login_deconnexion_ok");
       } catch (ServletException e) {
+         e.printStackTrace();
       }
       return ConstantSocle.NAVIGATION_ACCUEIL.toString();
    }
@@ -92,7 +93,7 @@ public class LoginManagedBean implements Serializable {
     * 
     * @return l'url de la page d'accueil
     */
-   public String cancel() {
+   public static String cancel() {
       return ConstantSocle.NAVIGATION_ACCUEIL.toString();
    }
 

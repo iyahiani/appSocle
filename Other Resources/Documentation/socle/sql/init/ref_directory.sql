@@ -1,0 +1,1 @@
+CREATE TABLE `socle_ref_directory` ( `idRefRepertoire` BIGINT (20) UNSIGNED NOT NULL AUTO_INCREMENT, `technicalName` VARCHAR (30) NOT NULL, `path` VARCHAR (100) NOT NULL, `Comments` TINYTEXT CHARACTER SET utf8mb4, PRIMARY KEY (`idRefRepertoire`), UNIQUE KEY `IND_RefDirectoryTechnicalName` (`technicalName`) USING BTREE ) ENGINE = INNODB DEFAULT CHARSET = utf8;
