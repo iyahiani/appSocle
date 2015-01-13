@@ -23,11 +23,10 @@ CREATE TABLE `socle_user` (
   `attribut3User` varchar(35) CHARACTER SET latin1 DEFAULT NULL,
   `attribut4User` varchar(35) CHARACTER SET latin1 DEFAULT NULL,
   `attribut5User` varchar(35) CHARACTER SET latin1 DEFAULT NULL,
-  `idUserCreateUser` int(11) unsigned DEFAULT NULL,
-  `dateCreateUser` datetime DEFAULT NULL,
-  `idUserUpdateUser` int(11) unsigned DEFAULT NULL,
-  `dateUpdateUser` datetime DEFAULT NULL,
-  `dateUpdateUtilisateurUser` datetime DEFAULT NULL,
+  `idUserCreateUser` int(11) unsigned NOT NULL,
+  `dateCreateUser` datetime NOT NULL,
+  `idUserUpdateUser` int(11) unsigned NOT NULL,
+  `dateUpdateUser` datetime NOT NULL,
   `commentaireUtilisateurUser` varchar(75) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `indUnique_loginUser` (`loginUser`) USING BTREE,
@@ -38,6 +37,8 @@ CREATE TABLE `socle_user` (
   KEY `idUserUpdateUser_FK` (`idUserUpdateUser`),
   CONSTRAINT `idUserCreateUser_FK` FOREIGN KEY (`idUserCreateUser`) REFERENCES `socle_user` (`idUser`),
   CONSTRAINT `idUserUpdateUser_FK` FOREIGN KEY (`idUserUpdateUser`) REFERENCES `socle_user` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
 
 INSERT INTO socle_user ( `nomUser`, `prenomUser`, `loginUser`, `passwordUser`, `mailUser`, `cpUser`, `robotUser`, `tomcatRoleUser`, `telephonePro1User`, `telephonePro2User`, `telephonePortable1User`, `fax1User`, `adresseNumeroRueUser`, `adresseNomRueUser`, `adresseComplement1User`, `adresseComplement2User`, `adresseCodepostalUser`, `adresseVilleUser`, `attribut1User`, `attribut2User`, `attribut3User`, `attribut4User`, `attribut5User`, `dateCreateUser`, `dateUpdateUser`, `dateUpdateUtilisateurUser`, `commentaireUtilisateurUser` ) VALUES ( 'admin', 'admin', 'admin', SHA1('admin'), NULL, NULL, FALSE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-01-13 09:54:50.0', NULL, '2015-01-13 09:54:59.0', NULL );
