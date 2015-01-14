@@ -21,8 +21,9 @@ public class UtilisateurDao extends AbstractDao {
     * @return l'utilisateur ayant comme login le parametre
     */
    public UtilisateurDataBean getUserByLogin(String login) {
+      final String sql = "SELECT user FROM UtilisateurDataBean user WHERE user.loginUser = :login";
 
-      Query requete = this.getEntityManager().createQuery("SELECT user FROM UtilisateurDataBean user WHERE user.loginUser = :login");
+      Query requete = this.getEntityManager().createQuery(sql);
       requete.setParameter("login", login);
 
       return (UtilisateurDataBean) requete.getSingleResult();

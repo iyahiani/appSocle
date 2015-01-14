@@ -22,8 +22,9 @@ public class RefDirectoryDao extends AbstractDao {
     * @return l'utilisateur ayant comme login le parametre
     */
    public RefDirectoryDataBean getRefDirectoryByTechnicalName(String technicalName) {
+      String sql = "FROM RefDirectoryDataBean refDirectory WHERE refDirectory.technicalNameRefDirectory = :technicalName";
 
-      Query requete = this.getEntityManager().createQuery("SELECT refDirectory FROM RefDirectoryDataBean refDirectory WHERE refDirectory.technicalNameRefDirectory = :technicalName");
+      Query requete = this.getEntityManager().createQuery(sql);
       requete.setParameter("technicalName", technicalName);
 
       return (RefDirectoryDataBean) requete.getSingleResult();
@@ -35,7 +36,9 @@ public class RefDirectoryDao extends AbstractDao {
     */
    @Override
    public ArrayList<?> getAll() {
-      Query requete = this.getEntityManager().createQuery("From RefDirectoryDataBean");
+
+      String sql = "From RefDirectoryDataBean";
+      Query requete = this.getEntityManager().createQuery(sql);
       return (ArrayList<?>) requete.getResultList();
    }
 }

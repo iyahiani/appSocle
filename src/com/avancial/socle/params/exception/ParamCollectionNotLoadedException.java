@@ -18,6 +18,6 @@ public class ParamCollectionNotLoadedException extends Exception {
     * Constructeur
     */
    public ParamCollectionNotLoadedException(String type) {
-      super(String.format("La collection '%s' n'a pas été chargée", type));
+      super(String.format(AParamException.MSG_COLLECTION_NOT_LOADED, type));
    }
 }
