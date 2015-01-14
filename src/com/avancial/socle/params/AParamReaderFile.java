@@ -52,7 +52,7 @@ public abstract class AParamReaderFile extends AParamReader {
 
    @Override
    public void loadParams(String paramsName) throws Exception {
-      this.paramsName = paramsName;
+      super.loadParams(paramsName);
       Properties properties = new Properties();
 
       try (FileInputStream input = new FileInputStream(this.getFilePath())) {

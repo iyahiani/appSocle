@@ -1,5 +1,7 @@
 package com.avancial.socle.data.controller.dao;
 
+import java.util.ArrayList;
+
 import javax.persistence.Query;
 
 import com.avancial.socle.data.model.databean.UtilisateurDataBean;
@@ -25,5 +27,16 @@ public class UtilisateurDao extends AbstractDao {
 
       return (UtilisateurDataBean) requete.getSingleResult();
 
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see com.avancial.socle.data.controller.dao.AbstractDao#getAll()
+    */
+   @Override
+   public ArrayList<?> getAll() {
+      // TODO to be implemented later
+      return null;
    }
 }

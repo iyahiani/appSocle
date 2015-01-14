@@ -11,7 +11,10 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
+import com.avancial.socle.data.controller.dao.RefDirectoryDao;
 import com.avancial.socle.params.IParamReader;
+import com.avancial.socle.params.ParamReaderDB;
+import com.avancial.socle.params.ParamReaderDBDirectory;
 import com.avancial.socle.params.ParamReaderFileGeneric;
 import com.avancial.socle.params.beans.IParamBean;
 import com.avancial.socle.params.exception.ParamCollectionNotLoadedException;
@@ -31,9 +34,9 @@ public class ParamGetterBean implements Serializable {
    /**
     * 
     */
-   private static final long                    serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
    private Map<String, Map<String, IParamBean>> mapParamBean;
-   private String                               pathToWebInf;
+   private String pathToWebInf;
 
    /**
     * Initialise la structure qui va accueillir les paramBean
@@ -50,6 +53,11 @@ public class ParamGetterBean implements Serializable {
       ParamReaderFileGeneric socle = new ParamReaderFileGeneric(this.pathToWebInf + "/classes/com/avancial/socle/resources/socle.properties");
       socle.loadParams("socle");
       this.add(socle);
+
+      ParamReaderDB paramDb = new ParamReaderDBDirectory(new RefDirectoryDao());
+      paramDb.loadParams("directories");
+      this.add(paramDb);
+
    }
 
    /**

@@ -1,5 +1,6 @@
 package com.avancial.socle.data.controller.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -32,5 +33,16 @@ public class RepertoireDao extends AbstractDao {
       Query requete = this.entityManager.createQuery("SELECT r FROM Repertoire r");
 
       return (List<RepertoireBean>) requete.getSingleResult();
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see com.avancial.socle.data.controller.dao.AbstractDao#getAll()
+    */
+   @Override
+   public ArrayList<?> getAll() {
+      // TODO Auto-generated method stub
+      return null;
    }
 }

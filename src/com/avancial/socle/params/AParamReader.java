@@ -12,7 +12,7 @@ import com.avancial.socle.params.beans.IParamBean;
  *
  */
 public abstract class AParamReader implements IParamReader {
-   protected String                 paramsName;
+   protected String paramsName;
    protected Collection<IParamBean> colIParamBeans;
 
    /**
@@ -38,6 +38,16 @@ public abstract class AParamReader implements IParamReader {
    @Override
    public Collection<IParamBean> getParams() {
       return this.colIParamBeans;
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see com.avancial.socle.params.IParamReader#loadParams(java.lang.String)
+    */
+   @Override
+   public void loadParams(String paramsName) throws Exception {
+      this.paramsName = paramsName;
    }
 
 }

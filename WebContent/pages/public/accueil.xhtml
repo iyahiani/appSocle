@@ -14,6 +14,9 @@
 
 		<h:body>
 			<h1>#{msg.p_accueil_texte_accueil}</h1>
+
+			<h:outputText
+				value="#{paramGetterBean.getParam('directories','test').value}"></h:outputText>
 		</h:body>
 	</ui:define>
 </ui:composition>

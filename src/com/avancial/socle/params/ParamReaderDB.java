@@ -3,13 +3,15 @@
  */
 package com.avancial.socle.params;
 
+import java.util.ArrayList;
+
 import com.avancial.socle.data.controller.dao.AbstractDao;
 
 /**
  * @author bruno.legloahec
  *
  */
-public class ParamReaderDB extends AParamReader {
+public abstract class ParamReaderDB extends AParamReader {
    private AbstractDao dao;
 
    /**
@@ -17,16 +19,7 @@ public class ParamReaderDB extends AParamReader {
     */
    public ParamReaderDB(AbstractDao dao) {
       this.setDao(dao);
-   }
-
-   /*
-    * (non-Javadoc)
-    * 
-    * @see com.avancial.socle.params.IParamReader#loadParams(java.lang.String)
-    */
-   @Override
-   public void loadParams(String paramsName) throws Exception {
-      // TODO ou pas
+      this.colIParamBeans = new ArrayList<>();
    }
 
    /**
