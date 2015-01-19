@@ -12,8 +12,10 @@ public abstract class AParamException extends Exception {
    /**
     * 
     */
-   private static final long  serialVersionUID          = 1L;
-   public static final String MSG_COLLECTION_NOT_FOUND  = "Le paramètre '%s' de la collection '%s' n'a pas été trouvé";
+   private static final long serialVersionUID = 1L;
+   @SuppressWarnings("javadoc")
+   public static final String MSG_COLLECTION_ITEM_NOT_FOUND = "Le paramètre '%s' de la collection '%s' n'a pas été trouvé";
+   @SuppressWarnings("javadoc")
    public static final String MSG_COLLECTION_NOT_LOADED = "La collection '%s' n'a pas été chargée";
 
    /**

@@ -18,6 +18,6 @@ public class ParamNotFoundException extends Exception {
     * Constructeur
     */
    public ParamNotFoundException(String type, String name) {
-      super(String.format(AParamException.MSG_COLLECTION_NOT_FOUND, name, type));
+      super(String.format(AParamException.MSG_COLLECTION_ITEM_NOT_FOUND, name, type));
    }
 }
