@@ -342,4 +342,20 @@ bg=yellow</panel_attributes>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>420</y>
+      <w>400</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>com.avancial.socle.params::ParamReaderDBDirectory
+--
+--
++ParamReaderDBDirectory(AbstractDao dao): ctor
++loadParams(String paramsName): void
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
