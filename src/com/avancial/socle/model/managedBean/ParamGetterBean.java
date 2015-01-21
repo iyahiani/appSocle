@@ -5,7 +5,9 @@ package com.avancial.socle.model.managedBean;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -108,6 +110,20 @@ public class ParamGetterBean implements Serializable {
          if (null != bean)
             return bean;
          throw new ParamNotFoundException(paramType, paramName);
+      }
+      throw new ParamCollectionNotLoadedException(paramType);
+   }
+
+   /**
+    * @param paramType
+    * @return La liste des paramètres associés à la collection
+    * @throws ParamCollectionNotLoadedException
+    */
+   public List<IParamBean> getParamsFromCollection(String paramType) throws ParamCollectionNotLoadedException {
+      if (this.mapParamBean.containsKey(paramType)) {
+         ArrayList<IParamBean> liste = new ArrayList<>();
+         liste.addAll(this.mapParamBean.get(paramType).values());
+         return liste;
       }
       throw new ParamCollectionNotLoadedException(paramType);
    }
