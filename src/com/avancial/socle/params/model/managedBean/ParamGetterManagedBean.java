@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.avancial.socle.model.managedBean;
+package com.avancial.socle.params.model.managedBean;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -14,6 +14,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 import com.avancial.socle.data.controller.dao.RefDirectoryDao;
+import com.avancial.socle.params.AParamGetter;
 import com.avancial.socle.params.IParamReader;
 import com.avancial.socle.params.ParamReaderDB;
 import com.avancial.socle.params.ParamReaderDBDirectory;
@@ -32,13 +33,13 @@ import com.avancial.socle.params.exception.ParamNotFoundException;
  */
 @Named("paramGetterBean")
 @ApplicationScoped
-public class ParamGetterBean implements Serializable {
+public class ParamGetterManagedBean extends AParamGetter implements Serializable {
    /**
     * 
     */
-   private static final long serialVersionUID = 1L;
+   private static final long                    serialVersionUID = 1L;
    private Map<String, Map<String, IParamBean>> mapParamBean;
-   private String pathToWebInf;
+   private String                               pathToWebInf;
 
    /**
     * Initialise la structure qui va accueillir les paramBean
@@ -47,7 +48,7 @@ public class ParamGetterBean implements Serializable {
     * @throws Exception
     * 
     */
-   public ParamGetterBean() throws Exception {
+   public ParamGetterManagedBean() throws Exception {
       this.mapParamBean = new HashMap<>();
       this.initPathToWebInf();
 
@@ -69,7 +70,7 @@ public class ParamGetterBean implements Serializable {
    private void initPathToWebInf() {
       String path = "";
       String WEBINF = "WEB-INF";
-      URL url = ParamGetterBean.class.getResource("ParamGetterBean.class");
+      URL url = ParamGetterManagedBean.class.getResource("ParamGetterManagedBean.class");
 
       String className = url.getFile();
 
@@ -83,6 +84,7 @@ public class ParamGetterBean implements Serializable {
     * 
     * @param iParamReader
     */
+   @Override
    public void add(IParamReader iParamReader) {
 
       HashMap<String, IParamBean> mapParamBeanTmp = new HashMap<>();
@@ -103,6 +105,7 @@ public class ParamGetterBean implements Serializable {
     * @return parametre sous forme de bean
     * @throws Exception
     */
+   @Override
    public IParamBean getParam(String paramType, String paramName) throws Exception {
       if (this.mapParamBean.containsKey(paramType)) {
 
@@ -119,6 +122,7 @@ public class ParamGetterBean implements Serializable {
     * @return La liste des paramètres associés à la collection
     * @throws ParamCollectionNotLoadedException
     */
+   @Override
    public List<IParamBean> getParamsFromCollection(String paramType) throws ParamCollectionNotLoadedException {
       if (this.mapParamBean.containsKey(paramType)) {
          ArrayList<IParamBean> liste = new ArrayList<>();
