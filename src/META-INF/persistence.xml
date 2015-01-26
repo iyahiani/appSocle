@@ -4,7 +4,7 @@
 
 	<persistence-unit name="persistence_socle"
 		transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<non-jta-data-source>java:comp/env/jdbc/socle</non-jta-data-source>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
