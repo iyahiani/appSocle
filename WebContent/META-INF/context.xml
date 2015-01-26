@@ -8,8 +8,8 @@
 		url="jdbc:mysql://caliban/test" maxActive="8" maxIdle="4" />
 
 	<Realm className="org.apache.catalina.realm.DataSourceRealm"
-		dataSourceName="jdbc/socle" userTable="gev_user" userNameCol="loginUser"
-		userCredCol="passwordUser" userRoleTable="gev_user" roleNameCol="tomcatRoleUser"
+		dataSourceName="jdbc/socle" userTable="socle_user" userNameCol="loginUser"
+		userCredCol="passwordUser" userRoleTable="socle_user" roleNameCol="tomcatRoleUser"
 		localDataSource="true" digest="sha1">
 	</Realm>
 </Context>
@@ -25,7 +25,7 @@
 
 	<Realm className="org.apache.catalina.realm.DataSourceRealm"
 		dataSourceName="jdbc/socle" userTable="socle_user" userNameCol="loginUser"
-		userCredCol="passwordUser" userRoleTable="gev_user" roleNameCol="tomcatRoleUser"
+		userCredCol="passwordUser" userRoleTable="socle_user" roleNameCol="tomcatRoleUser"
 		localDataSource="true" digest="sha1">
 	</Realm>
 </Context>
