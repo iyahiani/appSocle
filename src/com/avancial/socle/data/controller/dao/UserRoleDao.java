@@ -13,10 +13,10 @@ import javax.persistence.Query;
 public class UserRoleDao extends AbstractDao {
 
    @Override
-   public ArrayList<?> getAll() {
+   public ArrayList<UserRoleDao> getAll() {
 
-      String sql = "From UserRole";
+      String sql = "From UserRoleDataBean";
       Query requete = this.getEntityManager().createQuery(sql);
-      return (ArrayList<?>) requete.getResultList();
+      return (ArrayList<UserRoleDao>) requete.getResultList();
    }
 }

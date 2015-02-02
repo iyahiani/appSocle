@@ -12,13 +12,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "socle_user_role")
-public class SocleUserRoleDataBean implements Serializable {
+public class UserRoleDataBean implements Serializable {
    private static final long serialVersionUID = 1L;
    private int               idUserRole;
    private String            labelUserRole;
    private String            technicalNameUserRole;
 
-   public SocleUserRoleDataBean() {
+   public UserRoleDataBean() {
    }
 
    @Id

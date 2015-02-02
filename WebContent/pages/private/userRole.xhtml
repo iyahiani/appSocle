@@ -13,6 +13,10 @@
 		</h:head>
 
 		<h:body>
+		<h:dataTable var="tab" value="#{userRole.userRoleList}">
+		<h:outputText value="#{tab.labelUserRole}"></h:outputText>
+		
+		</h:dataTable>
 		
 		</h:body>
 	</ui:define>
