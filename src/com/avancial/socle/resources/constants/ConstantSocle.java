@@ -12,7 +12,8 @@ public enum ConstantSocle {
    MESSAGE_ERR_TRANSLATION_NOT_FOUND("erreur_traduction_non_trouve"),
    NAVIGATION_ACCUEIL("/pages/public/accueil?faces-redirect=true"),
    NAVIGATION_LOGIN("/pages/public/login?faces-redirect=true"),
-   NAVIGATION_MDPOUBLIE("/pages/public/mdpoublie?faces-redirect=true");
+   NAVIGATION_MDPOUBLIE("/pages/public/mdpoublie?faces-redirect=true"),
+   NAVIGATION_USER_ROLE("/pages/private/userRole?faces-redirect=true");
 
    private String constant = "";
 

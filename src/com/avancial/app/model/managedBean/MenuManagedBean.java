@@ -26,4 +26,8 @@ public class MenuManagedBean implements Serializable {
    public static String goMdpOublie() {
       return ConstantSocle.NAVIGATION_MDPOUBLIE.toString();
    }
+
+   public static String goUserRole() {
+      return ConstantSocle.NAVIGATION_USER_ROLE.toString();
+   }
 }
