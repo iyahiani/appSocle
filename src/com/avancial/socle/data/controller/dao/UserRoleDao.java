@@ -24,7 +24,10 @@ public class UserRoleDao extends AbstractDao {
    }
 
    public void save(UserRoleDataBean bean) {
+      this.getEntityManager().getTransaction().begin();
       this.getEntityManager().persist(bean);
+      this.getEntityManager().flush();
+      this.getEntityManager().getTransaction().commit();
    }
 
 }

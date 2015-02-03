@@ -18,18 +18,18 @@ public class UserRoleDataBean implements Serializable {
    private static final long serialVersionUID = 1L;
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer           idUserRole;
+   private Long              idUserRole;
    private String            labelUserRole;
    private String            technicalNameUserRole;
 
    public UserRoleDataBean() {
    }
 
-   public Integer getIdUserRole() {
+   public Long getIdUserRole() {
       return this.idUserRole;
    }
 
-   public void setIdUserRole(Integer idUserRole) {
+   public void setIdUserRole(Long idUserRole) {
       this.idUserRole = idUserRole;
    }
 

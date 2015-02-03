@@ -51,9 +51,13 @@
 
 			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
 				paginator="true">
+				
 				<p:column headerText="action" width="50">
-					<p:graphicImage name="private/image/plus.png"
-						onclick="PF('test').show()" width="24" height="24"></p:graphicImage>
+					<p:graphicImage id="plus" name="private/image/plus.png"
+						onclick="PF('test').show()" width="24" height="24" alt="Ajouter un rôle">
+						<p:tooltip for="plus"  value="Ajouter un rôle"></p:tooltip>
+						
+						</p:graphicImage>
 				</p:column>
 				<p:column headerText="id">
 					<h:outputText value="#{userRole.idUserRole}"></h:outputText>
@@ -65,14 +69,6 @@
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
-
-
-
-			<ui:repeat var="userRole" value="#{userRoleManagedBean.userRoles}">
-				<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
-
-			</ui:repeat>
-
 
 
 		</h:body>

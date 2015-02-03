@@ -38,7 +38,13 @@ public class UserRoleManagedBean {
       userRoleDataBean.setLabelUserRole(this.libelle);
       userRoleDataBean.setTechnicalNameUserRole(this.nomTechnique);
       UserRoleDao dao = new UserRoleDao();
+
       dao.save(userRoleDataBean);
+      // try {
+      // } catch (Exception e) {
+      // FacesContext.getCurrentInstance().addMessage(FacesMessage.SEVERITY_ERROR.toString(),
+      // new FacesMessage("Plop"));
+      // }
 
       return ConstantSocle.NAVIGATION_USER_ROLE.toString();
    }
