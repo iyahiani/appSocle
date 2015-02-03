@@ -13,10 +13,47 @@
 		</h:head>
 
 		<h:body>
-			<!-- -->
-			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}" paginator="true">
+
+			<p:dialog widgetVar="test" resizable="false"
+				header="Ajouter un role utilisateur" >
+				<p:messages id="message" autoUpdate="true"/>
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText value="Nom Technique"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{userRoleManagedBean.nomTechnique}"
+									required="true"
+									requiredMessage="Veuillez saisir le nom technique"  
+									placeholder="Saisir le nom technique"></p:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Libellé"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{userRoleManagedBean.libelle}"
+									required="true" requiredMessage="Veuillez saisir le libellé" placeholder="Saisir un libellé"></p:inputText></td>
+						</tr>
+
+
+					</table>
+
+					<!--			-->
+
+					<br />
+
+
+					<br />
+					<p:commandButton value="Sauver" type="submit"
+						action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
+					<h:commandButton value="Annuler" type="cancel"></h:commandButton>
+				</h:form>
+			</p:dialog>
+
+			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
+				paginator="true">
 				<p:column headerText="action" width="50">
-					<h:graphicImage name="private/image/plus.png" width="24" height="24"></h:graphicImage>
+					<p:graphicImage name="private/image/plus.png"
+						onclick="PF('test').show()" width="24" height="24"></p:graphicImage>
 				</p:column>
 				<p:column headerText="id">
 					<h:outputText value="#{userRole.idUserRole}"></h:outputText>
@@ -28,6 +65,8 @@
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
+
+
 
 			<ui:repeat var="userRole" value="#{userRoleManagedBean.userRoles}">
 				<h:outputText value="#{userRole.labelUserRole}"></h:outputText>

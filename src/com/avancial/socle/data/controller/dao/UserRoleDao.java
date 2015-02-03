@@ -22,4 +22,9 @@ public class UserRoleDao extends AbstractDao {
       Query requete = this.getEntityManager().createQuery(sql);
       return requete.getResultList();
    }
+
+   public void save(UserRoleDataBean bean) {
+      this.getEntityManager().persist(bean);
+   }
+
 }
