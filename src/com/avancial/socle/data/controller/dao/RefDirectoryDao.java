@@ -1,6 +1,6 @@
 package com.avancial.socle.data.controller.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Query;
 
@@ -35,10 +35,10 @@ public class RefDirectoryDao extends AbstractDao {
     * @return une collection de bean
     */
    @Override
-   public ArrayList<?> getAll() {
+   public List<?> getAll() {
 
       String sql = "From RefDirectoryDataBean";
       Query requete = this.getEntityManager().createQuery(sql);
-      return (ArrayList<?>) requete.getResultList();
+      return requete.getResultList();
    }
 }

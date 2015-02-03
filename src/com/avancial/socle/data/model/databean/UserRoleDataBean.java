@@ -14,19 +14,19 @@ import javax.persistence.Table;
 @Table(name = "socle_user_role")
 public class UserRoleDataBean implements Serializable {
    private static final long serialVersionUID = 1L;
-   private int               idUserRole;
+   @Id
+   private Integer           idUserRole;
    private String            labelUserRole;
    private String            technicalNameUserRole;
 
    public UserRoleDataBean() {
    }
 
-   @Id
-   public int getIdUserRole() {
+   public Integer getIdUserRole() {
       return this.idUserRole;
    }
 
-   public void setIdUserRole(int idUserRole) {
+   public void setIdUserRole(Integer idUserRole) {
       this.idUserRole = idUserRole;
    }
 

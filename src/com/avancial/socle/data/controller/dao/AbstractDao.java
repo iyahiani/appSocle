@@ -3,7 +3,7 @@
  */
 package com.avancial.socle.data.controller.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -21,7 +21,7 @@ public abstract class AbstractDao {
       this.setEntityManager(AbstractEntityManager.getInstance().getEntityManager());
    }
 
-   public abstract ArrayList<?> getAll();
+   public abstract List<?> getAll();
 
    protected EntityManager getEntityManager() {
       return this.entityManager;

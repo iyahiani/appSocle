@@ -1,8 +1,10 @@
 package com.avancial.socle.data.controller.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Query;
+
+import com.avancial.socle.data.model.databean.UserRoleDataBean;
 
 /**
  * Classe DAO pour l'objet métier UserRole
@@ -12,11 +14,12 @@ import javax.persistence.Query;
  */
 public class UserRoleDao extends AbstractDao {
 
+   @SuppressWarnings("unchecked")
    @Override
-   public ArrayList<UserRoleDao> getAll() {
+   public List<UserRoleDataBean> getAll() {
 
       String sql = "From UserRoleDataBean";
       Query requete = this.getEntityManager().createQuery(sql);
-      return (ArrayList<UserRoleDao>) requete.getResultList();
+      return requete.getResultList();
    }
 }
