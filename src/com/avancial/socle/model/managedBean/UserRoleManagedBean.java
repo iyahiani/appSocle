@@ -3,10 +3,12 @@
  */
 package com.avancial.socle.model.managedBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.avancial.socle.data.controller.dao.UserRoleDao;
@@ -18,12 +20,17 @@ import com.avancial.socle.resources.constants.ConstantSocle;
  *
  */
 @Named("userRoleManagedBean")
-@RequestScoped
-public class UserRoleManagedBean {
+@ViewScoped
+public class UserRoleManagedBean implements Serializable {
+   /**
+    * 
+    */
+   private static final long      serialVersionUID = 1L;
    private List<UserRoleDataBean> userRoles;
-   private String nomTechnique = "";
-   private String libelle = "";
-   private UserRoleDataBean userRoleSelected;
+   private String                 nomTechnique     = "";
+   private String                 libelle          = "";
+   @Inject
+   private UserRoleDataBean       userRoleSelected;
 
    /**
     * Constructeur
@@ -57,7 +64,7 @@ public class UserRoleManagedBean {
       if (null != this.userRoleSelected)
          System.out.println("deleting role : " + this.userRoleSelected.getTechnicalNameUserRole());
       else
-         System.out.println("Aucun rôle séléctionné");
+         System.out.println("Aucun rôle sélectionné");
       return ConstantSocle.NAVIGATION_USER_ROLE.toString();
    }
 
@@ -104,7 +111,7 @@ public class UserRoleManagedBean {
     * @return the userRoleSelected
     */
    public UserRoleDataBean getUserRoleSelected() {
-      return userRoleSelected;
+      return this.userRoleSelected;
    }
 
    /**

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/pages/template/layout.xhtml">
+	<ui:define name="contenu">
+		<h:head>
+
+			<title>#{msg.p_user_role_titre}</title>
+		</h:head>
+
+		<h:body>
+
+			<p:dialog header="Suppression Role" severity="alert" widgetVar="cd">
+				<h:outputText
+					value="Voulez-vous vraiment supprimer cet enregistrement (#{userRole.idUserRole})?" />
+				<br />
+				<p:commandButton value="Oui"
+					actionListener="#{userRoleManagedBean.deleteUserRole}"
+					oncomplete="PF('cd').hide()" />
+				<p:commandButton value="Non" onclick="PF('cd').hide();"
+					type="button" />
+			</p:dialog>
+
+
+
+
+			<br />
+
+				<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
+					paginator="true" selectionMode="single"
+					selection="#{userRoleManagedBean.userRoleSelected}"
+					rowKey="#{userRole.idUserRole}">
+
+					<p:column headerText="action" width="50">
+						<p:graphicImage id="moins" name="private/image/moins-rouge.png"
+							onclick="PF('cd').show()" width="24" height="24"
+							alt="Supprimer un rôle">
+							<p:tooltip for="moins" value="Supprimer le rôle"></p:tooltip>
+
+						</p:graphicImage>
+
+						<p:commandButton value="Select" action="#{userRoleManagedBean.deleteUserRole}">
+							<f:setPropertyActionListener value="#{userRole}"
+								target="#{userRoleManagedBean.userRoleSelected}" />
+						</p:commandButton>
+
+
+					</p:column>
+					<p:column headerText="id">
+						<h:outputText value="#{userRole.idUserRole}"></h:outputText>
+					</p:column>
+					<p:column headerText="nom technique">
+						<h:outputText value="#{userRole.technicalNameUserRole}"></h:outputText>
+					</p:column>
+					<p:column headerText="libellé">
+						<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+
+
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>
