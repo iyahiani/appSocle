@@ -21,8 +21,9 @@ import com.avancial.socle.resources.constants.ConstantSocle;
 @RequestScoped
 public class UserRoleManagedBean {
    private List<UserRoleDataBean> userRoles;
-   private String                 nomTechnique = "";
-   private String                 libelle      = "";
+   private String nomTechnique = "";
+   private String libelle = "";
+   private UserRoleDataBean userRoleSelected;
 
    /**
     * Constructeur
@@ -33,6 +34,9 @@ public class UserRoleManagedBean {
 
    }
 
+   /**
+    * @return
+    */
    public String addUserRole() {
       UserRoleDataBean userRoleDataBean = new UserRoleDataBean();
       userRoleDataBean.setLabelUserRole(this.libelle);
@@ -46,6 +50,14 @@ public class UserRoleManagedBean {
       // new FacesMessage("Plop"));
       // }
 
+      return ConstantSocle.NAVIGATION_USER_ROLE.toString();
+   }
+
+   public String deleteUserRole() {
+      if (null != this.userRoleSelected)
+         System.out.println("deleting role : " + this.userRoleSelected.getTechnicalNameUserRole());
+      else
+         System.out.println("Aucun rôle séléctionné");
       return ConstantSocle.NAVIGATION_USER_ROLE.toString();
    }
 
@@ -84,6 +96,25 @@ public class UserRoleManagedBean {
     */
    public void setLibelle(String libelle) {
       this.libelle = libelle;
+   }
+
+   /**
+    * get value for userRoleSelected
+    * 
+    * @return the userRoleSelected
+    */
+   public UserRoleDataBean getUserRoleSelected() {
+      return userRoleSelected;
+   }
+
+   /**
+    * sets value for userRoleSelected
+    * 
+    * @param userRoleSelected
+    *           the userRoleSelected to set
+    */
+   public void setUserRoleSelected(UserRoleDataBean userRoleSelected) {
+      this.userRoleSelected = userRoleSelected;
    }
 
 }

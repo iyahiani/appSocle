@@ -14,24 +14,35 @@
 
 		<h:body>
 
-			<p:dialog widgetVar="test" resizable="false"
-				header="Ajouter un role utilisateur" >
-				<p:messages id="message" autoUpdate="true"/>
+			<p:dialog header="Suppression Role" severity="alert" widgetVar="cd">
+				<h:outputText
+					value="Voulez-vous vraiment supprimer cet enregistrement (#{userRole.idUserRole})?" />
+				<br />
+				<p:commandButton value="Oui"
+					actionListener="#{userRoleManagedBean.deleteUserRole}"
+					oncomplete="PF('cd').hide()" />
+				<p:commandButton value="Non" onclick="PF('cd').hide();"
+					type="button" />
+			</p:dialog>
+
+			<p:dialog widgetVar="Ajout" resizable="false"
+				header="Ajouter un role utilisateur">
+				<p:messages id="message" autoUpdate="true" />
 				<h:form>
 					<table>
 						<tr>
 							<td><h:outputText value="Nom Technique"></h:outputText></td>
 							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{userRoleManagedBean.nomTechnique}"
-									required="true"
-									requiredMessage="Veuillez saisir le nom technique"  
+									value="#{userRoleManagedBean.nomTechnique}" required="true"
+									requiredMessage="Veuillez saisir le nom technique"
 									placeholder="Saisir le nom technique"></p:inputText></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Libellé"></h:outputText></td>
 							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{userRoleManagedBean.libelle}"
-									required="true" requiredMessage="Veuillez saisir le libellé" placeholder="Saisir un libellé"></p:inputText></td>
+									value="#{userRoleManagedBean.libelle}" required="true"
+									requiredMessage="Veuillez saisir le libellé"
+									placeholder="Saisir un libellé"></p:inputText></td>
 						</tr>
 
 
@@ -48,16 +59,26 @@
 					<h:commandButton value="Annuler" type="cancel"></h:commandButton>
 				</h:form>
 			</p:dialog>
-
+			<p:commandButton onclick="PF('Ajout').show()"
+				icon="private/image/plus2.png" value="Ajouter"></p:commandButton>
+			<br />
+			<form>
 			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
-				paginator="true">
-				
+				paginator="true" selectionMode="single"
+				selection="#{userRoleManagedBean.userRoleSelected}"
+				rowKey="#{userRole.idUserRole}">
+
 				<p:column headerText="action" width="50">
-					<p:graphicImage id="plus" name="private/image/plus.png"
-						onclick="PF('test').show()" width="24" height="24" alt="Ajouter un rôle">
-						<p:tooltip for="plus"  value="Ajouter un rôle"></p:tooltip>
-						
-						</p:graphicImage>
+					<p:graphicImage id="moins" name="private/image/moins-rouge.png"
+						onclick="PF('cd').show()" width="24" height="24"
+						alt="Supprimer un rôle">
+						<p:tooltip for="moins" value="Supprimer le rôle"></p:tooltip>
+
+					</p:graphicImage>
+
+
+
+
 				</p:column>
 				<p:column headerText="id">
 					<h:outputText value="#{userRole.idUserRole}"></h:outputText>
@@ -69,7 +90,7 @@
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
-
+</form>
 
 		</h:body>
 	</ui:define>

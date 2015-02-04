@@ -15,35 +15,33 @@ import javax.persistence.TemporalType;
 public class UtilisateurDataBean {
 
    @Id
-   private Long            idUser;
-   private String          nomUser;
-   private String          prenomUser;
-   private String          loginUser;
-   private String          passwordUser;
-   private String          mailUser;
-   private String          cpUser;
-   private String          telephonePro1User;
-   private String          telephonePro2User;
-   private String          telephonePortable1User;
-   private String          fax1User;
-   private String          adresseNumeroRueUser;
-   private String          adresseNomRueUser;
-   private String          adresseComplement1User;
-   private String          adresseComplement2User;
-   private String          adresseCodePostalUser;
-   private String          adresseVilleUser;
-   private String          attribut1User;
-   private String          attribut2User;
-   private String          attribut3User;
-   private String          attribut4User;
-   private String          attribut5User;
+   private Long idUser;
+   private String nomUser;
+   private String prenomUser;
+   private String loginUser;
+   private String passwordUser;
+   private String mailUser;
+   private String cpUser;
+   private String telephonePro1User;
+   private String telephonePro2User;
+   private String telephonePortable1User;
+   private String fax1User;
+   private String adresseNumeroRueUser;
+   private String adresseNomRueUser;
+   private String adresseComplement1User;
+   private String adresseComplement2User;
+   private String adresseCodePostalUser;
+   private String adresseVilleUser;
+   private String attribut1User;
+   private String attribut2User;
+   private String attribut3User;
+   private String attribut4User;
+   private String attribut5User;
    @Temporal(TemporalType.TIMESTAMP)
-   private Date            DateCreateUser;
+   private Date DateCreateUser;
    @Temporal(TemporalType.TIMESTAMP)
-   private Date            DateUpdateUser;
+   private Date DateUpdateUser;
    @Temporal(TemporalType.TIMESTAMP)
-   private Date            dateLastUpdateUtilisateurUser;
-
    @OneToOne
    @JoinColumn(name = "idUserCreateUser")
    private UtilisateurDataBean userCreateUser;
@@ -51,9 +49,9 @@ public class UtilisateurDataBean {
    @JoinColumn(name = "idUserUpdateUser")
    private UtilisateurDataBean userUpdateUser;
 
-   private String          robotUser;
-   private String          tomcatRoleUser;
-   private String          commentaireUtilisateurUser;
+   private String robotUser;
+   private String tomcatRoleUser;
+   private String commentaireUtilisateurUser;
 
    public Long getIdUser() {
       return this.idUser;
@@ -245,14 +243,6 @@ public class UtilisateurDataBean {
 
    public void setDateUpdateUser(Date dateUpdateUser) {
       this.DateUpdateUser = dateUpdateUser;
-   }
-
-   public Date getDateLastUpdateUtilisateurUser() {
-      return this.dateLastUpdateUtilisateurUser;
-   }
-
-   public void setDateLastUpdateUtilisateurUser(Date dateLastUpdateUtilisateurUser) {
-      this.dateLastUpdateUtilisateurUser = dateLastUpdateUtilisateurUser;
    }
 
    public UtilisateurDataBean getUserCreateUser() {
