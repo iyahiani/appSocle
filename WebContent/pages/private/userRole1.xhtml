@@ -14,18 +14,22 @@
 
 		<h:body>
 
-			<p:dialog header="Suppression Role" severity="alert" widgetVar="cd">
+		
+	<p:dialog header="Suppression Role" severity="alert" widgetVar="cd">
 				<h:outputText
-					value="Voulez-vous vraiment supprimer cet enregistrement (#{userRole.idUserRole})?" />
+					value="Voulez-vous vraiment supprimer cet enregistrement (#{userRoleManagedBean.userRoleSelected.idUserRole})?" />
 				<br />
 				<p:commandButton value="Oui"
-					actionListener="#{userRoleManagedBean.deleteUserRole}"
-					oncomplete="PF('cd').hide()" />
+				action="#{userRoleManagedBean.deleteUserRole}"
+					
+					oncomplete="PF('cd').hide()" >
+						
+								
+					</p:commandButton>
+					
 				<p:commandButton value="Non" onclick="PF('cd').hide();"
 					type="button" />
 			</p:dialog>
-
-
 
 
 			<br />
@@ -39,15 +43,18 @@
 						<p:graphicImage id="moins" name="private/image/moins-rouge.png"
 							onclick="PF('cd').show()" width="24" height="24"
 							alt="Supprimer un rôle">
+
 							<p:tooltip for="moins" value="Supprimer le rôle"></p:tooltip>
 
 						</p:graphicImage>
 
-						<p:commandButton value="Select" action="#{userRoleManagedBean.deleteUserRole}">
+						<p:commandButton style="height:16px;" onclick="PF('cd').show()"  value="" icone="buttonDelete"   >
+							
 							<f:setPropertyActionListener value="#{userRole}"
 								target="#{userRoleManagedBean.userRoleSelected}" />
 						</p:commandButton>
-
+						
+						
 
 					</p:column>
 					<p:column headerText="id">
