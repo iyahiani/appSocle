@@ -12,46 +12,45 @@
 		</h:head>
 		<h:body>
 
-		<p:dialog header="Suppression Role" severity="alert" widgetVar="cd">
+			<p:dialog header="Suppression Role" severity="alert" widgetVar="cd">
 				<h:outputText
 					value="Voulez-vous vraiment supprimer cet enregistrement (#{userRoleManagedBean.userRoleSelected.idUserRole})?" />
 				<br />
 				<p:commandButton value="Oui"
-				action="#{userRoleManagedBean.deleteUserRole}"
-					oncomplete="PF('cd').hide()" >
-					</p:commandButton>
+					action="#{userRoleManagedBean.deleteUserRole}"
+					oncomplete="PF('cd').hide()">
+				</p:commandButton>
 				<p:commandButton value="Non" onclick="PF('cd').hide();"
 					type="button" />
 			</p:dialog>
 			<br />
 
-				<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
-					paginator="true" selectionMode="single"
-					selection="#{userRoleManagedBean.userRoleSelected}"
-					rowKey="#{userRole.idUserRole}">
+			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
+				paginator="true" selectionMode="single"
+				selection="#{userRoleManagedBean.userRoleSelected}"
+				rowKey="#{userRole.idUserRole}">
 
-					<p:column headerText="action" width="50">
-						<p:graphicImage id="moins" name="private/image/moins-rouge.png"
-							onclick="PF('cd').show()" width="24" height="24"
-							alt="Supprimer un rôle">
-							<p:tooltip for="moins" value="Supprimer le rôle"></p:tooltip>
-						</p:graphicImage>
-						<p:commandButton class="boutonDelete" style="height:32px;background-image: url(''resources/private/image/moins-rouge.png'')" onclick="PF('cd').show()"  value="" icone="buttonDelete"   >
-							<f:setPropertyActionListener value="#{userRole}"
-								target="#{userRoleManagedBean.userRoleSelected}" />
-						</p:commandButton>
-
-					</p:column>
-					<p:column headerText="id">
-						<h:outputText value="#{userRole.idUserRole}"></h:outputText>
-					</p:column>
-					<p:column headerText="nom technique">
-						<h:outputText value="#{userRole.technicalNameUserRole}"></h:outputText>
-					</p:column>
-					<p:column headerText="libellé">
-						<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
-					</p:column>
-				</p:dataTable>
+				<p:column headerText="action" width="50">
+					<p:commandButton class="boutonDelete"
+						style="height:32px;background-image: url(''resources/private/image/moins-rouge.png'')"
+						action="#{userRoleManagedBean.deleteUserRole}" value=""
+						icone="buttonDelete"
+						onclick="if (!confirm('Voulez-vous effacer cet enregistrement #{userRoleManagedBean.userRoleSelected.labelUserRole}?')) return false"
+						>
+						<f:setPropertyActionListener value="#{userRole}"
+							target="#{userRoleManagedBean.userRoleSelected}" />
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="id">
+					<h:outputText value="#{userRole.idUserRole}"></h:outputText>
+				</p:column>
+				<p:column headerText="nom technique">
+					<h:outputText value="#{userRole.technicalNameUserRole}"></h:outputText>
+				</p:column>
+				<p:column headerText="libellé">
+					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
+				</p:column>
+			</p:dataTable>
 
 		</h:body>
 	</ui:define>
