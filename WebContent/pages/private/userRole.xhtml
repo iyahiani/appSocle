@@ -55,9 +55,9 @@
 				<p:column headerText="action" width="50">
 					<p:commandLink action="#{userRoleManagedBean.deleteUserRole}"
 					id="delete_role_#{useRole.idUserRole}"
-						onclick="if (!confirm('Voulez-vous effacer cet enregistrement #{userRoleManagedBean.userRoleSelected.labelUserRole}?')) return false">
+						onclick="if (!confirm('Voulez-vous effacer cet enregistrement #{userRole.labelUserRole}?')) return false">
 						<h:graphicImage name="private/image/data-delete.png" >
-						<p:tooltip for="delete_role_#{useRole.idUserRole}" value="Supprimer le rôle"/>
+						<p:tooltip for="delete_role_#{useRole.idUserRole}" value="Supprimer le rôle #{userRole.labelUserRole}"/>
 						</h:graphicImage>
 						<f:setPropertyActionListener value="#{userRole}"
 							target="#{userRoleManagedBean.userRoleSelected}" />
