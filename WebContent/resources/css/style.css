@@ -9,5 +9,5 @@
 }
 
 .buttonDelete{
-	background-image: url("private/image/moins-rouge.png");
+	background-image: url(private/image/moins-rouge.png) no-repeat top left !important;;
 }

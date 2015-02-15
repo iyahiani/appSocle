@@ -13,9 +13,6 @@
 		</h:head>
 
 		<h:body>
-
-
-
 			<p:dialog widgetVar="Ajout" resizable="false"
 				header="Ajouter un role utilisateur">
 				<p:messages id="message" autoUpdate="true" />
@@ -35,39 +32,38 @@
 									requiredMessage="Veuillez saisir le libellé"
 									placeholder="Saisir un libellé"></p:inputText></td>
 						</tr>
-
 					</table>
-					                    <br />
-
-
-                    <br />
-                    <p:commandButton value="Sauver" type="submit"
-                        action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
-                    <h:commandButton value="Annuler" type="cancel"></h:commandButton>
-					
-					
+					<br />
+					<br />
+					<p:commandButton value="Sauver" type="submit"
+						action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
+					<p:commandButton value="Annuler" type="cancel"></p:commandButton>
 				</h:form>
 			</p:dialog>
-			<p:commandButton onclick="PF('Ajout').show()"
-				icon="private/image/plus2.png" value="Ajouter"></p:commandButton>
+			<p:commandLink  onclick="PF('Ajout').show()" 
+				>
+				<h:graphicImage id="add_role_#{useRole.idUserRole}" name="private/image/plusVert.png" >
+						<p:tooltip for="add_role_#{useRole.idUserRole}" value="Ajouter un rôle"/>
+						</h:graphicImage>
+				</p:commandLink>
 			<br />
-
 			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
 				paginator="true" selectionMode="single"
 				selection="#{userRoleManagedBean.userRoleSelected}"
 				rowKey="#{userRole.idUserRole}">
 
 				<p:column headerText="action" width="50">
-					<p:commandButton class="boutonDelete"
-						style="height:32px;background-image: url(''resources/private/image/moins-rouge.png'')"
-						action="#{userRoleManagedBean.deleteUserRole}" value=""
-						icone="buttonDelete"
+					<p:commandLink action="#{userRoleManagedBean.deleteUserRole}"
+					id="delete_role_#{useRole.idUserRole}"
 						onclick="if (!confirm('Voulez-vous effacer cet enregistrement #{userRoleManagedBean.userRoleSelected.labelUserRole}?')) return false">
+						<h:graphicImage name="private/image/data-delete.png" >
+						<p:tooltip for="delete_role_#{useRole.idUserRole}" value="Supprimer le rôle"/>
+						</h:graphicImage>
 						<f:setPropertyActionListener value="#{userRole}"
 							target="#{userRoleManagedBean.userRoleSelected}" />
-					</p:commandButton>
+					</p:commandLink>
 				</p:column>
-				<p:column headerText="id">
+				<p:column headerText="id"  style="width:20px">
 					<h:outputText value="#{userRole.idUserRole}"></h:outputText>
 				</p:column>
 				<p:column headerText="nom technique">
@@ -77,9 +73,6 @@
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
-
-
-
 		</h:body>
 	</ui:define>
 </ui:composition>
