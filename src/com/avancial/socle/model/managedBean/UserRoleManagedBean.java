@@ -27,8 +27,8 @@ public class UserRoleManagedBean implements Serializable {
     */
    private static final long      serialVersionUID = 1L;
    private List<UserRoleDataBean> userRoles;
-   private String                 nomTechnique     = "";
-   private String                 libelle          = "";
+   private String                 nomTechnique;
+   private String                 libelle;
    @Inject
    private UserRoleDataBean       userRoleSelected;
 
@@ -136,6 +136,15 @@ public class UserRoleManagedBean implements Serializable {
     */
    public void setUserRoleSelected(UserRoleDataBean userRoleSelected) {
       this.userRoleSelected = userRoleSelected;
+      if (null != this.userRoleSelected) {
+         this.libelle = userRoleSelected.getLabelUserRole();
+         this.nomTechnique = userRoleSelected.getTechnicalNameUserRole();
+      }
+         
    }
 
+   public void valorise(UserRoleDataBean bean) {
+
+      this.userRoleSelected = bean;
+   }
 }

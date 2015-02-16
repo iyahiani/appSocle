@@ -45,38 +45,7 @@
 			</p:dialog>
 
 
-			<p:dialog widgetVar="Modif" resizable="false"
-				header="#{msg.p_user_role_dialog_modif_title}">
-				<p:messages id="message_modif" autoUpdate="true" />
-				<h:form>
-					<table>
-						<tr>
-							<td><h:outputText
-									value="#{msg.p_user_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{userRoleManagedBean.nomTechnique}" required="true"
-									requiredMessage="#{msg.p_user_role_dialog_ajout_nom_technique_msg_requis}"
-									placeholder="#{msg.p_user_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
-						</tr>
-						<tr>
-							<td><h:outputText
-									value="#{msg.p_user_role_dialog_ajout_libelle}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{userRoleManagedBean.libelle}" required="true"
-									requiredMessage="#{msg.p_user_role_dialog_ajout_libelle_msg_requis}"
-									placeholder="#{msg.p_user_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
-						</tr>
-					</table>
-					<br />
-					<br />
-					<p:commandButton
-						value="#{msg.p_user_role_dialog_ajout_bSauver_libelle}"
-						type="submit" action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
-					<p:commandButton immediate="true" onclick="PF('Modif').close()"
-						value="#{msg.p_user_role_dialog_ajout_bAnnuler_libelle}"
-						type="cancel"></p:commandButton>
-				</h:form>
-			</p:dialog>
+		
 
 
 			<p:commandLink onclick="PF('Ajout').show()">
@@ -110,8 +79,7 @@
 
 					</p:commandLink>
 
-					<p:commandLink onclick="PF('Modif').show();" id="update_role">
-
+					<p:commandLink  update=":modif" id="update_role" oncomplete="PF('Modif').show()"  >
 						<h:graphicImage name="private/image/pencil_edit.png"
 							styleClass="actionButtons">
 							 <p:tooltip for="update_role"
@@ -136,7 +104,40 @@
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
-
+	
+	
+	<p:dialog id="modif" widgetVar="Modif" resizable="false"
+				header="#{msg.p_user_role_dialog_modif_title}">
+				<p:messages id="message_modif" autoUpdate="true" />
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText
+									value="#{msg.p_user_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{userRoleManagedBean.nomTechnique}" required="true"
+									requiredMessage="#{msg.p_user_role_dialog_ajout_nom_technique_msg_requis}"
+									placeholder="#{msg.p_user_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText
+									value="#{msg.p_user_role_dialog_ajout_libelle}"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{userRoleManagedBean.libelle}" required="true"
+									requiredMessage="#{msg.p_user_role_dialog_ajout_libelle_msg_requis}"
+									placeholder="#{msg.p_user_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
+						</tr>
+					</table>
+					<br />
+					<br />
+					<p:commandButton
+						value="#{msg.p_user_role_dialog_modif_bModifier_libelle}"
+						type="submit" action="#{userRoleManagedBean.updateUserRole}"></p:commandButton>
+					<p:commandButton immediate="true" onclick="PF('Modif').close()"
+						value="#{msg.p_user_role_dialog_ajout_bAnnuler_libelle}"
+						type="cancel"></p:commandButton>
+				</h:form>
+			</p:dialog>
 		</h:body>
 	</ui:define>
 </ui:composition>
