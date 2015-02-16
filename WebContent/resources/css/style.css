@@ -8,6 +8,7 @@
 	background:-moz-linear-gradient(center top , rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) repeat scroll 0 0 #EAD5E7 !important;
 }
 
-.buttonDelete{
-	background-image: url(private/image/moins-rouge.png) no-repeat top left !important;;
+.actionButtons{
+	height: 20px;
+	width: 20px;		
 }

@@ -37,4 +37,11 @@ public class UserRoleDao extends AbstractDao {
       this.getEntityManager().getTransaction().commit();
    }
 
+   public void update(UserRoleDataBean bean) {
+      this.getEntityManager().getTransaction().begin();
+      this.getEntityManager().merge(bean);
+      this.getEntityManager().flush();
+      this.getEntityManager().getTransaction().commit();
+   }
+
 }

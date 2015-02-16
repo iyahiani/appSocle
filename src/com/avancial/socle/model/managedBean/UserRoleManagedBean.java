@@ -60,6 +60,17 @@ public class UserRoleManagedBean implements Serializable {
       return ConstantSocle.NAVIGATION_USER_ROLE.toString();
    }
 
+   public String updateUserRole() {
+      if (null != this.userRoleSelected) {
+         UserRoleDao dao = new UserRoleDao();
+         dao.update(this.userRoleSelected);
+      }
+
+      else
+         System.out.println("Aucun rôle sélectionné");
+      return ConstantSocle.NAVIGATION_USER_ROLE.toString();
+   }
+
    public String deleteUserRole() {
       if (null != this.userRoleSelected) {
          UserRoleDao dao = new UserRoleDao();

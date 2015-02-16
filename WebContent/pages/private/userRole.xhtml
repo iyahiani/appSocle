@@ -15,7 +15,39 @@
 		<h:body>
 			<p:dialog widgetVar="Ajout" resizable="false"
 				header="#{msg.p_user_role_dialog_ajout_title}">
-				<p:messages id="message" autoUpdate="true" />
+				<p:messages id="message_add" autoUpdate="true" />
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText
+									value="#{msg.p_user_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{userRoleManagedBean.nomTechnique}" required="true"
+									requiredMessage="#{msg.p_user_role_dialog_ajout_nom_technique_msg_requis}"
+									placeholder="#{msg.p_user_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText
+									value="#{msg.p_user_role_dialog_ajout_libelle}"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{userRoleManagedBean.libelle}" required="true"
+									requiredMessage="#{msg.p_user_role_dialog_ajout_libelle_msg_requis}"
+									placeholder="#{msg.p_user_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
+						</tr>
+					</table>
+					<p:commandButton
+						value="#{msg.p_user_role_dialog_ajout_bSauver_libelle}"
+						type="submit" action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
+					<p:commandButton immediate="true" onclick="PF('Ajout').close()"
+						value="#{msg.p_user_role_dialog_ajout_bAnnuler_libelle}"
+						type="cancel"></p:commandButton>
+				</h:form>
+			</p:dialog>
+
+
+			<p:dialog widgetVar="Modif" resizable="false"
+				header="#{msg.p_user_role_dialog_modif_title}">
+				<p:messages id="message_modif" autoUpdate="true" />
 				<h:form>
 					<table>
 						<tr>
@@ -40,47 +72,71 @@
 					<p:commandButton
 						value="#{msg.p_user_role_dialog_ajout_bSauver_libelle}"
 						type="submit" action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
-					<p:commandButton
+					<p:commandButton immediate="true" onclick="PF('Modif').close()"
 						value="#{msg.p_user_role_dialog_ajout_bAnnuler_libelle}"
 						type="cancel"></p:commandButton>
 				</h:form>
 			</p:dialog>
+
+
 			<p:commandLink onclick="PF('Ajout').show()">
-				<h:graphicImage id="add_role_#{useRole.idUserRole}"
-					name="private/image/plusVert.png">
-					<p:tooltip for="add_role_#{useRole.idUserRole}"
+				<h:graphicImage id="add_role" name="private/image/plusVert.png">
+					<p:tooltip for="add_role"
 						value="#{msg.p_user_role_bouton_ajouter_tip}" />
 				</h:graphicImage>
 			</p:commandLink>
 			<br />
+
 			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
-				paginator="true" selectionMode="single"
+				id="dataTable" rowIndexVar="index" paginator="true"
+				selectionMode="single"
 				selection="#{userRoleManagedBean.userRoleSelected}"
 				rowKey="#{userRole.idUserRole}">
 
-				<p:column headerText="action" width="50">
-					<p:commandLink action="#{userRoleManagedBean.deleteUserRole}"
-						id="delete_role_#{useRole.idUserRole}"
+				<p:column headerText="action" width="50"
+					id="colonne_#{userRole.idUserRole}">
+					<p:commandLink id="delete_role"
+						action="#{userRoleManagedBean.deleteUserRole}"
 						onclick="if (!confirm('#{msg.p_user_role_bouton_supprimer_confirm} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole}) ?')) return false">
-						<f:param value="#{userRole.labelUserRole}" />
-						<h:graphicImage name="private/image/data-delete.png">
-							<p:tooltip for="delete_role_#{useRole.idUserRole}"
-								value="#{msg.p_user_role_bouton_supprimer_tip} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole})" />
+
+						
+						<h:graphicImage id="img_delete"
+							name="private/image/data-delete.png" styleClass="actionButtons">
+						</h:graphicImage>
+						<p:tooltip id="toolTip" for="delete_role"
+							value="#{msg.p_user_role_bouton_supprimer_tip} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole})" />
+						<f:setPropertyActionListener value="#{userRole}"
+							target="#{userRoleManagedBean.userRoleSelected}" />
+
+					</p:commandLink>
+
+					<p:commandLink onclick="PF('Modif').show();" id="update_role">
+
+						<h:graphicImage name="private/image/pencil_edit.png"
+							styleClass="actionButtons">
+							 <p:tooltip for="update_role"
+									value="#{msg.p_user_role_bouton_modifier_tip} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole})" />
 						</h:graphicImage>
 						<f:setPropertyActionListener value="#{userRole}"
 							target="#{userRoleManagedBean.userRoleSelected}" />
 					</p:commandLink>
+
+
+
 				</p:column>
-				<p:column headerText="#{msg.p_user_role_colonne_id_header}" style="width:20px">
+				<p:column headerText="#{msg.p_user_role_colonne_id_header}"
+					style="width:20px">
 					<h:outputText value="#{userRole.idUserRole}"></h:outputText>
 				</p:column>
-				<p:column headerText="#{msg.p_user_role_colonne_nom_technique_header}g">
+				<p:column
+					headerText="#{msg.p_user_role_colonne_nom_technique_header}">
 					<h:outputText value="#{userRole.technicalNameUserRole}"></h:outputText>
 				</p:column>
 				<p:column headerText="#{msg.p_user_role_colonne_libelle_header}">
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
+
 		</h:body>
 	</ui:define>
 </ui:composition>
