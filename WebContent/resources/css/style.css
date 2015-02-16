@@ -10,5 +10,6 @@
 
 .actionButtons{
 	height: 20px;
-	width: 20px;		
+	width: 20px;	
+	margin: 1px;	
 }

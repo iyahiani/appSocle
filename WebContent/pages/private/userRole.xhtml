@@ -13,6 +13,13 @@
 		</h:head>
 
 		<h:body>
+			 
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <p:graphicImage name="/private/image/ajax-loader.gif" />
+</p:dialog>
+
 			<p:dialog widgetVar="Ajout" resizable="false"
 				header="#{msg.p_user_role_dialog_ajout_title}">
 				<p:messages id="message_add" autoUpdate="true" />
@@ -45,7 +52,7 @@
 			</p:dialog>
 
 
-		
+
 
 
 			<p:commandLink onclick="PF('Ajout').show()">
@@ -68,7 +75,7 @@
 						action="#{userRoleManagedBean.deleteUserRole}"
 						onclick="if (!confirm('#{msg.p_user_role_bouton_supprimer_confirm} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole}) ?')) return false">
 
-						
+
 						<h:graphicImage id="img_delete"
 							name="private/image/data-delete.png" styleClass="actionButtons">
 						</h:graphicImage>
@@ -79,11 +86,12 @@
 
 					</p:commandLink>
 
-					<p:commandLink  update=":modif" id="update_role" oncomplete="PF('Modif').show()"  >
+					<p:commandLink update=":modif" id="update_role"
+						oncomplete="PF('Modif').show()">
 						<h:graphicImage name="private/image/pencil_edit.png"
 							styleClass="actionButtons">
-							 <p:tooltip for="update_role"
-									value="#{msg.p_user_role_bouton_modifier_tip} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole})" />
+							<p:tooltip for="update_role"
+								value="#{msg.p_user_role_bouton_modifier_tip} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole})" />
 						</h:graphicImage>
 						<f:setPropertyActionListener value="#{userRole}"
 							target="#{userRoleManagedBean.userRoleSelected}" />
@@ -104,9 +112,9 @@
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
-	
-	
-	<p:dialog id="modif" widgetVar="Modif" resizable="false"
+
+
+			<p:dialog id="modif" widgetVar="Modif" resizable="false"
 				header="#{msg.p_user_role_dialog_modif_title}">
 				<p:messages id="message_modif" autoUpdate="true" />
 				<h:form>
