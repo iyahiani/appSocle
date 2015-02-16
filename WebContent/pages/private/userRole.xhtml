@@ -61,11 +61,11 @@
 				<p:column headerText="action" width="50">
 					<p:commandLink action="#{userRoleManagedBean.deleteUserRole}"
 						id="delete_role_#{useRole.idUserRole}"
-						onclick="if (!confirm('#{msg.p_user_role_bouton_supprimer_confirm}  #{userRole.labelUserRole} ?')) return false">
+						onclick="if (!confirm('#{msg.p_user_role_bouton_supprimer_confirm} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole}) ?')) return false">
 						<f:param value="#{userRole.labelUserRole}" />
 						<h:graphicImage name="private/image/data-delete.png">
 							<p:tooltip for="delete_role_#{useRole.idUserRole}"
-								value="#{msg.p_user_role_bouton_supprimer_tip} #{userRole.labelUserRole}" />
+								value="#{msg.p_user_role_bouton_supprimer_tip} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole})" />
 						</h:graphicImage>
 						<f:setPropertyActionListener value="#{userRole}"
 							target="#{userRoleManagedBean.userRoleSelected}" />
