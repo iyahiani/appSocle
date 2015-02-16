@@ -14,38 +14,44 @@
 
 		<h:body>
 			<p:dialog widgetVar="Ajout" resizable="false"
-				header="Ajouter un role utilisateur">
+				header="#{msg.p_user_role_dialog_ajout_title}">
 				<p:messages id="message" autoUpdate="true" />
 				<h:form>
 					<table>
 						<tr>
-							<td><h:outputText value="Nom Technique"></h:outputText></td>
+							<td><h:outputText
+									value="#{msg.p_user_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
 							<td><h:outputText value=" : "></h:outputText> <p:inputText
 									value="#{userRoleManagedBean.nomTechnique}" required="true"
-									requiredMessage="Veuillez saisir le nom technique"
-									placeholder="Saisir le nom technique"></p:inputText></td>
+									requiredMessage="#{msg.p_user_role_dialog_ajout_nom_technique_msg_requis}"
+									placeholder="#{msg.p_user_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Libellé"></h:outputText></td>
+							<td><h:outputText
+									value="#{msg.p_user_role_dialog_ajout_libelle}"></h:outputText></td>
 							<td><h:outputText value=" : "></h:outputText> <p:inputText
 									value="#{userRoleManagedBean.libelle}" required="true"
-									requiredMessage="Veuillez saisir le libellé"
-									placeholder="Saisir un libellé"></p:inputText></td>
+									requiredMessage="#{msg.p_user_role_dialog_ajout_libelle_msg_requis}"
+									placeholder="#{msg.p_user_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
 						</tr>
 					</table>
 					<br />
 					<br />
-					<p:commandButton value="Sauver" type="submit"
-						action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
-					<p:commandButton value="Annuler" type="cancel"></p:commandButton>
+					<p:commandButton
+						value="#{msg.p_user_role_dialog_ajout_bSauver_libelle}"
+						type="submit" action="#{userRoleManagedBean.addUserRole}"></p:commandButton>
+					<p:commandButton
+						value="#{msg.p_user_role_dialog_ajout_bAnnuler_libelle}"
+						type="cancel"></p:commandButton>
 				</h:form>
 			</p:dialog>
-			<p:commandLink  onclick="PF('Ajout').show()" 
-				>
-				<h:graphicImage id="add_role_#{useRole.idUserRole}" name="private/image/plusVert.png" >
-						<p:tooltip for="add_role_#{useRole.idUserRole}" value="Ajouter un rôle"/>
-						</h:graphicImage>
-				</p:commandLink>
+			<p:commandLink onclick="PF('Ajout').show()">
+				<h:graphicImage id="add_role_#{useRole.idUserRole}"
+					name="private/image/plusVert.png">
+					<p:tooltip for="add_role_#{useRole.idUserRole}"
+						value="#{msg.p_user_role_bouton_ajouter_tip}" />
+				</h:graphicImage>
+			</p:commandLink>
 			<br />
 			<p:dataTable var="userRole" value="#{userRoleManagedBean.userRoles}"
 				paginator="true" selectionMode="single"
@@ -54,22 +60,24 @@
 
 				<p:column headerText="action" width="50">
 					<p:commandLink action="#{userRoleManagedBean.deleteUserRole}"
-					id="delete_role_#{useRole.idUserRole}"
-						onclick="if (!confirm('Voulez-vous effacer cet enregistrement #{userRole.labelUserRole}?')) return false">
-						<h:graphicImage name="private/image/data-delete.png" >
-						<p:tooltip for="delete_role_#{useRole.idUserRole}" value="Supprimer le rôle #{userRole.labelUserRole}"/>
+						id="delete_role_#{useRole.idUserRole}"
+						onclick="if (!confirm('#{msg.p_user_role_bouton_supprimer_confirm}  #{userRole.labelUserRole} ?')) return false">
+						<f:param value="#{userRole.labelUserRole}" />
+						<h:graphicImage name="private/image/data-delete.png">
+							<p:tooltip for="delete_role_#{useRole.idUserRole}"
+								value="#{msg.p_user_role_bouton_supprimer_tip} #{userRole.labelUserRole}" />
 						</h:graphicImage>
 						<f:setPropertyActionListener value="#{userRole}"
 							target="#{userRoleManagedBean.userRoleSelected}" />
 					</p:commandLink>
 				</p:column>
-				<p:column headerText="id"  style="width:20px">
+				<p:column headerText="#{msg.p_user_role_colonne_id_header}" style="width:20px">
 					<h:outputText value="#{userRole.idUserRole}"></h:outputText>
 				</p:column>
-				<p:column headerText="nom technique">
+				<p:column headerText="#{msg.p_user_role_colonne_nom_technique_header}g">
 					<h:outputText value="#{userRole.technicalNameUserRole}"></h:outputText>
 				</p:column>
-				<p:column headerText="libellé">
+				<p:column headerText="#{msg.p_user_role_colonne_libelle_header}">
 					<h:outputText value="#{userRole.labelUserRole}"></h:outputText>
 				</p:column>
 			</p:dataTable>
