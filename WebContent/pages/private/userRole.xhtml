@@ -16,7 +16,8 @@
 			 
 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 
-<p:messages id="message"></p:messages>
+<p:messages  autoUpdate="true" />
+
  
 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
     <p:graphicImage name="/private/image/ajax-loader.gif" />
@@ -24,7 +25,7 @@
 
 			<p:dialog widgetVar="Ajout" resizable="false" 
 				header="#{msg.p_user_role_dialog_ajout_title}">
-				<p:messages id="message_add" autoUpdate="true" />
+				<p:messages globalOnly="false" id="message_add" autoUpdate="true" />
 				<h:form>
 					<table>
 						<tr>
@@ -119,7 +120,7 @@
 
 			<p:dialog id="modif" widgetVar="Modif" resizable="false"
 				header="#{msg.p_user_role_dialog_modif_title}">
-				<p:messages id="message_modif" autoUpdate="true" />
+				<p:messages globalOnly="false" id="message_modif" autoUpdate="true" />
 				<h:form>
 					<table>
 						<tr>
