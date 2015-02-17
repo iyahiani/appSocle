@@ -43,6 +43,11 @@ public class RoleManagedBean implements Serializable {
 
    }
 
+   public void initProperties() {
+      this.libelle = "";
+      this.nomTechnique = "";
+   }
+
    /**
     * @return
     */

@@ -29,7 +29,7 @@
 							<td><h:outputText
 									value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
 							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{roleManagedBean.nomTechnique}" required="true"
+									value="#{roleManagedBean.nomTechnique}" required="true" 
 									requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
 									placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
 						</tr>
@@ -42,9 +42,9 @@
 						</tr>
 					</table>
 					<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
-						type="submit" action="#{roleManagedBean.addRole}"></p:commandButton>
+						type="submit" action="#{roleManagedBean.addRole}"/> 
 					<p:commandButton immediate="true" onclick="PF('Ajout').close()"
-						value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
+						value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"/>
 				</h:form>
 			</p:dialog>
 
@@ -83,7 +83,7 @@
 
 
 
-			<p:commandLink onclick="PF('Ajout').show()">
+			<p:commandLink oncomplete="PF('Ajout').show()" actionListener="#{roleManagedBean.initProperties}">
 				<h:graphicImage id="add_role" name="private/image/plusVert.png">
 					<p:tooltip for="add_role" value="#{msg.p_role_bouton_ajouter_tip}" />
 				</h:graphicImage>
