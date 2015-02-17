@@ -1,43 +1,17 @@
 package com.avancial.socle.data.controller.dao;
 
-import java.util.ArrayList;
-
-import javax.persistence.Query;
+import java.util.List;
 
 import com.avancial.socle.data.model.databean.UtilisateurDataBean;
 
-/**
- * Classe DAO pour l'objet métier Utilisateur
- * 
- * @author guillaume.bouziou
- * 
- */
 public class UtilisateurDao extends AbstractDao {
+	public UtilisateurDataBean getUserByLogin(String login) {
+		return (UtilisateurDataBean) this.getEntityManager().createQuery("SELECT user FROM UtilisateurDataBean user WHERE user.loginUser = :login").setParameter("login", login).getSingleResult();
+	}
 
-   /**
-    * Retourne un UserBean à partir du login
-    * 
-    * @param login
-    * @return l'utilisateur ayant comme login le parametre
-    */
-   public UtilisateurDataBean getUserByLogin(String login) {
-      final String sql = "SELECT user FROM UtilisateurDataBean user WHERE user.loginUser = :login";
-
-      Query requete = this.getEntityManager().createQuery(sql);
-      requete.setParameter("login", login);
-
-      return (UtilisateurDataBean) requete.getSingleResult();
-
-   }
-
-   /*
-    * (non-Javadoc)
-    * 
-    * @see com.avancial.socle.data.controller.dao.AbstractDao#getAll()
-    */
-   @Override
-   public ArrayList<?> getAll() {
-      // TODO to be implemented later
-      return null;
-   }
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UtilisateurDataBean> getAll() {
+		return this.getEntityManager().createQuery("FROM UtilisateurDataBean").getResultList();
+	}
 }

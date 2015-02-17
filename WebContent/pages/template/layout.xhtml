@@ -8,7 +8,9 @@
 	lang="#{ihmManagedBean.language}">
 <f:view locale="#{ihmManagedBean.locale}">
 	<h:head>
-		<title>#{msg.nom_application}</title>
+		<title>
+			<ui:insert name="title">#{msg.nom_application}</ui:insert>
+		</title>
 		<h:outputStylesheet library="css" name="style.css" />
 
 	</h:head>

@@ -46,7 +46,7 @@ public class RoleManagedBean implements Serializable {
    /**
     * @return
     */
-   public String addUserRole() {
+   public String addRole() {
       RoleDataBean roleDataBean = new RoleDataBean();
       roleDataBean.setLabelRole(this.libelle);
       roleDataBean.setTechnicalNameRole(this.nomTechnique);

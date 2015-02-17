@@ -16,7 +16,6 @@ import com.avancial.socle.resources.constants.ConstantSocle;
 @Named("menu")
 @SessionScoped
 public class MenuManagedBean implements Serializable {
-
    private static final long serialVersionUID = 1L;
 
    public static String goAccueil() {
@@ -27,7 +26,11 @@ public class MenuManagedBean implements Serializable {
       return ConstantSocle.NAVIGATION_MDPOUBLIE.toString();
    }
 
-   public static String goUserRole() {
+   public static String goRole() {
       return ConstantSocle.NAVIGATION_ROLE.toString();
+   }
+
+   public static String goUser() {
+      return ConstantSocle.NAVIGATION_USER.toString();
    }
 }
