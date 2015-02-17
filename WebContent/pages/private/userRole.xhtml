@@ -15,12 +15,14 @@
 		<h:body>
 			 
 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+<p:messages id="message"></p:messages>
  
 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
     <p:graphicImage name="/private/image/ajax-loader.gif" />
 </p:dialog>
 
-			<p:dialog widgetVar="Ajout" resizable="false"
+			<p:dialog widgetVar="Ajout" resizable="false" 
 				header="#{msg.p_user_role_dialog_ajout_title}">
 				<p:messages id="message_add" autoUpdate="true" />
 				<h:form>
@@ -86,15 +88,16 @@
 
 					</p:commandLink>
 
-					<p:commandLink update=":modif" id="update_role"
+					<p:commandLink update=":modif" id="update_role" 
 						oncomplete="PF('Modif').show()">
-						<h:graphicImage name="private/image/pencil_edit.png"
+						<f:setPropertyActionListener value="#{userRole}"
+							target="#{userRoleManagedBean.userRoleSelected}" />
+						<h:graphicImage name="private/image/pencil_edit1.png"
 							styleClass="actionButtons">
 							<p:tooltip for="update_role"
 								value="#{msg.p_user_role_bouton_modifier_tip} #{userRole.technicalNameUserRole} (#{userRole.labelUserRole})" />
 						</h:graphicImage>
-						<f:setPropertyActionListener value="#{userRole}"
-							target="#{userRoleManagedBean.userRoleSelected}" />
+						
 					</p:commandLink>
 
 
@@ -123,15 +126,15 @@
 							<td><h:outputText
 									value="#{msg.p_user_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
 							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{userRoleManagedBean.nomTechnique}" required="true"
+									value="#{userRoleManagedBean.userRoleSelected.technicalNameUserRole}" required="true"
 									requiredMessage="#{msg.p_user_role_dialog_ajout_nom_technique_msg_requis}"
 									placeholder="#{msg.p_user_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
 						</tr>
 						<tr>
-							<td><h:outputText
+							<td><h:outputText 
 									value="#{msg.p_user_role_dialog_ajout_libelle}"></h:outputText></td>
 							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{userRoleManagedBean.libelle}" required="true"
+									value="#{userRoleManagedBean.userRoleSelected.labelUserRole}" required="true"
 									requiredMessage="#{msg.p_user_role_dialog_ajout_libelle_msg_requis}"
 									placeholder="#{msg.p_user_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
 						</tr>

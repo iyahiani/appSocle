@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -61,9 +63,13 @@ public class UserRoleManagedBean implements Serializable {
    }
 
    public String updateUserRole() {
+      if (null != this.userRoleSelected)
+         System.out.println("Id : " + this.getUserRoleSelected().getIdUserRole());
+
       if (null != this.userRoleSelected) {
          UserRoleDao dao = new UserRoleDao();
          dao.update(this.userRoleSelected);
+         FacesContext.getCurrentInstance().addMessage("message", new FacesMessage(FacesMessage.SEVERITY_INFO, "Ok", "Enregistrement modifié"));
       }
 
       else
@@ -125,6 +131,7 @@ public class UserRoleManagedBean implements Serializable {
     * @return the userRoleSelected
     */
    public UserRoleDataBean getUserRoleSelected() {
+
       return this.userRoleSelected;
    }
 
@@ -135,12 +142,12 @@ public class UserRoleManagedBean implements Serializable {
     *           the userRoleSelected to set
     */
    public void setUserRoleSelected(UserRoleDataBean userRoleSelected) {
-      this.userRoleSelected = userRoleSelected;
-      if (null != this.userRoleSelected) {
+      if (null != userRoleSelected) {
+         this.userRoleSelected = userRoleSelected;
          this.libelle = userRoleSelected.getLabelUserRole();
          this.nomTechnique = userRoleSelected.getTechnicalNameUserRole();
       }
-         
+
    }
 
    public void valorise(UserRoleDataBean bean) {
