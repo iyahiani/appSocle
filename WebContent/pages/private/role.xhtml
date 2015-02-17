@@ -48,7 +48,38 @@
 				</h:form>
 			</p:dialog>
 
-
+	<p:dialog id="modif" widgetVar="Modif" resizable="false"
+				header="#{msg.p_role_dialog_modif_title}">
+				<p:messages globalOnly="false" id="message_modif" autoUpdate="true" />
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText
+									value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{roleManagedBean.roleSelected.technicalNameRole}"
+									required="true"
+									requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
+									placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="#{msg.p_role_dialog_ajout_libelle}"></h:outputText></td>
+							<td><h:outputText value=" : "></h:outputText> <p:inputText
+									value="#{roleManagedBean.roleSelected.labelRole}"
+									required="true"
+									requiredMessage="#{msg.p_role_dialog_ajout_libelle_msg_requis}"
+									placeholder="#{msg.p_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
+						</tr>
+					</table>
+					<br />
+					<br />
+					<p:commandButton
+						value="#{msg.p_role_dialog_modif_bModifier_libelle}" type="submit"
+						action="#{roleManagedBean.updateRole}"></p:commandButton>
+					<p:commandButton immediate="true" onclick="PF('Modif').close()"
+						value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
+				</h:form>
+			</p:dialog>
 
 
 
@@ -95,7 +126,6 @@
 					</p:commandLink>
 
 
-
 				</p:column>
 				<p:column headerText="#{msg.p_role_colonne_id_header}"
 					style="width:20px">
@@ -110,37 +140,6 @@
 			</p:dataTable>
 
 
-			<p:dialog id="modif" widgetVar="Modif" resizable="false"
-				header="#{msg.p_role_dialog_modif_title}">
-				<p:messages globalOnly="false" id="message_modif" autoUpdate="true" />
-				<h:form>
-					<table>
-						<tr>
-							<td><h:outputText
-									value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{roleManagedBean.roleSelected.technicalNameRole}"
-									required="true"
-									requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
-									placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
-						</tr>
-						<tr>
-							<td><h:outputText value="#{msg.p_role_dialog_ajout_libelle}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{roleManagedBean.roleSelected.labelRole}"
-									required="true"
-									requiredMessage="#{msg.p_role_dialog_ajout_libelle_msg_requis}"
-									placeholder="#{msg.p_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
-						</tr>
-					</table>
-					<br />
-					<br />
-					<p:commandButton
-						value="#{msg.p_role_dialog_modif_bModifier_libelle}" type="submit"
-						action="#{roleManagedBean.updateRole}"></p:commandButton>
-					<p:commandButton immediate="true" onclick="PF('Modif').close()"
-						value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
-				</h:form>
-			</p:dialog>
+		
 	</ui:define>
 </ui:composition>
