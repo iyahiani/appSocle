@@ -28,6 +28,6 @@ public class MenuManagedBean implements Serializable {
    }
 
    public static String goUserRole() {
-      return ConstantSocle.NAVIGATION_USER_ROLE.toString();
+      return ConstantSocle.NAVIGATION_ROLE.toString();
    }
 }

@@ -13,7 +13,7 @@ public enum ConstantSocle {
    NAVIGATION_ACCUEIL("/pages/public/accueil?faces-redirect=true"),
    NAVIGATION_LOGIN("/pages/public/login?faces-redirect=true"),
    NAVIGATION_MDPOUBLIE("/pages/public/mdpoublie?faces-redirect=true"),
-   NAVIGATION_USER_ROLE("/pages/private/userRole?faces-redirect=true");
+   NAVIGATION_ROLE("/pages/private/role?faces-redirect=true");
 
    private String constant = "";
 
