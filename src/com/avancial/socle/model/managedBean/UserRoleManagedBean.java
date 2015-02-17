@@ -63,13 +63,11 @@ public class UserRoleManagedBean implements Serializable {
    }
 
    public String updateUserRole() {
-      if (null != this.userRoleSelected)
-         System.out.println("Id : " + this.getUserRoleSelected().getIdUserRole());
 
       if (null != this.userRoleSelected) {
          UserRoleDao dao = new UserRoleDao();
          dao.update(this.userRoleSelected);
-         FacesContext.getCurrentInstance().addMessage("message", new FacesMessage(FacesMessage.SEVERITY_INFO, "Ok", "Enregistrement modifié"));
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
       }
 
       else
