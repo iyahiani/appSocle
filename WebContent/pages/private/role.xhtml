@@ -9,137 +9,136 @@
 	<ui:define name="contenu">
 
 
-			<p:ajaxStatus onstart="PF('statusDialog').show()"
-				onsuccess="PF('statusDialog').hide()" />
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+<form>
+		<p:messages id="messages" autoUpdate="true" closable="true"  showDetail="true"/>
+</form>
 
-			<p:messages autoUpdate="true" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage name="/private/image/ajax-loader.gif" />
+		</p:dialog>
 
+		<p:dialog widgetVar="Ajout" resizable="false"
+			header="#{msg.p_role_dialog_ajout_title}">
+			<p:messages globalOnly="false" id="message_add" autoUpdate="true" />
+			<h:form>
+				<table>
+					<tr>
+						<td><h:outputText
+								value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
+						<td><h:outputText value=" : "></h:outputText> <p:inputText
+								value="#{roleManagedBean.nomTechnique}" required="true"
+								requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
+								placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="#{msg.p_role_dialog_ajout_libelle}"></h:outputText></td>
+						<td><h:outputText value=" : "></h:outputText> <p:inputText
+								value="#{roleManagedBean.libelle}" required="true"
+								requiredMessage="#{msg.p_role_dialog_ajout_libelle_msg_requis}"
+								placeholder="#{msg.p_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
+					</tr>
+				</table>
+				<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
+					type="submit" action="#{roleManagedBean.addRole}" />
+				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
+					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel" />
+			</h:form>
+		</p:dialog>
 
-			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-				closable="false" resizable="false" showHeader="false">
-				<p:graphicImage name="/private/image/ajax-loader.gif" />
-			</p:dialog>
-
-			<p:dialog widgetVar="Ajout" resizable="false"
-				header="#{msg.p_role_dialog_ajout_title}">
-				<p:messages globalOnly="false" id="message_add" autoUpdate="true" />
-				<h:form>
-					<table>
-						<tr>
-							<td><h:outputText
-									value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{roleManagedBean.nomTechnique}" required="true" 
-									requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
-									placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
-						</tr>
-						<tr>
-							<td><h:outputText value="#{msg.p_role_dialog_ajout_libelle}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{roleManagedBean.libelle}" required="true"
-									requiredMessage="#{msg.p_role_dialog_ajout_libelle_msg_requis}"
-									placeholder="#{msg.p_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
-						</tr>
-					</table>
-					<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
-						type="submit" action="#{roleManagedBean.addRole}"/> 
-					<p:commandButton immediate="true" onclick="PF('Ajout').close()"
-						value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"/>
-				</h:form>
-			</p:dialog>
-
-	<p:dialog id="modif" widgetVar="Modif" resizable="false"
-				header="#{msg.p_role_dialog_modif_title}">
-				<p:messages globalOnly="false" id="message_modif" autoUpdate="true" />
-				<h:form>
-					<table>
-						<tr>
-							<td><h:outputText
-									value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{roleManagedBean.roleSelected.technicalNameRole}"
-									required="true"
-									requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
-									placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
-						</tr>
-						<tr>
-							<td><h:outputText value="#{msg.p_role_dialog_ajout_libelle}"></h:outputText></td>
-							<td><h:outputText value=" : "></h:outputText> <p:inputText
-									value="#{roleManagedBean.roleSelected.labelRole}"
-									required="true"
-									requiredMessage="#{msg.p_role_dialog_ajout_libelle_msg_requis}"
-									placeholder="#{msg.p_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
-						</tr>
-					</table>
-					<br />
-					<br />
-					<p:commandButton
-						value="#{msg.p_role_dialog_modif_bModifier_libelle}" type="submit"
-						action="#{roleManagedBean.updateRole}"></p:commandButton>
-					<p:commandButton immediate="true" onclick="PF('Modif').close()"
-						value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
-				</h:form>
-			</p:dialog>
-
-
-
-			<p:commandLink oncomplete="PF('Ajout').show()" actionListener="#{roleManagedBean.initProperties}">
-				<h:graphicImage id="add_role" name="private/image/plusVert.png">
-					<p:tooltip for="add_role" value="#{msg.p_role_bouton_ajouter_tip}" />
-				</h:graphicImage>
-			</p:commandLink>
-			<br />
-
-			<p:dataTable var="role" value="#{roleManagedBean.roles}"
-				id="dataTable" rowIndexVar="index" paginator="true"
-				selectionMode="single"
-				selection="#{roleManagedBean.roleSelected}"
-				rowKey="#{role.idRole}">
-
-				<p:column headerText="action" width="50"
-					id="colonne_#{role.idRole}">
-					<p:commandLink id="delete_role"
-						action="#{roleManagedBean.deleteRole}"
-						onclick="if (!confirm('#{msg.p_role_bouton_supprimer_confirm} #{role.technicalNameRole} (#{role.labelRole}) ?')) return false">
+		<p:dialog id="modif" widgetVar="Modif" resizable="false"
+			header="#{msg.p_role_dialog_modif_title}">
+			<p:messages globalOnly="false" id="message_modif" autoUpdate="true" />
+			<h:form>
+				<table>
+					<tr>
+						<td><h:outputText
+								value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
+						<td><h:outputText value=" : "></h:outputText> <p:inputText
+								value="#{roleManagedBean.roleSelected.technicalNameRole}"
+								required="true"
+								requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
+								placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="#{msg.p_role_dialog_ajout_libelle}"></h:outputText></td>
+						<td><h:outputText value=" : "></h:outputText> <p:inputText
+								value="#{roleManagedBean.roleSelected.labelRole}"
+								required="true"
+								requiredMessage="#{msg.p_role_dialog_ajout_libelle_msg_requis}"
+								placeholder="#{msg.p_role_dialog_ajout_libelle_place_holder}"></p:inputText></td>
+					</tr>
+				</table>
+				<br />
+				<br />
+				<p:commandButton
+					value="#{msg.p_role_dialog_modif_bModifier_libelle}" type="submit"
+					action="#{roleManagedBean.updateRole}"></p:commandButton>
+				<p:commandButton immediate="true" onclick="PF('Modif').close()"
+					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
+			</h:form>
+		</p:dialog>
 
 
-						<h:graphicImage id="img_delete"
-							name="private/image/data-delete.png" styleClass="actionButtons">
-						</h:graphicImage>
-						<p:tooltip id="toolTip" for="delete_role"
-							value="#{msg.p_role_bouton_supprimer_tip} #{role.technicalNameRole} (#{role.labelRole})" />
-						<f:setPropertyActionListener value="#{role}"
-							target="#{roleManagedBean.roleSelected}" />
 
-					</p:commandLink>
+		<p:commandLink oncomplete="PF('Ajout').show()"
+			actionListener="#{roleManagedBean.initProperties}">
+			<h:graphicImage id="add_role" name="private/image/plusVert.png">
+				<p:tooltip for="add_role" value="#{msg.p_role_bouton_ajouter_tip}" />
+			</h:graphicImage>
+		</p:commandLink>
+		<br />
 
-					<p:commandLink update=":modif" id="update_role"
-						oncomplete="PF('Modif').show()">
-						<f:setPropertyActionListener value="#{role}"
-							target="#{roleManagedBean.roleSelected}" />
-						<h:graphicImage name="private/image/pencil_edit1.png"
-							styleClass="actionButtons">
-							<p:tooltip for="update_role"
-								value="#{msg.p_role_bouton_modifier_tip} #{role.technicalNameRole} (#{role.labelRole})" />
-						</h:graphicImage>
+		<p:dataTable var="role" value="#{roleManagedBean.roles}"
+			id="dataTable" rowIndexVar="index" paginator="true"
+			selectionMode="single" selection="#{roleManagedBean.roleSelected}"
+			rowKey="#{role.idRole}">
 
-					</p:commandLink>
+			<p:column headerText="action" width="50" id="colonne_#{role.idRole}">
+				<p:commandLink id="delete_role"
+					action="#{roleManagedBean.deleteRole}"
+					onclick="if (!confirm('#{msg.p_role_bouton_supprimer_confirm} #{role.technicalNameRole} (#{role.labelRole}) ?')) return false">
 
 
-				</p:column>
-				<p:column headerText="#{msg.p_role_colonne_id_header}"
-					style="width:20px">
-					<h:outputText value="#{role.idRole}"></h:outputText>
-				</p:column>
-				<p:column headerText="#{msg.p_role_colonne_nom_technique_header}">
-					<h:outputText value="#{role.technicalNameRole}"></h:outputText>
-				</p:column>
-				<p:column headerText="#{msg.p_role_colonne_libelle_header}">
-					<h:outputText value="#{role.labelRole}"></h:outputText>
-				</p:column>
-			</p:dataTable>
+					<h:graphicImage id="img_delete"
+						name="private/image/data-delete.png" styleClass="actionButtons">
+					</h:graphicImage>
+					<p:tooltip id="toolTip" for="delete_role"
+						value="#{msg.p_role_bouton_supprimer_tip} #{role.technicalNameRole} (#{role.labelRole})" />
+					<f:setPropertyActionListener value="#{role}"
+						target="#{roleManagedBean.roleSelected}" />
+
+				</p:commandLink>
+
+				<p:commandLink update=":modif" id="update_role"
+					oncomplete="PF('Modif').show()">
+					<f:setPropertyActionListener value="#{role}"
+						target="#{roleManagedBean.roleSelected}" />
+					<h:graphicImage name="private/image/pencil_edit1.png"
+						styleClass="actionButtons">
+						<p:tooltip for="update_role"
+							value="#{msg.p_role_bouton_modifier_tip} #{role.technicalNameRole} (#{role.labelRole})" />
+					</h:graphicImage>
+
+				</p:commandLink>
 
 
-		
+			</p:column>
+			<p:column headerText="#{msg.p_role_colonne_id_header}"
+				style="width:20px">
+				<h:outputText value="#{role.idRole}"></h:outputText>
+			</p:column>
+			<p:column headerText="#{msg.p_role_colonne_nom_technique_header}">
+				<h:outputText value="#{role.technicalNameRole}"></h:outputText>
+			</p:column>
+			<p:column headerText="#{msg.p_role_colonne_libelle_header}">
+				<h:outputText value="#{role.labelRole}"></h:outputText>
+			</p:column>
+		</p:dataTable>
+
+
+
 	</ui:define>
 </ui:composition>

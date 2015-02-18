@@ -23,25 +23,42 @@ public class RoleDao extends AbstractDao {
       return requete.getResultList();
    }
 
-   public void save(RoleDataBean bean) {
-      this.getEntityManager().getTransaction().begin();
-      this.getEntityManager().persist(bean);
-      this.getEntityManager().flush();
-      this.getEntityManager().getTransaction().commit();
+   public void save(RoleDataBean bean) throws Exception {
+      try {
+         this.getEntityManager().getTransaction().begin();
+         this.getEntityManager().persist(bean);
+         this.getEntityManager().flush();
+         this.getEntityManager().getTransaction().commit();
+      } catch (Exception e) {
+         this.getEntityManager().getTransaction().rollback();
+         throw e;
+      }
    }
 
-   public void delete(RoleDataBean bean) {
-      this.getEntityManager().getTransaction().begin();
-      this.getEntityManager().remove(bean);
-      this.getEntityManager().flush();
-      this.getEntityManager().getTransaction().commit();
+   public void delete(RoleDataBean bean) throws Exception {
+      try {
+         this.getEntityManager().getTransaction().begin();
+         this.getEntityManager().remove(bean);
+         this.getEntityManager().flush();
+         this.getEntityManager().getTransaction().commit();
+      } catch (Exception e) {
+         this.getEntityManager().getTransaction().rollback();
+         throw e;
+      }
+
    }
 
-   public void update(RoleDataBean bean) {
-      this.getEntityManager().getTransaction().begin();
-      this.getEntityManager().merge(bean);
-      this.getEntityManager().flush();
-      this.getEntityManager().getTransaction().commit();
+   public void update(RoleDataBean bean) throws Exception {
+      try {
+         this.getEntityManager().getTransaction().begin();
+         this.getEntityManager().merge(bean);
+         this.getEntityManager().flush();
+         this.getEntityManager().getTransaction().commit();
+      } catch (Exception e) {
+         this.getEntityManager().getTransaction().rollback();
+         throw e;
+      }
+
    }
 
 }

@@ -57,12 +57,12 @@ public class RoleManagedBean implements Serializable {
       roleDataBean.setTechnicalNameRole(this.nomTechnique);
       RoleDao dao = new RoleDao();
 
-      dao.save(roleDataBean);
-      // try {
-      // } catch (Exception e) {
-      // FacesContext.getCurrentInstance().addMessage(FacesMessage.SEVERITY_ERROR.toString(),
-      // new FacesMessage("Plop"));
-      // }
+      try {
+         dao.save(roleDataBean);
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement sauvegardé"));
+      } catch (Exception e) {
+         FacesContext.getCurrentInstance().addMessage("page_message", new FacesMessage(FacesMessage.SEVERITY_FATAL, "message", "Enregistrement non sauvé"));
+      }
 
       return ConstantSocle.NAVIGATION_ROLE.toString();
    }
@@ -71,8 +71,12 @@ public class RoleManagedBean implements Serializable {
 
       if (null != this.roleSelected) {
          RoleDao dao = new RoleDao();
-         dao.update(this.roleSelected);
-         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
+         try {
+            dao.update(this.roleSelected);
+            FacesContext.getCurrentInstance().addMessage("page_message", new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
+         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("page_message", new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
+         }
       }
 
       else
@@ -83,7 +87,12 @@ public class RoleManagedBean implements Serializable {
    public String deleteRole() {
       if (null != this.roleSelected) {
          RoleDao dao = new RoleDao();
-         dao.delete(this.roleSelected);
+         try {
+            dao.delete(this.roleSelected);
+            FacesContext.getCurrentInstance().addMessage("page_message", new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement supprimé"));
+         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("page_message", new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
+         }
       }
 
       else
