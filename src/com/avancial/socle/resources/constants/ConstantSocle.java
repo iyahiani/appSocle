@@ -14,7 +14,8 @@ public enum ConstantSocle {
    NAVIGATION_LOGIN("/pages/public/login?faces-redirect=true"),
    NAVIGATION_MDPOUBLIE("/pages/public/mdpoublie?faces-redirect=true"),
    NAVIGATION_ROLE("/pages/private/role?faces-redirect=true"),
-   NAVIGATION_USER("/pages/private/user?faces-redirect=true");
+   NAVIGATION_USER("/pages/private/user?faces-redirect=true"),
+   PAGE_ID_MESSAGES("idPageMessages");
 
    private String constant = "";
 

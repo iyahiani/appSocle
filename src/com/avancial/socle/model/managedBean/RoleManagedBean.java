@@ -59,9 +59,9 @@ public class RoleManagedBean implements Serializable {
 
       try {
          dao.save(roleDataBean);
-         FacesContext.getCurrentInstance().addMessage("page_messages", new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement sauvegardé"));
+         FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement sauvegardé"));
       } catch (Exception e) {
-         FacesContext.getCurrentInstance().addMessage("page_messages", new FacesMessage(FacesMessage.SEVERITY_FATAL, "message", "Enregistrement non sauvé"));
+         FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non sauvé"));
       }
 
       return ConstantSocle.NAVIGATION_ROLE.toString();
@@ -73,14 +73,11 @@ public class RoleManagedBean implements Serializable {
          RoleDao dao = new RoleDao();
          try {
             dao.update(this.roleSelected);
-            FacesContext.getCurrentInstance().addMessage("page_messages", new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
+            FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
          } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("page_messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
+            FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
          }
       }
-
-      else
-         System.out.println("Aucun rôle sélectionné");
       return ConstantSocle.NAVIGATION_ROLE.toString();
    }
 
@@ -89,14 +86,11 @@ public class RoleManagedBean implements Serializable {
          RoleDao dao = new RoleDao();
          try {
             dao.delete(this.roleSelected);
-            FacesContext.getCurrentInstance().addMessage("page_messages", new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement supprimé"));
+            FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement supprimé"));
          } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("page_messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
+            FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
          }
       }
-
-      else
-         System.out.println("Aucun rôle sélectionné");
       return ConstantSocle.NAVIGATION_ROLE.toString();
    }
 
