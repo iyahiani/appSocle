@@ -12,7 +12,7 @@
 		<p:ajaxStatus onstart="PF('statusDialog').show()"
 			onsuccess="PF('statusDialog').hide()" />
 <form>
-		<p:messages id="messages" autoUpdate="true" closable="true"  showDetail="true"/>
+		<p:messages id="page_messages" autoUpdate="true" closable="true"  showDetail="true"/>
 </form>
 
 		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
@@ -42,7 +42,7 @@
 					</tr>
 				</table>
 				<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
-					type="submit" action="#{roleManagedBean.addRole}" />
+					type="submit" actionListener="#{roleManagedBean.addRole}" onclick="PF('Ajout').close()" />
 				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel" />
 			</h:form>
