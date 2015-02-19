@@ -97,6 +97,7 @@
 			rowKey="#{role.idRole}">
 
 			<p:column headerText="action" width="50" id="colonne_#{role.idRole}">
+
 				<p:commandLink id="delete_role" update="dataTable :idPageMessages"
 					action="#{roleManagedBean.deleteRole}"
 					onclick="if (!confirm('#{msg.p_role_bouton_supprimer_confirm} #{role.technicalNameRole} (#{role.labelRole}) ?')) return false"
@@ -108,8 +109,8 @@
 						value="#{msg.p_role_bouton_supprimer_tip} #{role.technicalNameRole} (#{role.labelRole})" />
 					<f:setPropertyActionListener value="#{role}"
 						target="#{roleManagedBean.roleSelected}" />
-
 				</p:commandLink>
+
 
 				<p:commandLink update=":modif" id="update_role"
 					oncomplete="PF('Modif').show()">
