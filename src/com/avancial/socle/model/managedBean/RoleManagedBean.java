@@ -70,9 +70,10 @@ public class RoleManagedBean implements Serializable {
          RequestContext.getCurrentInstance().update(":dataTable");
       } catch (Exception e) {
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non sauvé"));
+         e.printStackTrace();
       }
 
-      return ConstantSocle.NAVIGATION_ROLE.toString();
+      return null;
    }
 
    public String updateRole() {
@@ -85,7 +86,7 @@ public class RoleManagedBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
          }
       }
-      return ConstantSocle.NAVIGATION_ROLE.toString();
+      return null;
    }
 
    public String deleteRole() {
@@ -98,7 +99,7 @@ public class RoleManagedBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
          }
       }
-      return ConstantSocle.NAVIGATION_ROLE.toString();
+      return null;
    }
 
    /**
