@@ -11,9 +11,9 @@
 
 		<p:ajaxStatus onstart="PF('statusDialog').show()"
 			onsuccess="PF('statusDialog').hide()" />
-<form>
-		<p:messages id="idPageMessages" autoUpdate="true" closable="true"  showDetail="true"/>
-</form>
+
+			<p:messages id="idPageMessages" autoUpdate="true" closable="true" redisplay="false"
+				showDetail="true" />
 
 		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
 			closable="false" resizable="false" showHeader="false">
@@ -29,7 +29,7 @@
 						<td><h:outputText
 								value="#{msg.p_role_dialog_ajout_libelle_nom_technique}"></h:outputText></td>
 						<td><h:outputText value=" : "></h:outputText> <p:inputText
-								value="#{roleManagedBean.nomTechnique}" required="true"
+								value="#{roleManagedBean.nomTechnique}" required="true" 
 								requiredMessage="#{msg.p_role_dialog_ajout_nom_technique_msg_requis}"
 								placeholder="#{msg.p_role_dialog_ajout_nom_technique_place_holder}"></p:inputText></td>
 					</tr>
@@ -42,7 +42,8 @@
 					</tr>
 				</table>
 				<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
-					type="submit" actionListener="#{roleManagedBean.addRole}" onclick="PF('Ajout').close()" update=":dataTable" />
+					type="submit" actionListener="#{roleManagedBean.addRole}" onsuccess="#{roleManagedBean.reload()}"
+					onclick="PF('Ajout').close()" update=":dataTable" />
 				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel" />
 			</h:form>
@@ -75,7 +76,7 @@
 				<br />
 				<p:commandButton
 					value="#{msg.p_role_dialog_modif_bModifier_libelle}" type="submit"
-					action="#{roleManagedBean.updateRole}"></p:commandButton>
+					actionListener="#{roleManagedBean.updateRole}" update=":idPageMessages" onclick="PF('Modif').close()"></p:commandButton>
 				<p:commandButton immediate="true" onclick="PF('Modif').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
 			</h:form>
@@ -91,7 +92,7 @@
 		</p:commandLink>
 		<br />
 
-		<p:dataTable var="role" value="#{roleManagedBean.roles}" 
+		<p:dataTable var="role" value="#{roleManagedBean.roles}"
 			id="dataTable" rowIndexVar="index" paginator="true"
 			selectionMode="single" selection="#{roleManagedBean.roleSelected}"
 			rowKey="#{role.idRole}">
@@ -99,9 +100,8 @@
 			<p:column headerText="action" width="50" id="colonne_#{role.idRole}">
 
 				<p:commandLink id="delete_role" update="dataTable :idPageMessages"
-					action="#{roleManagedBean.deleteRole}"
-					onclick="if (!confirm('#{msg.p_role_bouton_supprimer_confirm} #{role.technicalNameRole} (#{role.labelRole}) ?')) return false"
-					>
+					actionListener="#{roleManagedBean.deleteRole}" onsuccess="#{roleManagedBean.reload()}"
+					onclick="if (!confirm('#{msg.p_role_bouton_supprimer_confirm} #{role.technicalNameRole} (#{role.labelRole}) ?')) return false">
 					<h:graphicImage id="img_delete"
 						name="private/image/data-delete.png" styleClass="actionButtons">
 					</h:graphicImage>

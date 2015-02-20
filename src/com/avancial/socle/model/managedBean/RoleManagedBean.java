@@ -13,6 +13,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.context.RequestContext;
+
 import com.avancial.socle.data.controller.dao.RoleDao;
 import com.avancial.socle.data.model.databean.RoleDataBean;
 import com.avancial.socle.resources.constants.ConstantSocle;
@@ -39,8 +41,13 @@ public class RoleManagedBean implements Serializable {
     */
    public RoleManagedBean() {
       this.roles = new ArrayList<>();
-      this.roles.addAll(new RoleDao().getAll());
+      this.reload();
 
+   }
+
+   public void reload() {
+      this.roles.clear();
+      this.roles.addAll(new RoleDao().getAll());
    }
 
    public void initProperties() {
@@ -60,6 +67,7 @@ public class RoleManagedBean implements Serializable {
       try {
          dao.save(roleDataBean);
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement sauvegardé"));
+         RequestContext.getCurrentInstance().update(":dataTable");
       } catch (Exception e) {
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non sauvé"));
       }
@@ -68,7 +76,6 @@ public class RoleManagedBean implements Serializable {
    }
 
    public String updateRole() {
-
       if (null != this.roleSelected) {
          RoleDao dao = new RoleDao();
          try {
