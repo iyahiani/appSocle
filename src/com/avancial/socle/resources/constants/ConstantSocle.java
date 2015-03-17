@@ -15,7 +15,10 @@ public enum ConstantSocle {
    NAVIGATION_MDPOUBLIE("/pages/public/mdpoublie?faces-redirect=true"),
    NAVIGATION_ROLE("/pages/private/role?faces-redirect=true"),
    NAVIGATION_USER("/pages/private/user?faces-redirect=true"),
-   PAGE_ID_MESSAGES("idPageMessages");
+   PAGE_ID_MESSAGES("idPageMessages"),
+   DIALOG_ADD_MESSAGES("message_add"),
+   DIALOG_UPD_MESSAGES("message_upd"),
+   DIALOG_DEL_MESSAGES("message_del");
 
    private String constant = "";
 

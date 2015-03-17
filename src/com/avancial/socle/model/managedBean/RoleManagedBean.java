@@ -69,8 +69,7 @@ public class RoleManagedBean implements Serializable {
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement sauvegardé"));
          RequestContext.getCurrentInstance().update(":dataTable");
       } catch (Exception e) {
-         FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non sauvé"));
-         e.printStackTrace();
+         FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non sauvé"));
       }
 
       return null;
@@ -83,7 +82,8 @@ public class RoleManagedBean implements Serializable {
             dao.update(this.roleSelected);
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
          } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
+            e.printStackTrace();
+            FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_UPD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
          }
       }
       return null;

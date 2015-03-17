@@ -31,6 +31,7 @@ public class RoleDao extends AbstractDao {
          this.getEntityManager().getTransaction().commit();
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
+         System.out.println("plop " + e.getClass().getName());
          throw e;
       }
    }
