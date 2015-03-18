@@ -31,7 +31,16 @@ public class RoleDao extends AbstractDao {
          this.getEntityManager().getTransaction().commit();
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
-         System.out.println("plop " + e.getClass().getName());
+         StringBuffer buffer = new StringBuffer();
+         System.out.println("--------------------------------------------");
+         Throwable t = e.getCause();
+
+         buffer.append(t.getCause().getMessage());
+         t = t.getCause();
+
+         System.out.println("plop " + buffer.toString());
+         if (buffer.lastIndexOf("Duplicate entry") > -1)
+            System.out.println("Found !!!");
          throw e;
       }
    }
