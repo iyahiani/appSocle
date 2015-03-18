@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import com.avancial.socle.data.model.databean.RoleDataBean;
+import com.avancial.socle.exceptions.SocleExceptionManager;
 
 /**
  * Classe DAO pour l'objet Role
@@ -31,17 +32,7 @@ public class RoleDao extends AbstractDao {
          this.getEntityManager().getTransaction().commit();
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
-         StringBuffer buffer = new StringBuffer();
-         System.out.println("--------------------------------------------");
-         Throwable t = e.getCause();
-
-         buffer.append(t.getCause().getMessage());
-         t = t.getCause();
-
-         System.out.println("plop " + buffer.toString());
-         if (buffer.lastIndexOf("Duplicate entry") > -1)
-            System.out.println("Found !!!");
-         throw e;
+         throw SocleExceptionManager.getException(e);
       }
    }
 
