@@ -4,6 +4,8 @@
 package com.avancial.socle.exceptions;
 
 /**
+ * C'est le point d'entrée pour le client
+ * 
  * @author bruno.legloahec
  *
  */
