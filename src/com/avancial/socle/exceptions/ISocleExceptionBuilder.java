@@ -11,7 +11,7 @@ package com.avancial.socle.exceptions;
  *
  */
 public interface ISocleExceptionBuilder {
-   public ISocleException getSocleException();
+   public ASocleException getSocleException();
 
-   public ISocleExceptionBuilder getNext();
+   public ASocleExceptionBuilder getNext();
 }

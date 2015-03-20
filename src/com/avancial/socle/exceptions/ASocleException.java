@@ -7,9 +7,15 @@ package com.avancial.socle.exceptions;
  * @author bruno.legloahec
  *
  */
-public abstract class ASocleException implements ISocleException {
+public abstract class ASocleException extends Throwable implements ISocleException {
 
-   private Exception originalException;
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 1L;
+   private Exception         originalException;
+   protected String          ClientMessage;
+   protected String          messageToBeFound;
 
    /**
     * Constructeur
@@ -24,7 +30,9 @@ public abstract class ASocleException implements ISocleException {
     * @see com.avancial.socle.exceptions.ISocleException#getOriginalException()
     */
    @Override
-   abstract public Exception getOriginalException();
+   public Exception getOriginalException() {
+      return this.originalException;
+   }
 
    /*
     * (non-Javadoc)
@@ -35,7 +43,8 @@ public abstract class ASocleException implements ISocleException {
    abstract public String getClientMessage();
 
    /**
-    * @param originalException the originalException to set
+    * @param originalException
+    *           the originalException to set
     */
    public void setOriginalException(Exception originalException) {
       this.originalException = originalException;

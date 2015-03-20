@@ -15,21 +15,11 @@ public class SocleExceptionBuilderSqlDuplicateId extends ASocleExceptionBuilder 
     * @param next
     * @param e
     */
-   public SocleExceptionBuilderSqlDuplicateId(ISocleExceptionBuilder next, Exception e) {
+   public SocleExceptionBuilderSqlDuplicateId(ASocleExceptionBuilder next, Exception e) {
       super(next, e);
+      this.socleException = new SocleDuplicateIdException(e);
+      this.messageToBeFound = "Duplicate entry";
 
-   }
-
-   /*
-    * (non-Javadoc)
-    * 
-    * @see
-    * com.avancial.socle.exceptions.ASocleExceptionBuilder#getSocleException()
-    */
-   @Override
-   public ISocleException getSocleException() {
-      // TODO Auto-generated method stub
-      return null;
    }
 
 }

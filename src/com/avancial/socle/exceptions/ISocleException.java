@@ -18,4 +18,5 @@ public interface ISocleException {
    public Exception getOriginalException();
 
    public String getClientMessage();
+
 }

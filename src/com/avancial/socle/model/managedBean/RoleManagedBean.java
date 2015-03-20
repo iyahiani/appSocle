@@ -17,6 +17,7 @@ import org.primefaces.context.RequestContext;
 
 import com.avancial.socle.data.controller.dao.RoleDao;
 import com.avancial.socle.data.model.databean.RoleDataBean;
+import com.avancial.socle.exceptions.ASocleException;
 import com.avancial.socle.resources.constants.ConstantSocle;
 
 /**
@@ -29,12 +30,12 @@ public class RoleManagedBean implements Serializable {
    /**
     * 
     */
-   private static final long serialVersionUID = 1L;
+   private static final long  serialVersionUID = 1L;
    private List<RoleDataBean> roles;
-   private String nomTechnique;
-   private String libelle;
+   private String             nomTechnique;
+   private String             libelle;
    @Inject
-   private RoleDataBean roleSelected;
+   private RoleDataBean       roleSelected;
 
    /**
     * Constructeur
@@ -57,8 +58,9 @@ public class RoleManagedBean implements Serializable {
 
    /**
     * @return
+    * @throws ASocleException
     */
-   public String addRole() {
+   public String addRole() throws ASocleException {
       RoleDataBean roleDataBean = new RoleDataBean();
       roleDataBean.setLabelRole(this.libelle);
       roleDataBean.setTechnicalNameRole(this.nomTechnique);
@@ -68,8 +70,9 @@ public class RoleManagedBean implements Serializable {
          dao.save(roleDataBean);
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Le rôle a été créé."));
          RequestContext.getCurrentInstance().update(":dataTable");
-      } catch (Exception e) {
-         FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non sauvé"));
+      } catch (ASocleException e) {
+         FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", e.getClientMessage()));
+         // Do some log
       }
 
       return null;

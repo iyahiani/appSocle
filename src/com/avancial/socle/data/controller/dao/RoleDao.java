@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import com.avancial.socle.data.model.databean.RoleDataBean;
+import com.avancial.socle.exceptions.ASocleException;
 import com.avancial.socle.exceptions.SocleExceptionManager;
 
 /**
@@ -24,7 +25,7 @@ public class RoleDao extends AbstractDao {
       return requete.getResultList();
    }
 
-   public void save(RoleDataBean bean) throws Exception {
+   public void save(RoleDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();
          this.getEntityManager().persist(bean);
