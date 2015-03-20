@@ -13,7 +13,7 @@
 			onsuccess="PF('statusDialog').hide()" />
 
 			<p:messages id="idPageMessages" autoUpdate="true" closable="true" redisplay="false"
-				showDetail="true" />
+				showDetail="true"  globalOnly="true" />
 
 		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
 			closable="false" resizable="false" showHeader="false">
@@ -23,7 +23,7 @@
 
 		<p:dialog widgetVar="Ajout" resizable="false" 
 			header="#{msg.p_role_dialog_ajout_title}" id="ajout">
-			<p:messages globalOnly="false" id="message_add" autoUpdate="true" />
+			<p:messages globalOnly="false" id="message_add" autoUpdate="true" showDetail="true" />
 			<h:form >
 				<table>
 					<tr>
@@ -43,7 +43,7 @@
 					</tr>
 				</table>
 				<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
-					type="submit" actionListener="#{roleManagedBean.addRole}"  oncomplete="if (#{closeDialog}) PF('Ajout').close()"
+					type="submit" actionListener="#{roleManagedBean.add}"  onsuccess="if (#{roleManagedBean.closeDialog}) PF('Ajout').close()"
 					 update=":dataTable" action="#{roleManagedBean.reload()}" />
 				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel" />
@@ -79,7 +79,7 @@
 				<br />
 				<p:commandButton
 					value="#{msg.p_role_dialog_modif_bModifier_libelle}" type="submit"
-					actionListener="#{roleManagedBean.updateRole}" update=":idPageMessages" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('Modif').close()"></p:commandButton>
+					actionListener="#{roleManagedBean.update}" update=":idPageMessages"  onsuccess="if (#{roleManagedBean.closeDialog}) PF('Modif').close()"></p:commandButton>
 				<p:commandButton immediate="true" onclick="PF('Modif').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
 			</h:form>
@@ -101,7 +101,7 @@
 			rowKey="#{role.idRole}">
 			<p:column headerText="action" width="50" id="colonne_#{role.idRole}">
 				<p:commandLink id="delete_role" update="dataTable :idPageMessages"
-					action="#{roleManagedBean.deleteRole}" onsuccess="#{roleManagedBean.reload()}"
+					action="#{roleManagedBean.delete}" onsuccess="#{roleManagedBean.reload()}"
 					onclick="if (!confirm('#{msg.p_role_bouton_supprimer_confirm} #{role.technicalNameRole} (#{role.labelRole}) ?')) return false">
 						<f:setPropertyActionListener value="#{role}"
 						target="#{roleManagedBean.roleSelected}" />

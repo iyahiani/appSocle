@@ -37,7 +37,7 @@ public class RoleDao extends AbstractDao {
       }
    }
 
-   public void delete(RoleDataBean bean) throws Exception {
+   public void delete(RoleDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();
          this.getEntityManager().remove(bean);
@@ -45,12 +45,12 @@ public class RoleDao extends AbstractDao {
          this.getEntityManager().getTransaction().commit();
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
-         throw e;
+         throw SocleExceptionManager.getException(e);
       }
 
    }
 
-   public void update(RoleDataBean bean) throws Exception {
+   public void update(RoleDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();
          this.getEntityManager().merge(bean);
@@ -58,7 +58,7 @@ public class RoleDao extends AbstractDao {
          this.getEntityManager().getTransaction().commit();
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
-         throw e;
+         throw SocleExceptionManager.getException(e);
       }
 
    }

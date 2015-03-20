@@ -3,7 +3,6 @@
  */
 package com.avancial.socle.model.managedBean;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ import com.avancial.socle.resources.constants.ConstantSocle;
  */
 @Named("roleManagedBean")
 @ViewScoped
-public class RoleManagedBean implements Serializable {
+public class RoleManagedBean extends AManageBean {
    /**
     * 
     */
@@ -34,7 +33,7 @@ public class RoleManagedBean implements Serializable {
    private List<RoleDataBean> roles;
    private String             nomTechnique;
    private String             libelle;
-   private Boolean            closeDialog      = false;
+
    @Inject
    private RoleDataBean       roleSelected;
 
@@ -61,7 +60,9 @@ public class RoleManagedBean implements Serializable {
     * @return
     * @throws ASocleException
     */
-   public String addRole() throws ASocleException {
+   @Override
+   public String add() throws ASocleException {
+      super.add();
       RoleDataBean roleDataBean = new RoleDataBean();
       roleDataBean.setLabelRole(this.libelle);
       roleDataBean.setTechnicalNameRole(this.nomTechnique);
@@ -74,36 +75,40 @@ public class RoleManagedBean implements Serializable {
          this.closeDialog = true;
       } catch (ASocleException e) {
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", e.getClientMessage()));
-         // Do some log
+         e.printStackTrace();
       }
 
       return null;
    }
 
-   public String updateRole() {
+   @Override
+   public String update() throws ASocleException {
+      super.update();
       if (null != this.roleSelected) {
          RoleDao dao = new RoleDao();
          try {
             dao.update(this.roleSelected);
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
             this.closeDialog = true;
-         } catch (Exception e) {
+         } catch (ASocleException e) {
             e.printStackTrace();
-            FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_UPD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
+            FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_UPD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", e.getClientMessage()));
          }
       }
       return null;
    }
 
-   public String deleteRole() {
+   @Override
+   public String delete() throws ASocleException {
+      super.delete();
       if (null != this.roleSelected) {
          RoleDao dao = new RoleDao();
          try {
             dao.delete(this.roleSelected);
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement supprimé"));
             this.closeDialog = true;
-         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
+         } catch (ASocleException e) {
+            FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_DEL_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
          }
       }
       return null;
