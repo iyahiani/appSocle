@@ -34,6 +34,7 @@ public class RoleManagedBean implements Serializable {
    private List<RoleDataBean> roles;
    private String             nomTechnique;
    private String             libelle;
+   private Boolean            closeDialog      = false;
    @Inject
    private RoleDataBean       roleSelected;
 
@@ -70,6 +71,7 @@ public class RoleManagedBean implements Serializable {
          dao.save(roleDataBean);
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Le rôle a été créé."));
          RequestContext.getCurrentInstance().update(":dataTable");
+         this.closeDialog = true;
       } catch (ASocleException e) {
          FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", e.getClientMessage()));
          // Do some log
@@ -84,6 +86,7 @@ public class RoleManagedBean implements Serializable {
          try {
             dao.update(this.roleSelected);
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
+            this.closeDialog = true;
          } catch (Exception e) {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.DIALOG_UPD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non modifié"));
@@ -98,6 +101,7 @@ public class RoleManagedBean implements Serializable {
          try {
             dao.delete(this.roleSelected);
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement supprimé"));
+            this.closeDialog = true;
          } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(ConstantSocle.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
          }
@@ -164,6 +168,14 @@ public class RoleManagedBean implements Serializable {
          this.libelle = roleSelected.getLabelRole();
          this.nomTechnique = roleSelected.getTechnicalNameRole();
       }
+   }
+
+   public Boolean getCloseDialog() {
+      return this.closeDialog;
+   }
+
+   public void setCloseDialog(Boolean closeDialog) {
+      this.closeDialog = closeDialog;
    }
 
 }

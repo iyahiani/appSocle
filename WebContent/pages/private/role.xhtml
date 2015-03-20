@@ -43,7 +43,7 @@
 					</tr>
 				</table>
 				<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
-					type="submit" actionListener="#{roleManagedBean.addRole}"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('Ajout').close()"
+					type="submit" actionListener="#{roleManagedBean.addRole}"  oncomplete="if (#{closeDialog}) PF('Ajout').close()"
 					 update=":dataTable" action="#{roleManagedBean.reload()}" />
 				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel" />
