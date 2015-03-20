@@ -13,7 +13,7 @@
 			onsuccess="PF('statusDialog').hide()" />
 
 			<p:messages id="idPageMessages" autoUpdate="true" closable="true" redisplay="false"
-				showDetail="true"  globalOnly="true" />
+				showDetail="true"  globalOnly="false" />
 
 		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
 			closable="false" resizable="false" showHeader="false">
@@ -43,7 +43,7 @@
 					</tr>
 				</table>
 				<p:commandButton value="#{msg.p_role_dialog_ajout_bSauver_libelle}"
-					type="submit" actionListener="#{roleManagedBean.add}"  onsuccess="if (#{roleManagedBean.closeDialog}) PF('Ajout').close()"
+					type="submit" actionListener="#{roleManagedBean.add}"  onsuccess="if (#{roleManagedBean.closeDialog}=true) PF('Ajout').close()"
 					 update=":dataTable" action="#{roleManagedBean.reload()}" />
 				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel" />
@@ -54,7 +54,7 @@
 			
 		<p:dialog id="modif" widgetVar="Modif" resizable="false"
 			header="#{msg.p_role_dialog_modif_title}">
-			<p:messages globalOnly="false" id="message_upd" autoUpdate="true" />
+			<p:messages globalOnly="false" id="message_upd" autoUpdate="true"  showDetail="true"/>
 			<h:form>
 				<table>
 					<tr>
@@ -79,7 +79,7 @@
 				<br />
 				<p:commandButton
 					value="#{msg.p_role_dialog_modif_bModifier_libelle}" type="submit"
-					actionListener="#{roleManagedBean.update}" update=":idPageMessages"  onsuccess="if (#{roleManagedBean.closeDialog}) PF('Modif').close()"></p:commandButton>
+					actionListener="#{roleManagedBean.update}" update=":idPageMessages"  oncomplete="if (#{roleManagedBean.closeDialog}=true) PF('Modif').close()"></p:commandButton>
 				<p:commandButton immediate="true" onclick="PF('Modif').close()"
 					value="#{msg.p_role_dialog_ajout_bAnnuler_libelle}" type="cancel"></p:commandButton>
 			</h:form>
