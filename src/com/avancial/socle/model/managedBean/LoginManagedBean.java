@@ -28,14 +28,14 @@ import com.avancial.socle.resources.constants.ConstantSocle;
 public class LoginManagedBean implements Serializable {
 
    private static final long serialVersionUID = 1L;
-   private String            login;
-   private String            password;
+   private String login;
+   private String password;
 
    @Inject
-   private IhmManagedBean    ihmManagedBean;
+   private IhmManagedBean ihmManagedBean;
 
    // Dao de gestion des utilisateurs
-   private UtilisateurDao    utilisateurDao   = new UtilisateurDao();
+   private UtilisateurDao utilisateurDao = new UtilisateurDao();
 
    /**
     * Initialisation de l'url courante
@@ -72,7 +72,7 @@ public class LoginManagedBean implements Serializable {
    }
 
    /**
-    * Execute la déconnexion et renvoi l'utilisateur sur la page d'accueil
+    * Execute la déconnexion et renvoie l'utilisateur sur la page d'accueil
     * 
     * @return l'url de la page d'accueil
     */

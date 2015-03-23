@@ -25,10 +25,10 @@ import com.avancial.socle.resources.constants.ConstantSocle;
 @SessionScoped
 public class IhmManagedBean implements Serializable {
 
-   private static final long   serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
    private UtilisateurDataBean currentUser;
-   private String              originalURL;
-   private Locale              locale;
+   private String originalURL;
+   private Locale locale;
 
    /**
     * Teste si il y a un utilisateur de connecté
@@ -122,8 +122,8 @@ public class IhmManagedBean implements Serializable {
    /**
     * setter locale to string
     * 
-    * @param locale
-    *           to string
+    * @param language
+    * 
     */
    public void setLanguage(String language) {
       this.locale = new Locale(language);

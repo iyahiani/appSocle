@@ -21,6 +21,9 @@ public abstract class AbstractDao {
       this.setEntityManager(AbstractEntityManager.getInstance().getEntityManager());
    }
 
+   /**
+    * @return la liste contenant tous les enregistrements de l'entité concernée
+    */
    public abstract List<?> getAll();
 
    protected EntityManager getEntityManager() {
