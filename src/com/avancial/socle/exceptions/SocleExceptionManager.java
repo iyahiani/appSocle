@@ -4,7 +4,8 @@
 package com.avancial.socle.exceptions;
 
 /**
- * C'est le point d'entrée pour le client
+ * C'est le point d'entrée pour le client.
+ * Il est chargé de contruire la chaine des Exception builder.
  * 
  * @author bruno.legloahec
  *
