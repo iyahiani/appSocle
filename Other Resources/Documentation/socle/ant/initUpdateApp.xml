@@ -40,19 +40,6 @@
 
 
 
-		<echo>Copie des resources</echo>
-		<copy todir="${dest.otherResources}" verbose="true" overwrite="true">
-			<fileset dir="${source.otherResources}">
-				<exclude name="socle/" />
-			</fileset>
-		</copy>
-
-		<echo>Copie des pages</echo>
-		<copy todir="${dest.webcontent.pages}" verbose="true" overwrite="true">
-			<fileset dir="${source.webcontent.pages}">
-
-			</fileset>
-		</copy>
 
 
 
@@ -124,6 +111,24 @@
 		<copy todir="${dest.webcontent.metainf}" verbose="true" overwrite="true">
 			<fileset dir="${source.webcontent.metainf}" />
 		</copy>
+		
+		
+
+		<echo>Copie des resources</echo>
+		<copy todir="${dest.otherResources}" verbose="true" overwrite="true">
+			<fileset dir="${source.otherResources}">
+				<exclude name="socle/" />
+			</fileset>
+		</copy>
+
+		<echo>Copie des pages</echo>
+		<copy todir="${dest.webcontent.pages}" verbose="true" overwrite="true">
+			<fileset dir="${source.webcontent.pages}">
+
+			</fileset>
+		</copy>
+		
+		
 	</target>
 
 
