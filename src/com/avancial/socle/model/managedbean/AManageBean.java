@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.avancial.socle.model.managedBean;
+package com.avancial.socle.model.managedbean;
 
 import java.io.Serializable;
 
@@ -22,7 +22,7 @@ public class AManageBean implements Serializable, IManagedBean {
    /*
     * (non-Javadoc)
     * 
-    * @see com.avancial.socle.model.managedBean.IManagedBean#add()
+    * @see com.avancial.socle.model.managedbean.IManagedBean#add()
     */
    @Override
    public String add() throws ASocleException {
@@ -34,7 +34,7 @@ public class AManageBean implements Serializable, IManagedBean {
    /*
     * (non-Javadoc)
     * 
-    * @see com.avancial.socle.model.managedBean.IManagedBean#update()
+    * @see com.avancial.socle.model.managedbean.IManagedBean#update()
     */
    @Override
    public String update() throws ASocleException {
@@ -45,7 +45,7 @@ public class AManageBean implements Serializable, IManagedBean {
    /*
     * (non-Javadoc)
     * 
-    * @see com.avancial.socle.model.managedBean.IManagedBean#delete()
+    * @see com.avancial.socle.model.managedbean.IManagedBean#delete()
     */
    @Override
    public String delete() throws ASocleException {

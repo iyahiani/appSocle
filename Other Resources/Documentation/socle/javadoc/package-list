@@ -1,10 +1,10 @@
-com.avancial.app.model.managedBean
+com.avancial.app.model.managedbean
 com.avancial.socle
 com.avancial.socle.data
 com.avancial.socle.data.controller.dao
 com.avancial.socle.data.model.databean
 com.avancial.socle.exceptions
-com.avancial.socle.model.managedBean
+com.avancial.socle.model.managedbean
 com.avancial.socle.params
 com.avancial.socle.params.beans
 com.avancial.socle.params.exception

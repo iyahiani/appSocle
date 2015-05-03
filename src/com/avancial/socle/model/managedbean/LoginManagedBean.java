@@ -1,4 +1,4 @@
-package com.avancial.socle.model.managedBean;
+package com.avancial.socle.model.managedbean;
 
 import java.io.IOException;
 import java.io.Serializable;

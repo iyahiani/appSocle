@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.avancial.app.model.managedBean;
+package com.avancial.app.model.managedbean;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;

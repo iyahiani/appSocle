@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.avancial.socle.model.managedBean;
+package com.avancial.socle.model.managedbean;
 
 import java.util.ArrayList;
 import java.util.List;
