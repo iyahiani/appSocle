@@ -123,5 +123,5 @@
   	</dependencies>
     </dependencyManagement>
   <packaging>war</packaging>
-  <name>gev</name>
+  <name>appSocle</name>
 </project>
