@@ -5,9 +5,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	
-	<span style="font-size: 12px; color: grey;"> Version du socle : 
-	<h:outputText>
-			<!-- value="#{paramGetterBean.getParam('socle','version').value}"></h:outputText>-->
+	<span style="font-size: 12px; color: grey;">
+	<h:outputText value="#{msg.libelle_version_socle}"></h:outputText>
+	<h:outputText
+			value="#{paramGetterBean.getParam('socle','version').value}">
 	</h:outputText>		
 			</span>
 

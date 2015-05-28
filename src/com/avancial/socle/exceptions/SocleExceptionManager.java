@@ -11,39 +11,30 @@ package com.avancial.socle.exceptions;
  *
  */
 public class SocleExceptionManager {
-	protected static ASocleExceptionFinder finder = null;
-	private String test;
+   protected static ASocleExceptionFinder finder = null;
 
-	public SocleExceptionManager(Exception e) {
-		this.init(e);
-	}
+   public SocleExceptionManager(Exception e) {
+      this.init(e);
+   }
 
-	@SuppressWarnings("static-method")
-	protected void init(Exception e) {
-		ASocleExceptionFinder finder = new SocleExceptionFinderSqlDuplicateId(null, e);
+   @SuppressWarnings("static-method")
+   protected void init(Exception e) {
+      ASocleExceptionFinder finder = new SocleExceptionFinderSqlDuplicateId(null, e);
 
-		// A laisser à la fin. Doit pointer sur le dernier finder
-		SocleExceptionManager.finder = finder;
-	}
-	
-	
-	/**
-	 * 
-	 * @param finder
-	 */
-	public  static void add(ASocleExceptionFinder finder) {
-			SocleExceptionManager.finder=finder;
-	}
+      // A laisser à la fin. Doit pointer sur le dernier finder
+      SocleExceptionManager.finder = finder;
+   }
 
-	public static ASocleException getException() {
-		return SocleExceptionManager.finder.getSocleException();
-	}
+   /**
+    * 
+    * @param finder
+    */
+   public static void add(ASocleExceptionFinder finder) {
+      SocleExceptionManager.finder = finder;
+   }
 
-	public String getTest() {
-		return test;
-	}
+   public static ASocleException getException() {
+      return SocleExceptionManager.finder.getSocleException();
+   }
 
-	public void setTest(String test) {
-		this.test = test;
-	}
 }

@@ -28,13 +28,18 @@ public class ParamReaderDBDirectory extends ParamReaderDB {
     */
    @Override
    public void loadParams(String paramsName) throws Exception {
-      super.loadParams(paramsName);
-      for (Object bean : this.getDao().getAll()) {
+      try {
+         super.loadParams(paramsName);
+         for (Object bean : this.getDao().getAll()) {
 
-         IParamBean iParamBean = new ParamBeanGeneric();
-         iParamBean.setName(((RefDirectoryDataBean) bean).getTechnicalNameRefDirectory());
-         iParamBean.SetValue(((RefDirectoryDataBean) bean).getPathRefDirectory());
-         this.colIParamBeans.add(iParamBean);
+            IParamBean iParamBean = new ParamBeanGeneric();
+            iParamBean.setName(((RefDirectoryDataBean) bean).getTechnicalNameRefDirectory());
+            iParamBean.SetValue(((RefDirectoryDataBean) bean).getPathRefDirectory());
+            this.colIParamBeans.add(iParamBean);
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
       }
+
    }
 }

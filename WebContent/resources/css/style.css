@@ -13,3 +13,9 @@
 	width: 20px;	
 	margin: 1px;	
 }
+
+.message_important.ui-tooltip{
+	color: white;
+	background-color:red; 
+}
+
