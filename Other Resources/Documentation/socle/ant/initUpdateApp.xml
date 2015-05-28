@@ -4,8 +4,8 @@
 	</description>
 
 
-	<property name="source" location="D:\Users/${user.name}/Desktop/appSocle" />
-	<!-- 	<property name="source" location="c:\Users/${user.name}/Desktop/appSocle" />-->
+	<!-- <property name="source" location="D:\Users/${user.name}/Desktop/appSocle" />-->
+	<property name="source" location="c:\Users/${user.name}/Desktop/appSocle" />
 
 	<property name="source.webcontent" location="${source}/WebContent" />
 	<property name="dest.webcontent" location="WebContent/" />
@@ -32,10 +32,6 @@
 
 	<property name="dest.webcontent.pages" location="${dest.webcontent}/pages/" />
 	<property name="source.webcontent.pages" location="${source.webcontent}/pages/" />
-
-	<property name="dest.webcontent.resources" location="${dest.webcontent}/resources/" />
-	<property name="source.webcontent.resources" location="${source.webcontent}/resources/" />
-
 
 	<property name="dest.webcontent.wsdl" location="${dest.webcontent}/wsdl/" />
 
@@ -115,8 +111,8 @@
 		<copy todir="${dest.webcontent.metainf}" verbose="true" overwrite="true">
 			<fileset dir="${source.webcontent.metainf}" />
 		</copy>
-
-
+		
+		
 
 		<echo>Copie des resources</echo>
 		<copy todir="${dest.otherResources}" verbose="true" overwrite="true">
@@ -131,15 +127,8 @@
 
 			</fileset>
 		</copy>
-
-	<echo>Copie des pages</echo>
-		<copy todir="${dest.webcontent.resources}" verbose="true" overwrite="true">
-			<fileset dir="${source.webcontent.resources}">
-
-			</fileset>
-		</copy>
-
-
+		
+		
 	</target>
 
 
