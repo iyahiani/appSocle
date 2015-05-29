@@ -21,7 +21,10 @@
 	</ui:repeat>
 <br/>
 			<h:outputText
-				value="#{paramGetterBean.getParam('directories','SOCLE_tmp').value}"></h:outputText>
+				 value="#{paramGetterBean.getParam('directories','SOCLE_tmp').value}"
+				 rendered="#{socleStateManagedBean.dataBaseConnected}">
+			</h:outputText>
+			<br/>
 		</h:body>
 	</ui:define>
 </ui:composition>

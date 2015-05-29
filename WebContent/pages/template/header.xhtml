@@ -32,13 +32,22 @@
 				</h:panelGrid>
 
 			</p:layoutUnit>
-			<p:layoutUnit position="east" resizable="true">
+			<p:layoutUnit position="east" resizable="true" minSize="120">
 				<p:commandButton type="submit" value="#{msg.libelle_deconnexion}"
 					action="#{ihmManagedBean.logout()}"
 					rendered="#{ihmManagedBean.isLogged()}" update="formHeader" />
-				<p:commandButton type="submit" value="#{msg.libelle_connexion}"
+					
+					
+					<h:graphicImage id="img" name="private/image/attention2.png" height="16px" width="16px" rendered="#{!socleStateManagedBean.dataBaseConnected}"/>
+					<p:tooltip styleClass="message_important" value="#{msg.connexion_bdd_ko}"
+					for="img" showEffect="clip" hideEffect="explode"/> 
+				<p:commandButton type="submit" id="bouttonConnexion" value="#{msg.libelle_connexion}"
 					action="#{ihmManagedBean.goLogin}"
-					rendered="#{!ihmManagedBean.isLogged()}" update="formHeader" />
+					rendered="#{!ihmManagedBean.isLogged()}" update="formHeader" 
+					disabled="#{!socleStateManagedBean.dataBaseConnected}"
+					/>
+					
+					
 			</p:layoutUnit>
 		</p:layout>
 	</h:form>

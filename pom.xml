@@ -11,8 +11,11 @@
   </snapshotRepository>
 </distributionManagement>
   
-  <build>
-    <sourceDirectory>src</sourceDirectory>
+
+  <build> 
+    <sourceDirectory>src</sourceDirectory> 
+   <finalName>appSocle</finalName>
+ <pluginManagement>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -21,8 +24,9 @@
           <source>1.7</source>
           <target>1.7</target>
         </configuration>
-      </plugin>
+      </plugin> 
     </plugins>
+     </pluginManagement>
   </build>
   <dependencies>
   
