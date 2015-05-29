@@ -4,12 +4,14 @@ package com.avancial.socle.resources.constants;
  * @author bruno
  *
  */
-public enum ConstantSocle {
+public enum SOCLE_constants {
    /**
  * 
  */
    BUNDLE_PATH("com.avancial.app.resources.internationalization.Message"),
    MESSAGE_ERR_TRANSLATION_NOT_FOUND("erreur_traduction_non_trouve"),
+   MESSAGE_CONNECTION_ACTIVE("message_connection_active"),
+   MESSAGE_CONNECTION_INACTIVE("message_connection_inactive"),
    NAVIGATION_ACCUEIL("/pages/public/accueil?faces-redirect=true"),
    NAVIGATION_LOGIN("/pages/public/login?faces-redirect=true"),
    NAVIGATION_MDPOUBLIE("/pages/public/mdpoublie?faces-redirect=true"),
@@ -39,7 +41,7 @@ public enum ConstantSocle {
 
    private String constant = "";
 
-   private ConstantSocle(String pconstant) {
+   private SOCLE_constants(String pconstant) {
       this.constant = pconstant;
    }
 

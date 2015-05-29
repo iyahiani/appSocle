@@ -19,6 +19,7 @@ public abstract class AbstractDao {
     */
    public AbstractDao() {
       this.setEntityManager(AbstractEntityManager.getInstance().getEntityManager());
+      System.out.println("AbstractDao.AbstractDao()" + entityManager.isJoinedToTransaction());
    }
 
    /**

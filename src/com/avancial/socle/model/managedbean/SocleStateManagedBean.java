@@ -7,6 +7,11 @@ import java.io.Serializable;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import javax.persistence.Query;
+
+import com.avancial.socle.data.controller.dao.AbstractEntityManager;
+import com.avancial.socle.resources.MessageController;
+import com.avancial.socle.resources.constants.SOCLE_constants;
 
 /**
  * @author bruno
@@ -18,15 +23,24 @@ public class SocleStateManagedBean implements Serializable {
    /**
     * 
     */
-   private static final long serialVersionUID = 1L;
-   private boolean isDataBaseConnected = false;
-   private String dataBaseConnectionStateLabel = "";
+   private static final long serialVersionUID             = 1L;
+   private boolean           isDataBaseConnected          = false;
+   private String            dataBaseConnectionStateLabel = "";
 
    /**
     * 
     */
    public SocleStateManagedBean() {
       super();
+      AbstractEntityManager em = AbstractEntityManager.getInstance();
+      try {
+         Query query = em.getEntityManager().createQuery("FROM UtilisateurDataBean u where u.idUser = 1");
+         query.getSingleResult();
+         this.setDataBaseConnected(true);
+      } catch (Exception e) {
+         this.setDataBaseConnected(false);
+      }
+
    }
 
    /**
@@ -46,9 +60,9 @@ public class SocleStateManagedBean implements Serializable {
     */
    public void setDataBaseConnected(boolean isDataBaseConnected) {
       if (isDataBaseConnected)
-         this.setDataBaseConnectionStateLabel("Connexion active.");
+         this.setDataBaseConnectionStateLabel(MessageController.getTraduction(SOCLE_constants.MESSAGE_CONNECTION_ACTIVE.toString()));
       else
-         this.setDataBaseConnectionStateLabel("Connexion inactive.");
+         this.setDataBaseConnectionStateLabel(SOCLE_constants.MESSAGE_CONNECTION_INACTIVE.toString());
 
       this.isDataBaseConnected = isDataBaseConnected;
 
@@ -60,7 +74,7 @@ public class SocleStateManagedBean implements Serializable {
     * @return the dataBaseConnectionStateLabel
     */
    public String getDataBaseConnectionStateLabel() {
-      return dataBaseConnectionStateLabel;
+      return this.dataBaseConnectionStateLabel;
    }
 
    /**
