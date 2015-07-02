@@ -12,9 +12,11 @@ import com.avancial.socle.params.beans.ParamBeanGeneric;
  * @author bruno
  *
  */
-public class ParamReaderDBDirectory extends ParamReaderDB {
+public class ParamReaderDBDirectory extends AParamReaderDB {
 
    /**
+    * Classe servant à lire les paramètres "Répertoire" stockés en base de données
+    * 
     * @param dao
     */
    public ParamReaderDBDirectory(AbstractDao dao) {
