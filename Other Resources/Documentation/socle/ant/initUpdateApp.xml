@@ -4,8 +4,13 @@
 	</description>
 
 
-	<!-- <property name="source" location="D:\Users/${user.name}/Desktop/appSocle" />-->
-	<property name="source" location="c:\Users/${user.name}/Desktop/appSocle" />
+	<condition property="lecteur" value="c:">
+		<contains string="${user.name}" substring="legloahec" casesensitive="false" />
+	</condition>
+	<property name="lecteur" value="d:" />
+
+	<property name="source" location="${lecteur}\Users/${user.name}/Desktop/appSocle" />
+
 
 	<property name="source.webcontent" location="${source}/WebContent" />
 	<property name="dest.webcontent" location="WebContent/" />
@@ -111,8 +116,8 @@
 		<copy todir="${dest.webcontent.metainf}" verbose="true" overwrite="true">
 			<fileset dir="${source.webcontent.metainf}" />
 		</copy>
-		
-		
+
+
 
 		<echo>Copie des resources</echo>
 		<copy todir="${dest.otherResources}" verbose="true" overwrite="true">
@@ -127,8 +132,8 @@
 
 			</fileset>
 		</copy>
-		
-		
+
+
 	</target>
 
 
