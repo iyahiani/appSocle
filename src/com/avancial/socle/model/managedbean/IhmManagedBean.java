@@ -11,7 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.avancial.socle.data.model.databean.UtilisateurDataBean;
+import com.avancial.socle.data.model.databean.UserDataBean;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.SOCLE_constants;
 
@@ -26,7 +26,7 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
 public class IhmManagedBean implements Serializable {
 
    private static final long serialVersionUID = 1L;
-   private UtilisateurDataBean currentUser;
+   private UserDataBean currentUser;
    private String originalURL;
    private Locale locale;
 
@@ -77,7 +77,7 @@ public class IhmManagedBean implements Serializable {
     * 
     * @return the currentUser
     */
-   public UtilisateurDataBean getCurrentUser() {
+   public UserDataBean getCurrentUser() {
       return this.currentUser;
    }
 
@@ -86,7 +86,7 @@ public class IhmManagedBean implements Serializable {
     * 
     * @param currentUser
     */
-   public void setCurrentUser(UtilisateurDataBean currentUser) {
+   public void setCurrentUser(UserDataBean currentUser) {
       this.currentUser = currentUser;
    }
 

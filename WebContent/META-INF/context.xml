@@ -5,7 +5,7 @@
 
 	<Resource name="jdbc/socle" auth="Container" type="javax.sql.DataSource"
 		username="webd_gev" password="!gev12" driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://caliban/test" maxActive="8" maxIdle="4" />
+		url="jdbc:mysql://caliban/gev" maxActive="8" maxIdle="4" />
 
 	<Realm className="org.apache.catalina.realm.DataSourceRealm"
 		dataSourceName="jdbc/socle" userTable="socle_user" userNameCol="loginUser"

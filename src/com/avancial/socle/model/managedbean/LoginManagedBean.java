@@ -13,7 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.avancial.socle.data.controller.dao.UtilisateurDao;
+import com.avancial.socle.data.controller.dao.UserDao;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.SOCLE_constants;
 
@@ -35,7 +35,7 @@ public class LoginManagedBean implements Serializable {
    private IhmManagedBean ihmManagedBean;
 
    // Dao de gestion des utilisateurs
-   private UtilisateurDao utilisateurDao = new UtilisateurDao();
+   private UserDao utilisateurDao = new UserDao();
 
    /**
     * Initialisation de l'url courante

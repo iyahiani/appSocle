@@ -58,7 +58,7 @@
     </login-config>
 
 	<security-role>
-		<description>Utilisateur</description>
+		<description>User</description>
 		<role-name>user</role-name>
 	</security-role>
 <env-entry>

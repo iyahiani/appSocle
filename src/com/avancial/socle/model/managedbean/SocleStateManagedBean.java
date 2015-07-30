@@ -34,7 +34,7 @@ public class SocleStateManagedBean implements Serializable {
       super();
       AbstractEntityManager em = AbstractEntityManager.getInstance();
       try {
-         Query query = em.getEntityManager().createQuery("FROM UtilisateurDataBean u where u.idUser = 1");
+         Query query = em.getEntityManager().createQuery("FROM UserDataBean u where u.idUser = 1");
          query.getSingleResult();
          this.setDataBaseConnected(true);
       } catch (Exception e) {
