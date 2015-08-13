@@ -10,47 +10,52 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * 
+ * @author caglar.erdogan
+ *
+ */
 @Entity
 @Table(name = "socle_user")
 public class UserDataBean {
 	@Id
-	private Long idUser;
-	private String nomUser;
-	private String prenomUser;
-	private String loginUser;
-	private String passwordUser;
-	private String mailUser;
-	private String cpUser;
-	private String telephonePro1User;
-	private String telephonePro2User;
-	private String telephonePortable1User;
-	private String fax1User;
-	private String adresseNumeroRueUser;
-	private String adresseNomRueUser;
-	private String adresseComplement1User;
-	private String adresseComplement2User;
-	private String adresseCodePostalUser;
-	private String adresseVilleUser;
-	private String attribut1User;
-	private String attribut2User;
-	private String attribut3User;
-	private String attribut4User;
-	private String attribut5User;
+	protected Long idUser;
+	protected String nomUser;
+	protected String prenomUser;
+	protected String loginUser;
+	protected String passwordUser;
+	protected String mailUser;
+	protected String cpUser;
+	protected String telephonePro1User;
+	protected String telephonePro2User;
+	protected String telephonePortable1User;
+	protected String fax1User;
+	protected String adresseNumeroRueUser;
+	protected String adresseNomRueUser;
+	protected String adresseComplement1User;
+	protected String adresseComplement2User;
+	protected String adresseCodePostalUser;
+	protected String adresseVilleUser;
+	protected String attribut1User;
+	protected String attribut2User;
+	protected String attribut3User;
+	protected String attribut4User;
+	protected String attribut5User;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date DateCreateUser;
+	protected Date dateCreateUser;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date DateUpdateUser;
+	protected Date dateUpdateUser;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateLastUpdateUtilisateurUser;
+	protected Date dateLastUpdateUtilisateurUser;
 	@OneToOne
 	@JoinColumn(name = "idUserCreateUser")
-	private UserDataBean userCreateUser;
+	protected UserDataBean userCreateUser;
 	@OneToOne
 	@JoinColumn(name = "idUserUpdateUser")
-	private UserDataBean userUpdateUser;
-	private String robotUser;
-	private String tomcatRoleUser;
-	private String commentaireUtilisateurUser;
+	protected UserDataBean userUpdateUser;
+	protected boolean robotUser;
+	protected String tomcatRoleUser;
+	protected String commentaireUtilisateurUser;
 
 	public Long getIdUser() {
 		return this.idUser;
@@ -229,19 +234,19 @@ public class UserDataBean {
 	}
 
 	public Date getDateCreateUser() {
-		return this.DateCreateUser;
+		return this.dateCreateUser;
 	}
 
 	public void setDateCreateUser(Date dateCreateUser) {
-		this.DateCreateUser = dateCreateUser;
+		this.dateCreateUser = dateCreateUser;
 	}
 
 	public Date getDateUpdateUser() {
-		return this.DateUpdateUser;
+		return this.dateUpdateUser;
 	}
 
 	public void setDateUpdateUser(Date dateUpdateUser) {
-		this.DateUpdateUser = dateUpdateUser;
+		this.dateUpdateUser = dateUpdateUser;
 	}
 
 	public UserDataBean getUserCreateUser() {
@@ -260,11 +265,11 @@ public class UserDataBean {
 		this.userUpdateUser = userUpdateUser;
 	}
 
-	public String getRobotUser() {
+	public boolean getRobotUser() {
 		return this.robotUser;
 	}
 
-	public void setRobotUser(String robotUser) {
+	public void setRobotUser(boolean robotUser) {
 		this.robotUser = robotUser;
 	}
 
