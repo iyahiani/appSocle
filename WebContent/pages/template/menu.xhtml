@@ -6,10 +6,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form>
-		<p:menu styleClass="horizontalMenu">
+		<p:menu styleClass="horizontalMenu" id="menu">
 			<p:menuitem value="#{msg.p_accueil_titre}" action="#{menu.goAccueil}" />
-			<p:menuitem value="#{msg.p_role_menu}" action="#{menu.goRole}" rendered="#{ihmManagedBean.isLogged()}" />
-			<p:menuitem value="#{msg.p_user_menu}" action="#{menu.goUser}" rendered="#{ihmManagedBean.isLogged()}" />
+			<p:menuitem value="#{msg.p_role_menu}" action="#{menu.goRole}"
+				rendered="#{ihmManagedBean.isLogged() and security.isRendered('pageRole')}" />
+			<p:menuitem value="#{msg.p_user_menu}" action="#{menu.goUser}"
+				rendered="#{ihmManagedBean.isLogged()}" />
 		</p:menu>
 	</h:form>
 </ui:composition>
