@@ -21,6 +21,12 @@
 	background-color: red; 
 }
 
+.tooltipUser.ui-tooltip {
+	font-family: fantasy;
+	background-color: #DBEAF9;
+	font-size: x-small;
+}
+
 
 /* IHM User */
 

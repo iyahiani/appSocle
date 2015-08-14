@@ -4,8 +4,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:socle="http://java.sun.com/jsf/composite/composite">
+
 
 	<h:form id="formHeader">
 		<p:growl id="growl" globalOnly="true" />
@@ -23,31 +24,28 @@
 				</h:panelGrid>
 			</p:layoutUnit>
 			<p:layoutUnit position="center">
-				<h:panelGrid columns="1">
-					<h:outputText value="#{msg.libelle_bienvenue} #{ihmManagedBean.currentUser.nomUser}."
-						rendered="#{ihmManagedBean.isLogged()}" />
-					<h:outputText
-						value="#{msg.libelle_email} #{ihmManagedBean.currentUser.mailUser}."
-						rendered="#{ihmManagedBean.isLogged()}" />
-				</h:panelGrid>
+				<socle:infosUser></socle:infosUser>
 
 			</p:layoutUnit>
-			<p:layoutUnit position="east" resizable="true" minSize="120"  style="text-align: center;">
+			<p:layoutUnit position="east" resizable="true" minSize="120"
+				style="text-align: center;">
 				<p:commandButton type="submit" value="#{msg.libelle_deconnexion}"
 					action="#{ihmManagedBean.logout()}"
 					rendered="#{ihmManagedBean.isLogged()}" update="formHeader" />
-					
-					
-					<h:graphicImage id="img" name="private/image/attention2.png" height="16px" width="16px" rendered="#{!socleStateManagedBean.dataBaseConnected}"/>
-					<p:tooltip styleClass="message_important" value="#{msg.connexion_bdd_ko}"
-					for="img" showEffect="clip" hideEffect="explode"/> 
-				<p:commandButton type="submit" id="bouttonConnexion" value="#{msg.libelle_connexion}"
-					action="#{ihmManagedBean.goLogin}"
-					rendered="#{!ihmManagedBean.isLogged()}" update="formHeader" 
-					disabled="#{!socleStateManagedBean.dataBaseConnected}"
-					/>
-					
-					
+
+
+				<h:graphicImage id="img" name="private/image/attention2.png"
+					height="16px" width="16px"
+					rendered="#{!socleStateManagedBean.dataBaseConnected}" />
+				<p:tooltip styleClass="message_important"
+					value="#{msg.connexion_bdd_ko}" for="img" showEffect="clip"
+					hideEffect="explode" />
+				<p:commandButton type="submit" id="bouttonConnexion"
+					value="#{msg.libelle_connexion}" action="#{ihmManagedBean.goLogin}"
+					rendered="#{!ihmManagedBean.isLogged()}" update="formHeader"
+					disabled="#{!socleStateManagedBean.dataBaseConnected}" />
+
+
 			</p:layoutUnit>
 		</p:layout>
 	</h:form>

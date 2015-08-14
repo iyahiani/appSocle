@@ -13,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import com.avancial.socle.data.controller.dao.User2RoleDao;
 import com.avancial.socle.data.controller.dao.UserDao;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.SOCLE_constants;
@@ -28,14 +29,14 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
 public class LoginManagedBean implements Serializable {
 
    private static final long serialVersionUID = 1L;
-   private String login;
-   private String password;
+   private String            login;
+   private String            password;
 
    @Inject
-   private IhmManagedBean ihmManagedBean;
+   private IhmManagedBean    ihmManagedBean;
 
    // Dao de gestion des utilisateurs
-   private UserDao utilisateurDao = new UserDao();
+   private UserDao           utilisateurDao   = new UserDao();
 
    /**
     * Initialisation de l'url courante
@@ -63,6 +64,14 @@ public class LoginManagedBean implements Serializable {
       try {
          request.login(this.login, this.password);
          this.ihmManagedBean.setCurrentUser(this.utilisateurDao.getUserByLogin(this.login));
+
+         // Si un user est connecté, on va récupérer ses roles
+         // On récupère les roles de l'utilisateur
+         if (null != this.ihmManagedBean.getCurrentUser()) {
+            User2RoleDao daoRoles = new User2RoleDao();
+            this.ihmManagedBean.setRoles(daoRoles.getUser2RoleByIdUser(this.ihmManagedBean.getCurrentUser().getIdUser()));
+         }
+
          String url = this.ihmManagedBean.getOriginalURL();
          this.ihmManagedBean.setOriginalURL(null);
          externalContext.redirect(url);

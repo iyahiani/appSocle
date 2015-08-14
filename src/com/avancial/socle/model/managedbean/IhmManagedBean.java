@@ -1,6 +1,7 @@
 package com.avancial.socle.model.managedbean;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Locale;
 
 import javax.enterprise.context.SessionScoped;
@@ -11,6 +12,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import com.avancial.socle.data.controller.dao.User2RoleDao;
+import com.avancial.socle.data.model.databean.User2RoleDataBean;
 import com.avancial.socle.data.model.databean.UserDataBean;
 import com.avancial.socle.resources.ContextController;
 import com.avancial.socle.resources.constants.SOCLE_constants;
@@ -25,10 +28,11 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
 @SessionScoped
 public class IhmManagedBean implements Serializable {
 
-   private static final long serialVersionUID = 1L;
-   private UserDataBean currentUser;
-   private String originalURL;
-   private Locale locale;
+   private static final long       serialVersionUID = 1L;
+   private UserDataBean            currentUser;
+   private List<User2RoleDataBean> roles;
+   private String                  originalURL;
+   private Locale                  locale;
 
    /**
     * Teste si il y a un utilisateur de connecté
@@ -68,8 +72,21 @@ public class IhmManagedBean implements Serializable {
       if (this.getOriginalURL() == null) {
          this.setOriginalURL(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURL().toString());
       }
-      return SOCLE_constants.NAVIGATION_LOGIN.toString();
 
+      return SOCLE_constants.NAVIGATION_LOGIN.toString();
+   }
+
+   public void initRoles() {
+      // On récupère les roles de l'utilisateur
+      if (null != this.currentUser) {
+         User2RoleDao daoRoles = new User2RoleDao();
+         this.roles = daoRoles.getUser2RoleByIdUser(this.currentUser.getIdUser());
+
+         // FIXME
+         if (this.roles.size() > 0) {
+            System.out.println("********  Role 1 : " + this.roles.get(0).getRoleDataBean().getLabelRole());
+         }
+      }
    }
 
    /**
@@ -148,5 +165,20 @@ public class IhmManagedBean implements Serializable {
       if (null == this.locale)
          this.locale = new Locale(FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage());
       return this.locale;
+   }
+
+   /**
+    * @return the roles
+    */
+   public List<User2RoleDataBean> getRoles() {
+      return this.roles;
+   }
+
+   /**
+    * @param roles
+    *           the roles to set
+    */
+   public void setRoles(List<User2RoleDataBean> roles) {
+      this.roles = roles;
    }
 }
