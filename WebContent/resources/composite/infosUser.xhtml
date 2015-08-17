@@ -11,42 +11,45 @@
 
 <cc:interface></cc:interface>
 <cc:implementation>
-<div>
-<h:graphicImage name="private/image/refresh.png" height="26px" width="26px" 
-					id="refreshSecurity" rendered="#{ihmManagedBean.isLogged() and security.isRendered('boutonReloadSecurity')}" 
-					 
-					 />
-<h:button value="Test" image="private/image/refresh.png" onclick="#{security.reload()}" ></h:button>
+	<div>
+
+			<p:commandButton id="refreshSecurity" action="#{security.reload()}"
+				image="	private/image/refresh.png" value="Refresh" 
+			update="">
+			
+			</p:commandButton>
+	
 
 
-<h:panelGrid id="blockUser" columns="2">
-<h:graphicImage name="private/image/User.png" height="26px" width="26px"
-					id="userIcon" rendered="#{ihmManagedBean.isLogged()}"  />
-	<h:outputText
-		value="#{msg.libelle_bienvenue} #{ihmManagedBean.currentUser.nomUser}."
-		rendered="#{ihmManagedBean.isLogged()}" />
-</h:panelGrid>	
-	<br />
-	<p:tooltip for="blockUser" styleClass="tooltipUser">
-		
-<h:outputText
-		value="#{msg.libelle_email} #{ihmManagedBean.currentUser.mailUser}."
-		rendered="#{ihmManagedBean.isLogged()}" />
-		<dl>
-		<h:outputText value="Rôles" rendered="#{ihmManagedBean.isLogged()}"> </h:outputText>
-			<ui:repeat var="table" value="#{ihmManagedBean.getRoles()}">
-				
-				<dt>
-					<h:outputText
-						value="
+		<h:panelGrid id="blockUser" columns="2">
+			<h:graphicImage name="private/image/User.png" height="26px"
+				width="26px" id="userIcon" rendered="#{ihmManagedBean.isLogged()}" />
+			<h:outputText
+				value="#{msg.libelle_bienvenue} #{ihmManagedBean.currentUser.nomUser}."
+				rendered="#{ihmManagedBean.isLogged()}" />
+		</h:panelGrid>
+		<br />
+		<p:tooltip for="blockUser" styleClass="tooltipUser">
+
+			<h:outputText
+				value="#{msg.libelle_email} #{ihmManagedBean.currentUser.mailUser}."
+				rendered="#{ihmManagedBean.isLogged()}" />
+			<dl>
+				<h:outputText value="Rôles" rendered="#{ihmManagedBean.isLogged()}">
+				</h:outputText>
+				<ui:repeat var="table" value="#{ihmManagedBean.getRoles()}">
+
+					<dt>
+						<h:outputText
+							value="
 					#{table.getRoleDataBean().getLabelRole()}"
-						rendered="#{ihmManagedBean.isLogged()}"></h:outputText>
-				</dt>
-			</ui:repeat>
-		</dl>
-	</p:tooltip>
+							rendered="#{ihmManagedBean.isLogged()}"></h:outputText>
+					</dt>
+				</ui:repeat>
+			</dl>
+		</p:tooltip>
 
-</div>
+	</div>
 </cc:implementation>
 
 </html>
