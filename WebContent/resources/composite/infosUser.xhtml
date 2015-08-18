@@ -13,8 +13,8 @@
 <cc:implementation>
 	<div>
 
-			<p:commandButton id="refreshSecurity" action="#{security.reload()}"
-				image="	private/image/refresh.png" value="Refresh" 
+			<p:commandButton id="refreshItem2Role" action="#{security.reload()}"
+				icon="private/image/refresh.png" value="Refresh"  rendered="#{ihmManagedBean.isLogged() and security.isRendered('refreshItem2Role')}"
 			update="">
 			
 			</p:commandButton>

@@ -8,11 +8,12 @@
 	lang="#{ihmManagedBean.language}">
 <f:view locale="#{ihmManagedBean.locale}">
 	<h:head>
-		<title>
-			<ui:insert name="title">#{msg.nom_application}</ui:insert>
+		<title><ui:insert name="title">#{msg.nom_application}</ui:insert>
 		</title>
 		<h:outputStylesheet library="css" name="style.css" />
-
+		<!-- <h:outputStylesheet library="css" name="style.less" /> -->
+		<!-- <link rel="stylesheet/less" type="text/css" href="styles.less"> -->
+			<!-- <script src="/js/less.js" type="text/javascript"></script> -->
 	</h:head>
 	<h:body>
 		<p:layout id="layoutPrincipal" fullPage="true">
@@ -32,7 +33,7 @@
 				<ui:include src="/pages/template/menu.xhtml" />
 			</p:layoutUnit>
 
-		
+
 
 			<p:layoutUnit position="center">
 				<ui:insert name="contenu" />

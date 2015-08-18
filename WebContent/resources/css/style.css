@@ -3,11 +3,11 @@
 }
 
 .ui-menu {
-	background: #EAD5E7 !important;
+	background: #A8D1F5 !important;
 }
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default,.ui-widget-header {
-	background:-moz-linear-gradient(center top , rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) repeat scroll 0 0 #EAD5E7 !important;
+	background:-moz-linear-gradient(center top , rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) repeat scroll 0 0 #A8D1F5 !important;
 }
 
 .actionButtons {
@@ -23,8 +23,8 @@
 
 .tooltipUser.ui-tooltip {
 	font-family: fantasy;
-	background-color: #DBEAF9;
-	font-size: x-small;
+	background-color:#A8D1F5 !important;
+	font-size: 4px;
 }
 
 
