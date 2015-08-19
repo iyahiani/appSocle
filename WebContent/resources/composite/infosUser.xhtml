@@ -14,15 +14,12 @@
 </cc:interface>
 <cc:implementation>
 	<div>
-
 		<p:commandButton id="refreshItem2Role" action="#{security.reload()}"
 			icon="private/image/refresh.png" value="Refresh"
 			rendered="#{ihmManagedBean.isLogged() and security.isRendered('refreshItem2Role') and cc.attrs.refreshRole.booleanValue()==true}"
 			update="">
 
 		</p:commandButton>
-
-
 
 		<h:panelGrid id="blockUser" columns="2">
 			<h:graphicImage name="private/image/User.png" height="26px"
@@ -41,7 +38,6 @@
 				<h:outputText value="Rôles" rendered="#{ihmManagedBean.isLogged()}">
 				</h:outputText>
 				<ui:repeat var="table" value="#{ihmManagedBean.getRoles()}">
-
 					<dt>
 						<h:outputText
 							value="

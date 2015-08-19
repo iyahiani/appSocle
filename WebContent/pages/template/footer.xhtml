@@ -4,14 +4,14 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+<hr id="piedhr" />
+	<div id="Pied">
 	
-
-	<span style="font-size: 12px; color: grey;">
-	<h:outputText value="#{msg.libelle_version_socle}"></h:outputText>
-	<h:outputText
-			value="#{paramGetterBean.getParam('socle','version').value}">
-	</h:outputText>		
-			</span>
-
-
+		<h:outputText value="#{msg.libelle_version_socle}"></h:outputText>
+		<h:outputText value="#{paramGetterBean.getParam('socle','version').value}"></h:outputText>
+	</div>
+	
 </ui:composition>
