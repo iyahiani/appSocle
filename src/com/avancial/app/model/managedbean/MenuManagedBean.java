@@ -33,4 +33,8 @@ public class MenuManagedBean implements Serializable {
    public static String goUser() {
       return SOCLE_constants.NAVIGATION_USER.toString();
    }
+
+   public static String goJob() {
+      return SOCLE_constants.NAVIGATION_JOB.toString();
+   }
 }
