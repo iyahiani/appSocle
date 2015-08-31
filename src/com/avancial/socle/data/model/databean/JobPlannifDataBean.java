@@ -51,7 +51,7 @@ public class JobPlannifDataBean implements Serializable {
 
    @OneToOne
    @JoinColumn(name = "idJobType", nullable = false)
-   private JobTypeDataBean   socleJobType;
+   private JobTypeDataBean   jobType;
 
    public JobPlannifDataBean() {
    }
@@ -128,12 +128,12 @@ public class JobPlannifDataBean implements Serializable {
       this.secondesJobPlannif = secondesJobPlannif;
    }
 
-   public JobTypeDataBean getSocleJobType() {
-      return this.socleJobType;
+   public JobTypeDataBean getJobType() {
+      return this.jobType;
    }
 
-   public void setSocleJobType(JobTypeDataBean socleJobType) {
-      this.socleJobType = socleJobType;
+   public void setJobType(JobTypeDataBean jobType) {
+      this.jobType = jobType;
    }
 
 }

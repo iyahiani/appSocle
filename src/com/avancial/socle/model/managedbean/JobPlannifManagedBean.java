@@ -14,7 +14,7 @@ import javax.inject.Named;
 
 import org.primefaces.context.RequestContext;
 
-import com.avancial.socle.business.JobBean;
+import com.avancial.socle.business.JobPlannifBean;
 import com.avancial.socle.data.controller.dao.JobDao;
 import com.avancial.socle.exceptions.ASocleException;
 import com.avancial.socle.resources.constants.SOCLE_constants;
@@ -23,39 +23,42 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
  * @author bruno.legloahec
  *
  */
-@Named("jobManagedBean")
+@Named("jobPlannifManagedBean")
 @ViewScoped
 public class JobPlannifManagedBean extends AManageBean {
    /**
     * 
     */
-   private static final long serialVersionUID = 1L;
-   private List<JobBean>     jobs;
-   private String            nomTechnique;
-   private String            libelle;
-   private String            classe;
+   private static final long    serialVersionUID = 1L;
+   private List<JobPlannifBean> listeItemMetier;
+   private String               libelle;
 
    @Inject
-   private JobBean           jobSelected;
+   private JobPlannifBean       itemSelected;
+   private String               anneeJobPlannif;
+   private String               heuresJobPlannif;
+   private String               jourMoisJobPlannif;
+   private String               jourSemaineJobPlannif;
+   private String               minutesJobPlannif;
+   private String               moisJobPlannif;
+   private String               secondesJobPlannif;
 
    /**
     * Constructeur
     */
    public JobPlannifManagedBean() {
-      this.jobs = new ArrayList<>();
+      this.listeItemMetier = new ArrayList<>();
       this.reload();
 
    }
 
    public void reload() {
-      this.jobs.clear();
-      this.jobs.addAll(JobBean.getAll());
+      this.listeItemMetier.clear();
+      this.listeItemMetier.addAll(JobPlannifBean.getAll());
    }
 
    public void initProperties() {
       this.libelle = "";
-      this.nomTechnique = "";
-      this.classe = "";
    }
 
    /**
@@ -65,10 +68,15 @@ public class JobPlannifManagedBean extends AManageBean {
    @Override
    public String add() throws ASocleException {
       super.add();
-      JobBean bean = new JobBean();
-      bean.setLibelleJob(this.libelle);
-      bean.setNomTechniqueJob(this.nomTechnique);
-      bean.setClasseJob(this.classe);
+      JobPlannifBean bean = new JobPlannifBean();
+      bean.setLibelleJobPlannif(this.libelle);
+      bean.setAnneeJobPlannif(this.anneeJobPlannif);
+      bean.setHeuresJobPlannif(this.heuresJobPlannif);
+      bean.setJourMoisJobPlannif(this.jourMoisJobPlannif);
+      bean.setJourSemaineJobPlannif(this.jourSemaineJobPlannif);
+      bean.setMinutesJobPlannif(this.minutesJobPlannif);
+      bean.setMoisJobPlannif(this.moisJobPlannif);
+      bean.setSecondesJobPlannif(this.secondesJobPlannif);
 
       try {
          bean.save();
@@ -85,11 +93,11 @@ public class JobPlannifManagedBean extends AManageBean {
    @Override
    public String update() throws ASocleException {
       super.update();
-      if (null != this.jobSelected) {
+      if (null != this.itemSelected) {
 
          try {
 
-            this.jobSelected.update();
+            this.itemSelected.update();
 
             FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
             this.closeDialog = true;
@@ -105,10 +113,10 @@ public class JobPlannifManagedBean extends AManageBean {
    @Override
    public String delete() throws ASocleException {
       super.delete();
-      if (null != this.jobSelected) {
+      if (null != this.itemSelected) {
          JobDao dao = new JobDao();
          try {
-            this.jobSelected.delete();
+            this.itemSelected.delete();
             FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement supprimé"));
             this.closeDialog = true;
             this.reload();
@@ -118,21 +126,6 @@ public class JobPlannifManagedBean extends AManageBean {
          }
       }
       return null;
-   }
-
-   /**
-    * @return the nomtechnique
-    */
-   public String getNomTechnique() {
-      return this.nomTechnique;
-   }
-
-   /**
-    * @param nomtechnique
-    *           the nomtechnique to set
-    */
-   public void setNomTechnique(String nomtechnique) {
-      this.nomTechnique = nomtechnique;
    }
 
    /**
@@ -156,12 +149,11 @@ public class JobPlannifManagedBean extends AManageBean {
     * @param jobSelected
     *           the roleSelected to set
     */
-   public void setJobSelected(JobBean jobSelected) {
-      if (null != jobSelected) {
-         this.jobSelected = jobSelected;
-         this.libelle = jobSelected.getLibelleJob();
-         this.nomTechnique = jobSelected.getNomTechniqueJob();
-         this.classe = jobSelected.getClasseJob();
+   public void setItemMetier(JobPlannifBean itemMetier) {
+      if (null != itemMetier) {
+         this.itemSelected = itemMetier;
+         this.libelle = itemMetier.getLibelleJobPlannif();
+
       }
    }
 
@@ -173,24 +165,84 @@ public class JobPlannifManagedBean extends AManageBean {
       this.closeDialog = closeDialog;
    }
 
-   public List<JobBean> getJobs() {
-      return this.jobs;
+   public List<JobPlannifBean> getJobPlannif() {
+      return this.listeItemMetier;
    }
 
-   public void setJobs(List<JobBean> jobs) {
-      this.jobs = jobs;
+   public void setJobplannif(List<JobPlannifBean> jobPlannif) {
+      this.listeItemMetier = jobPlannif;
    }
 
-   public JobBean getJobSelected() {
-      return this.jobSelected;
+   public JobPlannifBean getItemSelected() {
+      return this.itemSelected;
    }
 
-   public String getClasse() {
-      return this.classe;
+   public List<JobPlannifBean> getListeItemMetier() {
+      return this.listeItemMetier;
    }
 
-   public void setClasse(String classe) {
-      this.classe = classe;
+   public void setListeItemMetier(List<JobPlannifBean> listeItemMetier) {
+      this.listeItemMetier = listeItemMetier;
+   }
+
+   public String getAnneeJobPlannif() {
+      return this.anneeJobPlannif;
+   }
+
+   public void setAnneeJobPlannif(String anneeJobPlannif) {
+      this.anneeJobPlannif = anneeJobPlannif;
+   }
+
+   public String getHeuresJobPlannif() {
+      return this.heuresJobPlannif;
+   }
+
+   public void setHeuresJobPlannif(String heuresJobPlannif) {
+      this.heuresJobPlannif = heuresJobPlannif;
+   }
+
+   public String getJourMoisJobPlannif() {
+      return this.jourMoisJobPlannif;
+   }
+
+   public void setJourMoisJobPlannif(String jourMoisJobPlannif) {
+      this.jourMoisJobPlannif = jourMoisJobPlannif;
+   }
+
+   public String getJourSemaineJobPlannif() {
+      return this.jourSemaineJobPlannif;
+   }
+
+   public void setJourSemaineJobPlannif(String jourSemaineJobPlannif) {
+      this.jourSemaineJobPlannif = jourSemaineJobPlannif;
+   }
+
+   public String getMinutesJobPlannif() {
+      return this.minutesJobPlannif;
+   }
+
+   public void setMinutesJobPlannif(String minutesJobPlannif) {
+      this.minutesJobPlannif = minutesJobPlannif;
+   }
+
+   public String getMoisJobPlannif() {
+      return this.moisJobPlannif;
+   }
+
+   public void setMoisJobPlannif(String moisJobPlannif) {
+      this.moisJobPlannif = moisJobPlannif;
+   }
+
+   public String getSecondesJobPlannif() {
+      return this.secondesJobPlannif;
+   }
+
+   public void setSecondesJobPlannif(String secondesJobPlannif) {
+      this.secondesJobPlannif = secondesJobPlannif;
+   }
+
+   public void setItemSelected(JobPlannifBean itemSelected) {
+      this.itemSelected = itemSelected;
    }
 
 }

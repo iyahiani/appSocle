@@ -45,7 +45,6 @@ public class SocleInit extends HttpServlet {
       try {
          this.quartzInit();
       } catch (SchedulerException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }

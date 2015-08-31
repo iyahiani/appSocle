@@ -154,12 +154,12 @@ public class JobPlannifBean {
       this.jobPlannifDataBean.setSecondesJobPlannif(secondesJobPlannif);
    }
 
-   public JobTypeDataBean getSocleJobType() {
-      return this.jobPlannifDataBean.getSocleJobType();
+   public JobTypeDataBean getJobType() {
+      return this.jobPlannifDataBean.getJobType();
    }
 
-   public void setSocleJobType(JobTypeDataBean socleJobType) {
-      this.jobPlannifDataBean.setSocleJobType(socleJobType);
+   public void setJobType(JobTypeDataBean jobType) {
+      this.jobPlannifDataBean.setJobType(jobType);
    }
 
 }

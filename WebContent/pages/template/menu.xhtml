@@ -9,9 +9,11 @@
 		<p:menu styleClass="horizontalMenu" id="menu">
 			<p:menuitem value="#{msg.p_accueil_titre}" action="#{menu.goAccueil}" />
 			<p:menuitem value="#{msg.p_role_menu}" action="#{menu.goRole}"
-				rendered="#{ihmManagedBean.isLogged() and security.isRendered('pageJob')}" />
-							<p:menuitem value="#{msg.p_job_menu}" action="#{menu.goJob}"
 				rendered="#{ihmManagedBean.isLogged() and security.isRendered('pageRole')}" />
+
+			<p:menuitem value="#{msg.p_job_menu}" action="#{menu.goJob}"
+				rendered="#{ihmManagedBean.isLogged() and security.isRendered('pageJob')}" />
+
 			<p:menuitem value="#{msg.p_user_menu}" action="#{menu.goUser}"
 				rendered="#{ihmManagedBean.isLogged()}" />
 		</p:menu>
