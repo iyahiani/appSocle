@@ -26,7 +26,7 @@ public class JobPlannifDataBean implements Serializable {
    private int               idJobPlannif;
 
    @Column(length = 10)
-   private String            annéeJobPlannif;
+   private String            anneeJobPlannif;
 
    @Column(length = 10)
    private String            heuresJobPlannif;
@@ -64,12 +64,12 @@ public class JobPlannifDataBean implements Serializable {
       this.idJobPlannif = idJobPlannif;
    }
 
-   public String getAnnéeJobPlannif() {
-      return this.annéeJobPlannif;
+   public String getAnneeJobPlannif() {
+      return this.anneeJobPlannif;
    }
 
-   public void setAnnéeJobPlannif(String annéeJobPlannif) {
-      this.annéeJobPlannif = annéeJobPlannif;
+   public void setAnneeJobPlannif(String anneeJobPlannif) {
+      this.anneeJobPlannif = anneeJobPlannif;
    }
 
    public String getHeuresJobPlannif() {
