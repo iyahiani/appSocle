@@ -10,10 +10,92 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2015-08-13 18:10:28
+Date: 2015-09-01 18:03:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `socle_item2role`
+-- ----------------------------
+DROP TABLE IF EXISTS `socle_item2role`;
+CREATE TABLE `socle_item2role` (
+  `idItem2Role` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `idRole` int(11) unsigned NOT NULL,
+  `nameItem2Role` varchar(30) COLLATE utf8_bin NOT NULL,
+  `isRendered` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Indique si l''élément peut être affiché pour le détenteur du rôle',
+  `isEditable` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Indique Indique si l''élément peut être edité pour le détenteur du rôle',
+  `isAddable` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Indique si l''élément peut être ajouté pour le détenteur du rôle',
+  `isDeletable` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Indique si l''élément peut être effacé pour le détenteur du rôle',
+  PRIMARY KEY (`idItem2Role`),
+  KEY `FK_item2Role_idRole` (`idRole`),
+  CONSTRAINT `FK_item2Role_idRole` FOREIGN KEY (`idRole`) REFERENCES `socle_role` (`idRole`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table utilisée pour gérer les droits des users sur l''ihm par rapports à leur rôle';
+
+-- ----------------------------
+-- Records of socle_item2role
+-- ----------------------------
+INSERT INTO `socle_item2role` VALUES ('1', '1', 'pageRole', '', '', '', '');
+INSERT INTO `socle_item2role` VALUES ('2', '1', 'refreshItem2Role', '', '', '', '');
+INSERT INTO `socle_item2role` VALUES ('3', '1', 'pageJob', '', '', '', '');
+
+-- ----------------------------
+-- Table structure for `socle_job`
+-- ----------------------------
+DROP TABLE IF EXISTS `socle_job`;
+CREATE TABLE `socle_job` (
+  `idJob` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `libelleJob` varchar(50) COLLATE utf8_bin NOT NULL,
+  `nomTechniquejob` varchar(50) COLLATE utf8_bin NOT NULL,
+  `classeJob` varchar(100) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idJob`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of socle_job
+-- ----------------------------
+INSERT INTO `socle_job` VALUES ('3', 'Test', 'SOCLE_TEST', 'com.avancial.socle.jobs.JobTest');
+INSERT INTO `socle_job` VALUES ('5', 'test', 'SOCLE_TEST1', 'test');
+
+-- ----------------------------
+-- Table structure for `socle_job_plannif`
+-- ----------------------------
+DROP TABLE IF EXISTS `socle_job_plannif`;
+CREATE TABLE `socle_job_plannif` (
+  `idJobPlannif` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `idJobType` int(11) unsigned NOT NULL,
+  `libelleJobPlannif` varchar(50) COLLATE utf8_bin NOT NULL,
+  `secondesJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `minutesJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `heuresJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `jourMoisJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `moisJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `jourSemaineJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `anneeJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`idJobPlannif`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of socle_job_plannif
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `socle_job_type`
+-- ----------------------------
+DROP TABLE IF EXISTS `socle_job_type`;
+CREATE TABLE `socle_job_type` (
+  `idJobType` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `libelleJobType` varchar(35) COLLATE utf8_bin NOT NULL,
+  `nomTechniqueJobType` varchar(35) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idJobType`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of socle_job_type
+-- ----------------------------
+INSERT INTO `socle_job_type` VALUES ('1', 'cron', 'SOCLE_JOBTYPECRON');
+INSERT INTO `socle_job_type` VALUES ('2', 'daily', 'SOCLE_JOBTYPEDAILY');
+INSERT INTO `socle_job_type` VALUES ('3', 'now', 'SOCLE_JOBTYPENOW');
 
 -- ----------------------------
 -- Table structure for `socle_ref_directory`
@@ -44,7 +126,7 @@ CREATE TABLE `socle_role` (
   `labelRole` varchar(100) NOT NULL,
   PRIMARY KEY (`idRole`),
   UNIQUE KEY `indUnique_technicalNameUserRole` (`technicalNameRole`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of socle_role
@@ -54,7 +136,6 @@ INSERT INTO `socle_role` VALUES ('40', 'SOCLE_test', 'test');
 INSERT INTO `socle_role` VALUES ('42', 'SOCLE_test1', 'test15');
 INSERT INTO `socle_role` VALUES ('43', 'SOCLE_test2', 'test 5');
 INSERT INTO `socle_role` VALUES ('44', 'SOCLE_test4', 'test4');
-INSERT INTO `socle_role` VALUES ('88', 'SOCLE_Test5', 'Test5');
 
 -- ----------------------------
 -- Table structure for `socle_user`
@@ -110,6 +191,46 @@ INSERT INTO `socle_user` VALUES ('3', 'andrieu', 'liana', '8008286j', '0123456B'
 INSERT INTO `socle_user` VALUES ('4', 'Erdogan', 'Caglar', 'caglar', '1234', 'caglar.erdogan@avancial.com', '1234567X', '', 'user', null, null, '0612345678', '0123456789', '40', 'avenue des Terroirs de France', null, null, '75012', 'Paris', null, null, null, null, null, '4', '2015-01-01 00:00:00', '4', '2015-01-01 00:00:00', 'Test', null);
 
 -- ----------------------------
+-- Table structure for `socle_user2`
+-- ----------------------------
+DROP TABLE IF EXISTS `socle_user2`;
+CREATE TABLE `socle_user2` (
+  `idUser` int(8) NOT NULL,
+  `codePostalUser` varchar(5) COLLATE utf8_bin DEFAULT NULL,
+  `commentaireUser` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  `cpUser` varchar(8) COLLATE utf8_bin NOT NULL,
+  `dateAjoutUser` datetime NOT NULL,
+  `dateEditionUser` datetime NOT NULL,
+  `emailUser` varchar(64) COLLATE utf8_bin DEFAULT NULL,
+  `faxUser` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `idAjoutUser` int(8) NOT NULL,
+  `idEditionUser` int(8) NOT NULL,
+  `loginUser` varchar(8) COLLATE utf8_bin NOT NULL,
+  `nomUser` varchar(32) COLLATE utf8_bin NOT NULL,
+  `numeroUser` smallint(4) DEFAULT NULL,
+  `passwordUser` varchar(32) COLLATE utf8_bin NOT NULL,
+  `prenomUser` varchar(32) COLLATE utf8_bin NOT NULL,
+  `robotUser` bit(1) NOT NULL,
+  `rueUser` varchar(128) COLLATE utf8_bin NOT NULL,
+  `telephonePersonnelUser` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `telephoneProfessionnelUser` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `tomcatRoleUser` varchar(8) COLLATE utf8_bin NOT NULL,
+  `villeUser` varchar(64) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idUser`),
+  UNIQUE KEY `socle_user_ix_loginUser` (`loginUser`) USING BTREE,
+  UNIQUE KEY `socle_user_ix_cpUser` (`cpUser`) USING BTREE,
+  UNIQUE KEY `socle_user_ix_emailUser` (`emailUser`) USING BTREE,
+  KEY `socle_user_ix_idAjoutUser` (`idAjoutUser`) USING BTREE,
+  KEY `socle_user_ix_idEditionUser` (`idEditionUser`) USING BTREE,
+  CONSTRAINT `socle_user_fk_idAjoutUser` FOREIGN KEY (`idAjoutUser`) REFERENCES `socle_user2` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `socle_user_fk_idEditionUser` FOREIGN KEY (`idEditionUser`) REFERENCES `socle_user2` (`idUser`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of socle_user2
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `socle_user2role`
 -- ----------------------------
 DROP TABLE IF EXISTS `socle_user2role`;
@@ -118,13 +239,15 @@ CREATE TABLE `socle_user2role` (
   `idUser` int(11) unsigned NOT NULL,
   `idRole` int(11) unsigned NOT NULL,
   PRIMARY KEY (`idUser2Role`),
-  UNIQUE KEY `indUnique_UserRole` (`idUser`,`idRole`),
-  KEY `FK_Role_User2Role` (`idRole`),
-  CONSTRAINT `FK_Role_User2Role` FOREIGN KEY (`idRole`) REFERENCES `socle_role` (`idRole`),
-  CONSTRAINT `FK_User_User2Role` FOREIGN KEY (`idUser`) REFERENCES `socle_user` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `socle_user_ix_userRole` (`idUser`,`idRole`) USING BTREE,
+  KEY `socle_user_ix_idRole` (`idRole`) USING BTREE,
+  KEY `socle_user_ix_idUser` (`idUser`) USING BTREE,
+  CONSTRAINT `socle_user_fk_idUser` FOREIGN KEY (`idUser`) REFERENCES `socle_user` (`idUser`),
+  CONSTRAINT `socle_user_fk_idRole` FOREIGN KEY (`idRole`) REFERENCES `socle_role` (`idRole`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of socle_user2role
 -- ----------------------------
 INSERT INTO `socle_user2role` VALUES ('1', '1', '1');
+INSERT INTO `socle_user2role` VALUES ('2', '1', '40');
