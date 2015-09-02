@@ -3,6 +3,9 @@
  */
 package com.avancial.socle.init;
 
+import java.io.IOException;
+
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +21,7 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
 import com.avancial.socle.jobs.JobTest;
+import com.avancial.socle.resources.constants.SOCLE_constants;
 
 /**
  * @author bruno.legloahec
@@ -44,7 +48,8 @@ public class SocleInit extends HttpServlet {
       System.out.println("**********************************************");
       try {
          this.quartzInit();
-      } catch (SchedulerException e) {
+         FacesContext.getCurrentInstance().getExternalContext().redirect(SOCLE_constants.NAVIGATION_ACCUEIL.name());
+      } catch (SchedulerException | IOException e) {
          e.printStackTrace();
       }
    }

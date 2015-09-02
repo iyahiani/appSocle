@@ -15,8 +15,10 @@ import javax.inject.Named;
 import org.primefaces.context.RequestContext;
 
 import com.avancial.socle.business.JobPlannifBean;
-import com.avancial.socle.data.controller.dao.JobDao;
+import com.avancial.socle.data.controller.dao.JobPlannifDao;
+import com.avancial.socle.data.model.databean.JobPlannifDataBean;
 import com.avancial.socle.exceptions.ASocleException;
+import com.avancial.socle.resources.MessageController;
 import com.avancial.socle.resources.constants.SOCLE_constants;
 
 /**
@@ -30,31 +32,32 @@ public class JobPlannifManagedBean extends AManageBean {
     * 
     */
    private static final long    serialVersionUID = 1L;
-   private List<JobPlannifBean> listeItemMetier;
-   private String               libelle;
-
+   private List<JobPlannifBean> selectedItems;
    @Inject
-   private JobPlannifBean       itemSelected;
-   private String               anneeJobPlannif;
-   private String               heuresJobPlannif;
-   private String               jourMoisJobPlannif;
-   private String               jourSemaineJobPlannif;
-   private String               minutesJobPlannif;
-   private String               moisJobPlannif;
-   private String               secondesJobPlannif;
+   private JobPlannifDataBean   selectedItem;
+
+   private String               libelle;
+   private String               nomTechnique;
+   private String               annee;
+   private String               heures;
+   private String               jourMois;
+   private String               jourSemaine;
+   private String               minutes;
+   private String               mois;
+   private String               secondes;
 
    /**
     * Constructeur
     */
    public JobPlannifManagedBean() {
-      this.listeItemMetier = new ArrayList<>();
+      this.selectedItems = new ArrayList<>();
       this.reload();
 
    }
 
    public void reload() {
-      this.listeItemMetier.clear();
-      this.listeItemMetier.addAll(JobPlannifBean.getAll());
+      this.selectedItems.clear();
+      this.selectedItems.addAll(JobPlannifBean.getAll());
    }
 
    public void initProperties() {
@@ -68,43 +71,35 @@ public class JobPlannifManagedBean extends AManageBean {
    @Override
    public String add() throws ASocleException {
       super.add();
-      JobPlannifBean bean = new JobPlannifBean();
-      bean.setLibelleJobPlannif(this.libelle);
-      bean.setAnneeJobPlannif(this.anneeJobPlannif);
-      bean.setHeuresJobPlannif(this.heuresJobPlannif);
-      bean.setJourMoisJobPlannif(this.jourMoisJobPlannif);
-      bean.setJourSemaineJobPlannif(this.jourSemaineJobPlannif);
-      bean.setMinutesJobPlannif(this.minutesJobPlannif);
-      bean.setMoisJobPlannif(this.moisJobPlannif);
-      bean.setSecondesJobPlannif(this.secondesJobPlannif);
+      JobPlannifDataBean jobPlannifDataBean = new JobPlannifDataBean();
+      jobPlannifDataBean.setLibelleJobPlannif(this.libelle);
+      JobPlannifDao dao = new JobPlannifDao();
 
       try {
-         bean.save();
-         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Le rôle a été créé."));
+         dao.save(jobPlannifDataBean);
+         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_add_ok")));
          RequestContext.getCurrentInstance().update(":dataTable");
          this.closeDialog = true;
       } catch (ASocleException e) {
-         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", e.getClientMessage()));
-         throw e;
+         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "", e.getClientMessage()));
+         e.printStackTrace();
       }
+
       return null;
    }
 
    @Override
    public String update() throws ASocleException {
       super.update();
-      if (null != this.itemSelected) {
-
+      if (null != this.selectedItem) {
+         JobPlannifDao dao = new JobPlannifDao();
          try {
-
-            this.itemSelected.update();
-
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
+            dao.update(this.selectedItem);
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_update_ok")));
             this.closeDialog = true;
          } catch (ASocleException e) {
             e.printStackTrace();
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_UPD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", e.getClientMessage()));
-            throw e;
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_UPD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "", e.getClientMessage()));
          }
       }
       return null;
@@ -113,48 +108,17 @@ public class JobPlannifManagedBean extends AManageBean {
    @Override
    public String delete() throws ASocleException {
       super.delete();
-      if (null != this.itemSelected) {
-         JobDao dao = new JobDao();
+      if (null != this.selectedItem) {
+         JobPlannifDao dao = new JobPlannifDao();
          try {
-            this.itemSelected.delete();
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement supprimé"));
+            dao.delete(this.selectedItem);
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_delete_ok")));
             this.closeDialog = true;
-            this.reload();
          } catch (ASocleException e) {
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_DEL_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "message", "Enregistrement non effacé"));
-            throw e;
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_DEL_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MessageController.getTraduction("p_message_delete_ko")));
          }
       }
       return null;
-   }
-
-   /**
-    * @return the libelle
-    */
-   public String getLibelle() {
-      return this.libelle;
-   }
-
-   /**
-    * @param libelle
-    *           the libelle to set
-    */
-   public void setLibelle(String libelle) {
-      this.libelle = libelle;
-   }
-
-   /**
-    * sets value for roleSelected
-    * 
-    * @param jobSelected
-    *           the roleSelected to set
-    */
-   public void setItemMetier(JobPlannifBean itemMetier) {
-      if (null != itemMetier) {
-         this.itemSelected = itemMetier;
-         this.libelle = itemMetier.getLibelleJobPlannif();
-
-      }
    }
 
    public Boolean getCloseDialog() {
@@ -165,84 +129,92 @@ public class JobPlannifManagedBean extends AManageBean {
       this.closeDialog = closeDialog;
    }
 
-   public List<JobPlannifBean> getJobPlannif() {
-      return this.listeItemMetier;
+   public List<JobPlannifBean> getSelectedItems() {
+      return this.selectedItems;
    }
 
-   public void setJobplannif(List<JobPlannifBean> jobPlannif) {
-      this.listeItemMetier = jobPlannif;
+   public void setSelectedItems(List<JobPlannifBean> selectedItems) {
+      this.selectedItems = selectedItems;
    }
 
-   public JobPlannifBean getItemSelected() {
-      return this.itemSelected;
+   public JobPlannifDataBean getSelectedItem() {
+      return this.selectedItem;
    }
 
-   public List<JobPlannifBean> getListeItemMetier() {
-      return this.listeItemMetier;
+   public void setSelectedItem(JobPlannifDataBean selectedItem) {
+      this.selectedItem = selectedItem;
    }
 
-   public void setListeItemMetier(List<JobPlannifBean> listeItemMetier) {
-      this.listeItemMetier = listeItemMetier;
+   public String getLibelle() {
+      return this.libelle;
    }
 
-   public String getAnneeJobPlannif() {
-      return this.anneeJobPlannif;
+   public void setLibelle(String libelle) {
+      this.libelle = libelle;
    }
 
-   public void setAnneeJobPlannif(String anneeJobPlannif) {
-      this.anneeJobPlannif = anneeJobPlannif;
+   public String getNomTechnique() {
+      return this.nomTechnique;
    }
 
-   public String getHeuresJobPlannif() {
-      return this.heuresJobPlannif;
+   public void setNomTechnique(String nomTechnique) {
+      this.nomTechnique = nomTechnique;
    }
 
-   public void setHeuresJobPlannif(String heuresJobPlannif) {
-      this.heuresJobPlannif = heuresJobPlannif;
+   public String getAnnee() {
+      return this.annee;
    }
 
-   public String getJourMoisJobPlannif() {
-      return this.jourMoisJobPlannif;
+   public void setAnnee(String annee) {
+      this.annee = annee;
    }
 
-   public void setJourMoisJobPlannif(String jourMoisJobPlannif) {
-      this.jourMoisJobPlannif = jourMoisJobPlannif;
+   public String getHeures() {
+      return this.heures;
    }
 
-   public String getJourSemaineJobPlannif() {
-      return this.jourSemaineJobPlannif;
+   public void setHeures(String heures) {
+      this.heures = heures;
    }
 
-   public void setJourSemaineJobPlannif(String jourSemaineJobPlannif) {
-      this.jourSemaineJobPlannif = jourSemaineJobPlannif;
+   public String getJourMois() {
+      return this.jourMois;
    }
 
-   public String getMinutesJobPlannif() {
-      return this.minutesJobPlannif;
+   public void setJourMois(String jourMois) {
+      this.jourMois = jourMois;
    }
 
-   public void setMinutesJobPlannif(String minutesJobPlannif) {
-      this.minutesJobPlannif = minutesJobPlannif;
+   public String getJourSemaine() {
+      return this.jourSemaine;
    }
 
-   public String getMoisJobPlannif() {
-      return this.moisJobPlannif;
+   public void setJourSemaine(String jourSemaine) {
+      this.jourSemaine = jourSemaine;
    }
 
-   public void setMoisJobPlannif(String moisJobPlannif) {
-      this.moisJobPlannif = moisJobPlannif;
+   public String getMinutes() {
+      return this.minutes;
    }
 
-   public String getSecondesJobPlannif() {
-      return this.secondesJobPlannif;
+   public void setMinutes(String minutes) {
+      this.minutes = minutes;
    }
 
-   public void setSecondesJobPlannif(String secondesJobPlannif) {
-      this.secondesJobPlannif = secondesJobPlannif;
+   public String getMois() {
+      return this.mois;
    }
 
-   public void setItemSelected(JobPlannifBean itemSelected) {
-      this.itemSelected = itemSelected;
+   public void setMois(String mois) {
+      this.mois = mois;
+   }
+
+   public String getSecondes() {
+      return this.secondes;
+   }
+
+   public void setSecondes(String secondes) {
+      this.secondes = secondes;
    }
 
 }

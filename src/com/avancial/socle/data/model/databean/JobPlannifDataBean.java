@@ -25,6 +25,12 @@ public class JobPlannifDataBean implements Serializable {
    @Column(unique = true, nullable = false)
    private int               idJobPlannif;
 
+   @Column(nullable = false, length = 50)
+   private String            libelleJobPlannif;
+
+   @Column(nullable = false, length = 35)
+   private String            nomTechniqueJobPlannif;
+
    @Column(length = 10)
    private String            anneeJobPlannif;
 
@@ -36,9 +42,6 @@ public class JobPlannifDataBean implements Serializable {
 
    @Column(length = 10)
    private String            jourSemaineJobPlannif;
-
-   @Column(nullable = false, length = 50)
-   private String            libelleJobPlannif;
 
    @Column(length = 10)
    private String            minutesJobPlannif;

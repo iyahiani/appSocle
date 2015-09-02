@@ -9,7 +9,7 @@ import com.avancial.socle.exceptions.ASocleException;
 import com.avancial.socle.exceptions.SocleExceptionManager;
 
 /**
- * Classe DAO pour l'objet Role
+ * Classe DAO pour l'objet JobPlannif
  * 
  * @author bruno.legloahec
  * 
@@ -33,9 +33,9 @@ public class JobPlannifDao extends AbstractDao {
          this.getEntityManager().getTransaction().commit();
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
-         @SuppressWarnings("unused")
-         SocleExceptionManager manager = new SocleExceptionManager(e);
-         throw SocleExceptionManager.getException();
+        @SuppressWarnings("unused")
+      SocleExceptionManager manager=new SocleExceptionManager(e);
+        throw SocleExceptionManager.getException();
       }
    }
 
@@ -48,7 +48,7 @@ public class JobPlannifDao extends AbstractDao {
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
          @SuppressWarnings("unused")
-         SocleExceptionManager manager = new SocleExceptionManager(e);
+      SocleExceptionManager manager=new SocleExceptionManager(e);
          throw SocleExceptionManager.getException();
       }
 
@@ -63,7 +63,7 @@ public class JobPlannifDao extends AbstractDao {
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
          @SuppressWarnings("unused")
-         SocleExceptionManager manager = new SocleExceptionManager(e);
+      SocleExceptionManager manager=new SocleExceptionManager(e);
          throw SocleExceptionManager.getException();
       }
 
