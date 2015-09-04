@@ -155,11 +155,11 @@ public class JobPlannifBean {
    }
 
    public JobTypePlannifDataBean getJobType() {
-      return this.jobPlannifDataBean.getJobType();
+      return this.jobPlannifDataBean.getJobTypePlannif();
    }
 
    public void setJobType(JobTypePlannifDataBean jobType) {
-      this.jobPlannifDataBean.setJobType(jobType);
+      this.jobPlannifDataBean.setJobTypePlannif(jobType);
    }
 
 }
