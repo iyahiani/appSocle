@@ -201,8 +201,8 @@ public class JobPlanifManagedBean extends AManageBean {
       this.selectedItems = selectedItems;
    }
 
-   public JobPlanifDataBean getSelectedItem() {
-      return this.selectedItem.getJobPlanif();
+   public JobPlanifBean getSelectedItem() {
+      return this.selectedItem;
    }
 
    public void setSelectedItem(JobPlanifBean selectedItem) {
