@@ -58,25 +58,25 @@ INSERT INTO `socle_job` VALUES ('3', 'Test', 'SOCLE_TEST', 'com.avancial.socle.j
 INSERT INTO `socle_job` VALUES ('5', 'test', 'SOCLE_TEST1', 'test');
 
 -- ----------------------------
--- Table structure for `socle_job_plannif`
+-- Table structure for `socle_job_Planif`
 -- ----------------------------
-DROP TABLE IF EXISTS `socle_job_plannif`;
-CREATE TABLE `socle_job_plannif` (
-  `idJobPlannif` int(11) unsigned NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `socle_job_Planif`;
+CREATE TABLE `socle_job_Planif` (
+  `idJobPlanif` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `idJobType` int(11) unsigned NOT NULL,
-  `libelleJobPlannif` varchar(50) COLLATE utf8_bin NOT NULL,
-  `secondesJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `minutesJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `heuresJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `jourMoisJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `moisJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `jourSemaineJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `anneeJobPlannif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`idJobPlannif`)
+  `libelleJobPlanif` varchar(50) COLLATE utf8_bin NOT NULL,
+  `secondesJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `minutesJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `heuresJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `jourMoisJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `moisJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `jourSemaineJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `anneeJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`idJobPlanif`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of socle_job_plannif
+-- Records of socle_job_Planif
 -- ----------------------------
 
 -- ----------------------------

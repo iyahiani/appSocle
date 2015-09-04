@@ -1,0 +1,164 @@
+/**
+ * 
+ */
+package com.avancial.socle.business;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.inject.Inject;
+
+import com.avancial.socle.data.controller.dao.JobPlanifDao;
+import com.avancial.socle.data.model.databean.JobPlanifDataBean;
+import com.avancial.socle.exceptions.ASocleException;
+
+/**
+ * @author bruno.legloahec
+ *
+ */
+public class JobPlanifBean {
+   @Inject
+   private JobPlanifDataBean jobPlanifDataBean;
+
+   /**
+    * ² Constructeur
+    */
+   public JobPlanifBean(JobPlanifDataBean jobPlanifDataBean) {
+      this.jobPlanifDataBean = jobPlanifDataBean;
+   }
+
+   /**
+    * Constructeur
+    */
+   public JobPlanifBean() {
+      super();
+      this.jobPlanifDataBean = new JobPlanifDataBean();
+   }
+
+   /**
+    * @return
+    */
+   public static Collection<? extends JobPlanifBean> getAll() {
+      ArrayList<JobPlanifBean> liste = new ArrayList<>();
+      JobPlanifDao dao = new JobPlanifDao();
+      for (JobPlanifDataBean bean : dao.getAll()) {
+         JobPlanifBean job = new JobPlanifBean(bean);
+         liste.add(job);
+      }
+
+      return liste;
+   }
+
+   /**
+    * @throws ASocleException
+    * 
+    */
+   public void save() throws ASocleException {
+
+      JobPlanifDao dao = new JobPlanifDao();
+      dao.save(this.jobPlanifDataBean);
+
+   }
+
+   /**
+    * @throws ASocleException
+    * 
+    */
+   public void update() throws ASocleException {
+      JobPlanifDao dao = new JobPlanifDao();
+      dao.update(this.jobPlanifDataBean);
+   }
+
+   /**
+    * @throws ASocleException
+    * 
+    */
+   public void delete() throws ASocleException {
+      JobPlanifDao dao = new JobPlanifDao();
+      dao.delete(this.jobPlanifDataBean);
+   }
+
+   public Boolean isExisteClasse(String classe) {
+
+      try {
+         Class.forName(classe);
+         return true;
+      } catch (ClassNotFoundException e) {
+         return false;
+      }
+
+   }
+
+   public String getAnneeJobPlanif() {
+      return this.jobPlanifDataBean.getAnneeJobPlanif();
+   }
+
+   public void setAnneeJobPlanif(String anneeJobPlanif) {
+      this.jobPlanifDataBean.setAnneeJobPlanif(anneeJobPlanif);
+   }
+
+   public String getHeuresJobPlanif() {
+      return this.jobPlanifDataBean.getHeuresJobPlanif();
+   }
+
+   public void setHeuresJobPlanif(String heuresJobPlanif) {
+      this.jobPlanifDataBean.setHeuresJobPlanif(heuresJobPlanif);
+   }
+
+   public String getJourMoisJobPlanif() {
+      return this.jobPlanifDataBean.getJourMoisJobPlanif();
+   }
+
+   public void setJourMoisJobPlanif(String jourMoisJobPlanif) {
+      this.jobPlanifDataBean.setJourMoisJobPlanif(jourMoisJobPlanif);
+   }
+
+   public String getJourSemaineJobPlanif() {
+      return this.jobPlanifDataBean.getJourSemaineJobPlanif();
+   }
+
+   public void setJourSemaineJobPlanif(String jourSemaineJobPlanif) {
+      this.jobPlanifDataBean.setJourSemaineJobPlanif(jourSemaineJobPlanif);
+   }
+
+   public String getLibelleJobPlanif() {
+      return this.jobPlanifDataBean.getLibelleJobPlanif();
+   }
+
+   public void setLibelleJobPlanif(String libelleJobPlanif) {
+      this.jobPlanifDataBean.setLibelleJobPlanif(libelleJobPlanif);
+   }
+
+   public String getMinutesJobPlanif() {
+      return this.jobPlanifDataBean.getMinutesJobPlanif();
+   }
+
+   public void setMinutesJobPlanif(String minutesJobPlanif) {
+      this.jobPlanifDataBean.setMinutesJobPlanif(minutesJobPlanif);
+   }
+
+   public String getMoisJobPlanif() {
+      return this.jobPlanifDataBean.getMoisJobPlanif();
+   }
+
+   public void setMoisJobPlanif(String moisJobPlanif) {
+      this.jobPlanifDataBean.setMoisJobPlanif(moisJobPlanif);
+   }
+
+   public String getSecondesJobPlanif() {
+      return this.jobPlanifDataBean.getSecondesJobPlanif();
+   }
+
+   public void setSecondesJobPlanif(String secondesJobPlanif) {
+      this.jobPlanifDataBean.setSecondesJobPlanif(secondesJobPlanif);
+   }
+
+   public JobPlanifDataBean getJobPlanifDataBean() {
+      return this.jobPlanifDataBean;
+   }
+
+   public void setJobPlanifDataBean(JobPlanifDataBean jobPlanifDataBean) {
+      this.jobPlanifDataBean = jobPlanifDataBean;
+   }
+
+}
