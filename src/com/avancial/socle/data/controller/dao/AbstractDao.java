@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.Session;
+
 /**
  * Classe abstraite servant de base à tous les objets DAO
  * 
@@ -34,5 +36,8 @@ public abstract class AbstractDao {
 
    protected void setEntityManager(EntityManager entityManager) {
       this.entityManager = entityManager;
+   } 
+   public Session getSession() {
+      return this.getEntityManager().unwrap(Session.class);
    }
 }
