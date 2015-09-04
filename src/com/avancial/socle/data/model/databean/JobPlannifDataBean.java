@@ -18,43 +18,47 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "socle_job_plannif")
 public class JobPlannifDataBean implements Serializable {
-   private static final long serialVersionUID = 1L;
+   private static final long      serialVersionUID = 1L;
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(unique = true, nullable = false)
-   private int               idJobPlannif;
+   private int                    idJobPlannif;
 
    @Column(nullable = false, length = 50)
-   private String            libelleJobPlannif;
+   private String                 libelleJobPlannif;
 
    @Column(nullable = false, length = 35)
-   private String            nomTechniqueJobPlannif;
+   private String                 nomTechniqueJobPlannif;
 
    @Column(length = 10)
-   private String            anneeJobPlannif;
+   private String                 anneeJobPlannif;
 
    @Column(length = 10)
-   private String            heuresJobPlannif;
+   private String                 heuresJobPlannif;
 
    @Column(length = 10)
-   private String            jourMoisJobPlannif;
+   private String                 jourMoisJobPlannif;
 
    @Column(length = 10)
-   private String            jourSemaineJobPlannif;
+   private String                 jourSemaineJobPlannif;
 
    @Column(length = 10)
-   private String            minutesJobPlannif;
+   private String                 minutesJobPlannif;
 
    @Column(length = 10)
-   private String            moisJobPlannif;
+   private String                 moisJobPlannif;
 
    @Column(length = 10)
-   private String            secondesJobPlannif;
+   private String                 secondesJobPlannif;
 
    @OneToOne
-   @JoinColumn(name = "idJobType", nullable = false)
-   private JobTypeDataBean   jobType;
+   @JoinColumn(name = "idJobTypePlannif", nullable = false)
+   private JobTypePlannifDataBean jobTypePlannif;
+
+   @OneToOne
+   @JoinColumn(name = "idJob", nullable = false)
+   private JobDataBean            job;
 
    public JobPlannifDataBean() {
    }
@@ -131,12 +135,28 @@ public class JobPlannifDataBean implements Serializable {
       this.secondesJobPlannif = secondesJobPlannif;
    }
 
-   public JobTypeDataBean getJobType() {
-      return this.jobType;
+   public String getNomTechniqueJobPlannif() {
+      return this.nomTechniqueJobPlannif;
    }
 
-   public void setJobType(JobTypeDataBean jobType) {
-      this.jobType = jobType;
+   public void setNomTechniqueJobPlannif(String nomTechniqueJobPlannif) {
+      this.nomTechniqueJobPlannif = nomTechniqueJobPlannif;
+   }
+
+   public JobTypePlannifDataBean getJobTypePlannif() {
+      return this.jobTypePlannif;
+   }
+
+   public void setJobTypePlannif(JobTypePlannifDataBean jobTypePlannif) {
+      this.jobTypePlannif = jobTypePlannif;
+   }
+
+   public JobDataBean getJob() {
+      return this.job;
+   }
+
+   public void setJob(JobDataBean job) {
+      this.job = job;
    }
 
 }

@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import com.avancial.socle.data.controller.dao.JobPlannifDao;
 import com.avancial.socle.data.model.databean.JobPlannifDataBean;
-import com.avancial.socle.data.model.databean.JobTypeDataBean;
+import com.avancial.socle.data.model.databean.JobTypePlannifDataBean;
 import com.avancial.socle.exceptions.ASocleException;
 
 /**
@@ -154,11 +154,11 @@ public class JobPlannifBean {
       this.jobPlannifDataBean.setSecondesJobPlannif(secondesJobPlannif);
    }
 
-   public JobTypeDataBean getJobType() {
+   public JobTypePlannifDataBean getJobType() {
       return this.jobPlannifDataBean.getJobType();
    }
 
-   public void setJobType(JobTypeDataBean jobType) {
+   public void setJobType(JobTypePlannifDataBean jobType) {
       this.jobPlannifDataBean.setJobType(jobType);
    }
 

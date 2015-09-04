@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import com.avancial.socle.data.model.databean.JobDataBean;
-import com.avancial.socle.data.model.databean.JobTypeDataBean;
+import com.avancial.socle.data.model.databean.JobTypePlannifDataBean;
 import com.avancial.socle.exceptions.ASocleException;
 import com.avancial.socle.exceptions.SocleExceptionManager;
 
@@ -26,7 +26,7 @@ public class JobTypeDao extends AbstractDao {
       return requete.getResultList();
    }
 
-   public void save(JobTypeDataBean bean) throws ASocleException {
+   public void save(JobTypePlannifDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();
          this.getEntityManager().persist(bean);
@@ -40,7 +40,7 @@ public class JobTypeDao extends AbstractDao {
       }
    }
 
-   public void delete(JobTypeDataBean bean) throws ASocleException {
+   public void delete(JobTypePlannifDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();
          this.getEntityManager().remove(bean);
@@ -55,7 +55,7 @@ public class JobTypeDao extends AbstractDao {
 
    }
 
-   public void update(JobTypeDataBean bean) throws ASocleException {
+   public void update(JobTypePlannifDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();
          this.getEntityManager().merge(bean);
