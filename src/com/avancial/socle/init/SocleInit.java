@@ -29,6 +29,7 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
  */
 @WebServlet(loadOnStartup = 1, urlPatterns = "/init")
 public class SocleInit extends HttpServlet {
+   public Scheduler          sched;
 
    /**
     * 
@@ -60,13 +61,13 @@ public class SocleInit extends HttpServlet {
     */
    private void quartzInit() throws SchedulerException {
       SchedulerFactory sf = new StdSchedulerFactory();
-      Scheduler sched = sf.getScheduler();
+      this.sched = sf.getScheduler();
       // define the job and tie it to our HelloJob class
       JobDetail job = JobBuilder.newJob(JobTest.class).withIdentity("dummyJobName", "group1").build();
 
       // Trigger the job to run on the next round minute
       Trigger trigger = TriggerBuilder.newTrigger().withIdentity("dummyTriggerName", "group1").withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
-      sched.start();
+      this.sched.start();
       // sched.scheduleJob(job, trigger);
    }
 

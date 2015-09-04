@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2015-09-01 18:03:43
+Date: 2015-09-04 18:03:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,7 +30,7 @@ CREATE TABLE `socle_item2role` (
   PRIMARY KEY (`idItem2Role`),
   KEY `FK_item2Role_idRole` (`idRole`),
   CONSTRAINT `FK_item2Role_idRole` FOREIGN KEY (`idRole`) REFERENCES `socle_role` (`idRole`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table utilisée pour gérer les droits des users sur l''ihm par rapports à leur rôle';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table utilisée pour gérer les droits des users sur l''ihm par rapports à leur rôle';
 
 -- ----------------------------
 -- Records of socle_item2role
@@ -38,6 +38,7 @@ CREATE TABLE `socle_item2role` (
 INSERT INTO `socle_item2role` VALUES ('1', '1', 'pageRole', '', '', '', '');
 INSERT INTO `socle_item2role` VALUES ('2', '1', 'refreshItem2Role', '', '', '', '');
 INSERT INTO `socle_item2role` VALUES ('3', '1', 'pageJob', '', '', '', '');
+INSERT INTO `socle_item2role` VALUES ('4', '1', 'pageJobPlanif', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for `socle_job`
@@ -58,13 +59,15 @@ INSERT INTO `socle_job` VALUES ('3', 'Test', 'SOCLE_TEST', 'com.avancial.socle.j
 INSERT INTO `socle_job` VALUES ('5', 'test', 'SOCLE_TEST1', 'test');
 
 -- ----------------------------
--- Table structure for `socle_job_Planif`
+-- Table structure for `socle_job_planif`
 -- ----------------------------
-DROP TABLE IF EXISTS `socle_job_Planif`;
-CREATE TABLE `socle_job_Planif` (
+DROP TABLE IF EXISTS `socle_job_planif`;
+CREATE TABLE `socle_job_planif` (
   `idJobPlanif` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `idJobType` int(11) unsigned NOT NULL,
+  `idJobPlanifType` int(11) unsigned NOT NULL,
+  `idJob` int(11) unsigned NOT NULL,
   `libelleJobPlanif` varchar(50) COLLATE utf8_bin NOT NULL,
+  `nomTechniqueJobPlanif` varchar(35) COLLATE utf8_bin NOT NULL,
   `secondesJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `minutesJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `heuresJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
@@ -73,29 +76,34 @@ CREATE TABLE `socle_job_Planif` (
   `jourSemaineJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `anneeJobPlanif` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`idJobPlanif`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of socle_job_Planif
+-- Records of socle_job_planif
 -- ----------------------------
+INSERT INTO `socle_job_planif` VALUES ('1', '1', '3', '*', '*', '*', '*', '*', '*', '*', '*', '*');
+INSERT INTO `socle_job_planif` VALUES ('2', '1', '3', 'test', 'test', '*', '*', '*', '*', '*', '*', '*');
+INSERT INTO `socle_job_planif` VALUES ('3', '1', '3', '*', '*', '*', '*', '*', '*', '*', '*', '*');
+INSERT INTO `socle_job_planif` VALUES ('4', '1', '3', '*', '*', '*', '*', '*', '*', '*', '*', '*');
+INSERT INTO `socle_job_planif` VALUES ('5', '1', '3', '*', '*', '*', '*', '*', '*', '*', '*', '*');
 
 -- ----------------------------
--- Table structure for `socle_job_type`
+-- Table structure for `socle_job_planif_type`
 -- ----------------------------
-DROP TABLE IF EXISTS `socle_job_type`;
-CREATE TABLE `socle_job_type` (
-  `idJobType` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `libelleJobType` varchar(35) COLLATE utf8_bin NOT NULL,
-  `nomTechniqueJobType` varchar(35) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`idJobType`)
+DROP TABLE IF EXISTS `socle_job_planif_type`;
+CREATE TABLE `socle_job_planif_type` (
+  `idJobPlanifType` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `libelleJobPlanifType` varchar(35) COLLATE utf8_bin NOT NULL,
+  `nomTechniqueJobPlanifType` varchar(35) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idJobPlanifType`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of socle_job_type
+-- Records of socle_job_planif_type
 -- ----------------------------
-INSERT INTO `socle_job_type` VALUES ('1', 'cron', 'SOCLE_JOBTYPECRON');
-INSERT INTO `socle_job_type` VALUES ('2', 'daily', 'SOCLE_JOBTYPEDAILY');
-INSERT INTO `socle_job_type` VALUES ('3', 'now', 'SOCLE_JOBTYPENOW');
+INSERT INTO `socle_job_planif_type` VALUES ('1', 'cron', 'SOCLE_JOBTYPECRON');
+INSERT INTO `socle_job_planif_type` VALUES ('2', 'daily', 'SOCLE_JOBTYPEDAILY');
+INSERT INTO `socle_job_planif_type` VALUES ('3', 'now', 'SOCLE_JOBTYPENOW');
 
 -- ----------------------------
 -- Table structure for `socle_ref_directory`

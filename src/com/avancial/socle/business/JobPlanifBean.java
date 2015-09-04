@@ -89,6 +89,14 @@ public class JobPlanifBean {
 
    }
 
+   public long getIdJobPlanif() {
+      return this.jobPlanifDataBean.getIdJobPlanif();
+   }
+
+   public void setIdJobPlanif(long idjobPlanif) {
+      this.jobPlanifDataBean.setIdJobPlanif(idjobPlanif);
+   }
+
    public String getAnneeJobPlanif() {
       return this.jobPlanifDataBean.getAnneeJobPlanif();
    }
@@ -129,6 +137,14 @@ public class JobPlanifBean {
       this.jobPlanifDataBean.setLibelleJobPlanif(libelleJobPlanif);
    }
 
+   public String getNomTechniqueJobPlanif() {
+      return this.jobPlanifDataBean.getNomTechniqueJobPlanif();
+   }
+
+   public void setNomTechniqueJobPlanif(String NomTechniqueJobPlanif) {
+      this.jobPlanifDataBean.setLibelleJobPlanif(NomTechniqueJobPlanif);
+   }
+
    public String getMinutesJobPlanif() {
       return this.jobPlanifDataBean.getMinutesJobPlanif();
    }
@@ -153,11 +169,11 @@ public class JobPlanifBean {
       this.jobPlanifDataBean.setSecondesJobPlanif(secondesJobPlanif);
    }
 
-   public JobPlanifDataBean getJobPlanifDataBean() {
+   public JobPlanifDataBean getJobPlanif() {
       return this.jobPlanifDataBean;
    }
 
-   public void setJobPlanifDataBean(JobPlanifDataBean jobPlanifDataBean) {
+   public void setJobPlanif(JobPlanifDataBean jobPlanifDataBean) {
       this.jobPlanifDataBean = jobPlanifDataBean;
    }
 

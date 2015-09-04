@@ -25,6 +25,12 @@ public class JobPlanifTypeDao extends AbstractDao {
       return requete.getResultList();
    }
 
+   public JobPlanifTypeDataBean getJobPlanifTypeById(Long id) {
+      String sql = "From JobPlanifTypeDataBean where id=:id";
+
+      return (JobPlanifTypeDataBean) this.getEntityManager().createQuery(sql).setParameter("id", id).getSingleResult();
+   }
+
    public void save(JobPlanifTypeDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();

@@ -25,6 +25,16 @@ public class JobDao extends AbstractDao {
       return requete.getResultList();
    }
 
+   /**
+    * @param valueOf
+    * @return
+    */
+   public JobDataBean getJobById(Long id) {
+      String sql = "From JobDataBean where id=:id";
+      Query requete = this.getEntityManager().createQuery(sql).setParameter("id", id);
+      return (JobDataBean) requete.getSingleResult();
+   }
+
    public void save(JobDataBean bean) throws ASocleException {
       try {
          this.getEntityManager().getTransaction().begin();

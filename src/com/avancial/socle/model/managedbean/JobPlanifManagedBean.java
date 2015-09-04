@@ -14,13 +14,24 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.context.RequestContext;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.impl.StdSchedulerFactory;
 
 import com.avancial.socle.business.JobPlanifBean;
+import com.avancial.socle.data.controller.dao.JobDao;
 import com.avancial.socle.data.controller.dao.JobPlanifDao;
 import com.avancial.socle.data.controller.dao.JobPlanifTypeDao;
+import com.avancial.socle.data.model.databean.JobDataBean;
 import com.avancial.socle.data.model.databean.JobPlanifDataBean;
 import com.avancial.socle.data.model.databean.JobPlanifTypeDataBean;
 import com.avancial.socle.exceptions.ASocleException;
+import com.avancial.socle.jobs.JobTest;
 import com.avancial.socle.resources.MessageController;
 import com.avancial.socle.resources.constants.SOCLE_constants;
 
@@ -37,7 +48,7 @@ public class JobPlanifManagedBean extends AManageBean {
    private static final long   serialVersionUID = 1L;
    private List<JobPlanifBean> selectedItems;
    @Inject
-   private JobPlanifDataBean   selectedItem;
+   private JobPlanifBean       selectedItem;
 
    private String              libelle;
    private String              nomTechnique;
@@ -51,7 +62,9 @@ public class JobPlanifManagedBean extends AManageBean {
 
    private List<SelectItem>    listePlanifType;
    private String              jobTypeSelected;
-   private long                idJobPlanifType;
+
+   private List<SelectItem>    listeJob;
+   private String              jobSelected;
 
    /**
     * Constructeur
@@ -59,11 +72,20 @@ public class JobPlanifManagedBean extends AManageBean {
    public JobPlanifManagedBean() {
       this.selectedItems = new ArrayList<>();
       this.listePlanifType = new ArrayList<>();
+      this.listeJob = new ArrayList<>();
+
       JobPlanifTypeDao dao = new JobPlanifTypeDao();
 
       for (JobPlanifTypeDataBean bean : dao.getAll()) {
          SelectItem item = new SelectItem(bean.getIdJobPlanifType(), bean.getLibelleJobPlanifType());
+         this.listePlanifType.add(item);
+      }
 
+      JobDao jobDao = new JobDao();
+
+      for (JobDataBean bean : jobDao.getAll()) {
+         SelectItem item = new SelectItem(bean.getIdJob(), bean.getLibelleJob());
+         this.listeJob.add(item);
       }
 
       this.reload();
@@ -82,10 +104,15 @@ public class JobPlanifManagedBean extends AManageBean {
    /**
     * @return
     * @throws ASocleException
+    * @throws SchedulerException
     */
    @Override
    public String add() throws ASocleException {
       super.add();
+
+      JobPlanifTypeDao planifDao = new JobPlanifTypeDao();
+      JobDao jobDao = new JobDao();
+
       JobPlanifDataBean jobPlanifDataBean = new JobPlanifDataBean();
       jobPlanifDataBean.setLibelleJobPlanif(this.libelle);
       jobPlanifDataBean.setAnneeJobPlanif(this.annee);
@@ -97,10 +124,8 @@ public class JobPlanifManagedBean extends AManageBean {
       jobPlanifDataBean.setMoisJobPlanif(this.mois);
       jobPlanifDataBean.setNomTechniqueJobPlanif(this.nomTechnique);
       jobPlanifDataBean.setSecondesJobPlanif(this.secondes);
-      // jobPlanifDataBean.getJobPlanifTypeDataBean().setIdJobPlanifType(this.idJobPlanifType);
-      // jobPlanifDataBean.setJobPlanifTypeDataBean(this.jobTypeSelected);
-      jobPlanifDataBean.getJob().setIdJob(new Long(3));
-
+      jobPlanifDataBean.setJobPlanifTypeDataBean(planifDao.getJobPlanifTypeById(Long.valueOf(this.jobTypeSelected)));
+      jobPlanifDataBean.setJob(jobDao.getJobById(Long.valueOf(this.jobSelected)));
       JobPlanifDao dao = new JobPlanifDao();
 
       try {
@@ -108,6 +133,17 @@ public class JobPlanifManagedBean extends AManageBean {
          FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_add_ok")));
          RequestContext.getCurrentInstance().update(":dataTable");
          this.closeDialog = true;
+         JobDetail job = JobBuilder.newJob(JobTest.class).withIdentity(jobPlanifDataBean.getLibelleJobPlanif(), "group1").build();
+         Trigger trigger = TriggerBuilder.newTrigger().forJob(job).withSchedule(CronScheduleBuilder.cronSchedule("5 * * * * ?")).build();
+
+         SchedulerFactory sf = new StdSchedulerFactory();
+         try {
+            sf.getScheduler().scheduleJob(trigger);
+
+         } catch (SchedulerException e) {
+            e.printStackTrace();
+         }
+
       } catch (ASocleException e) {
          FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_ADD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "", e.getClientMessage()));
          e.printStackTrace();
@@ -122,7 +158,7 @@ public class JobPlanifManagedBean extends AManageBean {
       if (null != this.selectedItem) {
          JobPlanifDao dao = new JobPlanifDao();
          try {
-            dao.update(this.selectedItem);
+            dao.update(this.selectedItem.getJobPlanif());
             FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_update_ok")));
             this.closeDialog = true;
          } catch (ASocleException e) {
@@ -139,7 +175,7 @@ public class JobPlanifManagedBean extends AManageBean {
       if (null != this.selectedItem) {
          JobPlanifDao dao = new JobPlanifDao();
          try {
-            dao.delete(this.selectedItem);
+            dao.delete(this.selectedItem.getJobPlanif());
             FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_delete_ok")));
             this.closeDialog = true;
          } catch (ASocleException e) {
@@ -166,10 +202,10 @@ public class JobPlanifManagedBean extends AManageBean {
    }
 
    public JobPlanifDataBean getSelectedItem() {
-      return this.selectedItem;
+      return this.selectedItem.getJobPlanif();
    }
 
-   public void setSelectedItem(JobPlanifDataBean selectedItem) {
+   public void setSelectedItem(JobPlanifBean selectedItem) {
       this.selectedItem = selectedItem;
    }
 
@@ -245,14 +281,6 @@ public class JobPlanifManagedBean extends AManageBean {
       this.secondes = secondes;
    }
 
-   public long getIdJobPlanifType() {
-      return this.idJobPlanifType;
-   }
-
-   public void setIdJobPlanifType(long idJobPlanifType) {
-      this.idJobPlanifType = idJobPlanifType;
-   }
-
    public String getJobTypeSelected() {
       return this.jobTypeSelected;
    }
@@ -267,6 +295,22 @@ public class JobPlanifManagedBean extends AManageBean {
 
    public void setListePlanifType(List<SelectItem> listePlanifType) {
       this.listePlanifType = listePlanifType;
+   }
+
+   public List<SelectItem> getListeJob() {
+      return this.listeJob;
+   }
+
+   public void setListeJob(List<SelectItem> listeJob) {
+      this.listeJob = listeJob;
+   }
+
+   public String getJobSelected() {
+      return this.jobSelected;
+   }
+
+   public void setJobSelected(String jobSelected) {
+      this.jobSelected = jobSelected;
    }
 
 }

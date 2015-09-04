@@ -15,7 +15,6 @@ import com.avancial.socle.exceptions.SocleExceptionManager;
  * 
  */
 public class JobPlanifDao extends AbstractDao {
-
    @SuppressWarnings("unchecked")
    @Override
    public List<JobPlanifDataBean> getAll() {
@@ -33,9 +32,9 @@ public class JobPlanifDao extends AbstractDao {
          this.getEntityManager().getTransaction().commit();
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
-        @SuppressWarnings("unused")
-      SocleExceptionManager manager=new SocleExceptionManager(e);
-        throw SocleExceptionManager.getException();
+         @SuppressWarnings("unused")
+         SocleExceptionManager manager = new SocleExceptionManager(e);
+         throw SocleExceptionManager.getException();
       }
    }
 
@@ -48,7 +47,7 @@ public class JobPlanifDao extends AbstractDao {
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
          @SuppressWarnings("unused")
-      SocleExceptionManager manager=new SocleExceptionManager(e);
+         SocleExceptionManager manager = new SocleExceptionManager(e);
          throw SocleExceptionManager.getException();
       }
 
@@ -63,7 +62,7 @@ public class JobPlanifDao extends AbstractDao {
       } catch (Exception e) {
          this.getEntityManager().getTransaction().rollback();
          @SuppressWarnings("unused")
-      SocleExceptionManager manager=new SocleExceptionManager(e);
+         SocleExceptionManager manager = new SocleExceptionManager(e);
          throw SocleExceptionManager.getException();
       }
 
