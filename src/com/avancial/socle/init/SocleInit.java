@@ -74,15 +74,16 @@ public class SocleInit extends HttpServlet {
 
       for (JobPlanifDataBean jobPlanifDataBean : jobs) {
          Job newjob = null;
+
          try {
             newjob = (Job) Class.forName(jobPlanifDataBean.getJob().getClasseJob()).newInstance();
+            JobDetail job = JobBuilder.newJob(newjob.getClass()).withIdentity(jobPlanifDataBean.getLibelleJobPlanif(), "group1").build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobPlanifDataBean.getLibelleJobPlanif() + " trigger", "group1").withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
+            this.sched.scheduleJob(job, trigger);
 
          } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
          }
-         JobDetail job = JobBuilder.newJob(newjob.getClass()).withIdentity(jobPlanifDataBean.getLibelleJobPlanif(), "group1").build();
-         Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobPlanifDataBean.getLibelleJobPlanif() + " trigger", "group1").withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
-         this.sched.scheduleJob(job, trigger);
 
       }
 
