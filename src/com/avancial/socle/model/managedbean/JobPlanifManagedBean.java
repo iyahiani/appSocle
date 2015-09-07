@@ -17,6 +17,7 @@ import org.primefaces.context.RequestContext;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
+import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.Trigger;
@@ -110,35 +111,32 @@ public class JobPlanifManagedBean extends AManageBean {
    public String add() throws ASocleException {
       super.add();
 
-      JobPlanifTypeDao planifDao = new JobPlanifTypeDao();
-      JobDao jobDao = new JobDao();
-
       JobPlanifDataBean jobPlanifDataBean = new JobPlanifDataBean();
-      jobPlanifDataBean.setLibelleJobPlanif(this.libelle);
-      jobPlanifDataBean.setAnneeJobPlanif(this.annee);
-      jobPlanifDataBean.setHeuresJobPlanif(this.heures);
-      jobPlanifDataBean.setJourMoisJobPlanif(this.jourMois);
-      jobPlanifDataBean.setJourSemaineJobPlanif(this.jourSemaine);
-      jobPlanifDataBean.setLibelleJobPlanif(this.libelle);
-      jobPlanifDataBean.setMinutesJobPlanif(this.minutes);
-      jobPlanifDataBean.setMoisJobPlanif(this.mois);
-      jobPlanifDataBean.setNomTechniqueJobPlanif(this.nomTechnique);
-      jobPlanifDataBean.setSecondesJobPlanif(this.secondes);
-      jobPlanifDataBean.setJobPlanifTypeDataBean(planifDao.getJobPlanifTypeById(Long.valueOf(this.jobTypeSelected)));
-      jobPlanifDataBean.setJob(jobDao.getJobById(Long.valueOf(this.jobSelected)));
-      JobPlanifDao dao = new JobPlanifDao();
+
+      this.selectedItem.setLibelleJobPlanif(this.libelle);
+      this.selectedItem.setAnneeJobPlanif(this.annee);
+      this.selectedItem.setHeuresJobPlanif(this.heures);
+      this.selectedItem.setJourMoisJobPlanif(this.jourMois);
+      this.selectedItem.setJourSemaineJobPlanif(this.jourSemaine);
+      this.selectedItem.setLibelleJobPlanif(this.libelle);
+      this.selectedItem.setMinutesJobPlanif(this.minutes);
+      this.selectedItem.setMoisJobPlanif(this.mois);
+      this.selectedItem.setNomTechniqueJobPlanif(this.nomTechnique);
+      this.selectedItem.setSecondesJobPlanif(this.secondes);
 
       try {
-         dao.save(jobPlanifDataBean);
+         this.selectedItem.save(Long.valueOf(this.jobSelected), Long.valueOf(this.jobTypeSelected));
          FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_add_ok")));
          RequestContext.getCurrentInstance().update(":dataTable");
          this.closeDialog = true;
-         JobDetail job = JobBuilder.newJob(JobTest.class).withIdentity(jobPlanifDataBean.getLibelleJobPlanif(), "group1").build();
-         Trigger trigger = TriggerBuilder.newTrigger().forJob(job).withSchedule(CronScheduleBuilder.cronSchedule("5 * * * * ?")).build();
 
          SchedulerFactory sf = new StdSchedulerFactory();
+
          try {
-            sf.getScheduler().scheduleJob(trigger);
+            Scheduler sched = sf.getScheduler();
+            JobDetail job = JobBuilder.newJob(JobTest.class).withIdentity(jobPlanifDataBean.getLibelleJobPlanif(), "group1").build();
+            Trigger trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule("5 * * * * ?")).build();
+            sched.scheduleJob(job, trigger);
 
          } catch (SchedulerException e) {
             e.printStackTrace();

@@ -44,17 +44,9 @@
 			<p:messages globalOnly="false" id="message_upd" autoUpdate="true"
 				showDetail="true" />
 			<h:form>
-				<table>
-
-					<tr>
-						<td><h:outputText value="#{msg.p_dialog_libelle}"></h:outputText></td>
-						<td><h:outputText value=" : "></h:outputText> <p:inputText
-								value="#{jobPlanifManagedBean.selectedItem.libelleJobPlanif}"
-								required="true"
-								requiredMessage="#{msg.p_dialog_msg_requis_libelle}"
-								placeholder="#{msg.p_dialog_msg_requis_libelle}"></p:inputText></td>
-					</tr>
-				</table>
+				
+				<socle:jobPlanifForm/>
+				
 				<br />
 				<br />
 				<p:commandButton value="#{msg.p_dialog_bouton_modifier_libelle}"
