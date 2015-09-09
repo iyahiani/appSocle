@@ -77,9 +77,9 @@
 				</table>
 				<br />
 				<br />
-				<p:commandButton
+				<p:commandButton 
 					value="#{msg.p_dialog_bouton_modifier_libelle}" type="submit"
-					actionListener="#{roleManagedBean.update}" update=":idPageMessages"  oncomplete="if (#{roleManagedBean.closeDialog}=true) PF('Modif').close()"></p:commandButton>
+					actionListener="#{roleManagedBean.update}" update=":dataTable :idPageMessages :modif"  onsuccess="if (#{roleManagedBean.closeDialog}==true) PF('modif').close()"></p:commandButton>
 				<p:commandButton immediate="true" onclick="PF('Modif').close()"
 					value="#{msg.p_dialog_bouton_annuler_libelle}" type="cancel"></p:commandButton>
 			</h:form>
@@ -100,10 +100,10 @@
 			selectionMode="single" selection="#{roleManagedBean.selectedItem}"
 			rowKey="#{item.idRole}">
 			<p:column headerText="action" width="50" id="colonne_#{item.idRole}">
-				<p:commandLink id="delete_role" update="dataTable :idPageMessages"
+				<p:commandLink id="delete_role" update=":dataTable :idPageMessages"
 					action="#{roleManagedBean.delete}" onsuccess="#{roleManagedBean.reload()}"
 					onclick="if (!confirm('#{msg.p_dialog_bouton_supprimer_confirm} #{item.technicalNameRole} (#{item.labelRole}) ?')) return false">
-						<f:setPropertyActionListener value="#{role}"
+						<f:setPropertyActionListener value="#{item}"
 						target="#{roleManagedBean.selectedItem}" />
 					<h:graphicImage id="img_delete"
 						name="private/image/data-delete.png" styleClass="actionButtons">

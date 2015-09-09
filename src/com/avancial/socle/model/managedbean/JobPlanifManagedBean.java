@@ -49,26 +49,26 @@ public class JobPlanifManagedBean extends AManageBean {
    /**
     * 
     */
-   private static final long   serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
    private List<JobPlanifBean> selectedItems;
    @Inject
-   private JobPlanifBean       selectedItem;
+   private JobPlanifBean selectedItem;
 
-   private String              libelle;
-   private String              nomTechnique;
-   private String              annee;
-   private String              heures;
-   private String              jourMois;
-   private String              jourSemaine;
-   private String              minutes;
-   private String              mois;
-   private String              secondes;
+   private String libelle;
+   private String nomTechnique;
+   private String annee;
+   private String heures;
+   private String jourMois;
+   private String jourSemaine;
+   private String minutes;
+   private String mois;
+   private String secondes;
 
-   private List<SelectItem>    listePlanifType;
-   private String              jobTypeSelected;
+   private List<SelectItem> listePlanifType;
+   private String jobTypeSelected;
 
-   private List<SelectItem>    listeJob;
-   private String              jobSelected;
+   private List<SelectItem> listeJob;
+   private String jobSelected;
 
    /**
     * Constructeur
@@ -130,7 +130,8 @@ public class JobPlanifManagedBean extends AManageBean {
 
       try {
          this.selectedItem.save(Long.valueOf(this.jobSelected), Long.valueOf(this.jobTypeSelected));
-         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_add_ok")));
+         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(),
+               new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_add_ok")));
          RequestContext.getCurrentInstance().update(":dataTable");
          this.closeDialog = true;
 
@@ -161,19 +162,24 @@ public class JobPlanifManagedBean extends AManageBean {
          JobPlanifDao dao = new JobPlanifDao();
          try {
             dao.update(this.selectedItem.getJobPlanif());
+
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(),
+                  new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_update_ok")));
+            this.closeDialog = true;
+            RequestContext.getCurrentInstance().update(":dataTable");
             SchedulerFactory sf = new StdSchedulerFactory();
             Scheduler sched = sf.getScheduler();
             Trigger oldTrigger = sched.getTrigger(TriggerKey.triggerKey(this.selectedItem.getLibelleJobPlanif(), "group1"));
             // obtain a builder that would produce the trigger
             TriggerBuilder tb = oldTrigger.getTriggerBuilder();
-            // update the schedule associated with the builder, and build the new trigger
-            // (other builder methods could be called, to change the trigger in any
+            // update the schedule associated with the builder, and build the
+            // new trigger
+            // (other builder methods could be called, to change the trigger in
+            // any
             // desired way)
             Trigger trigger = TriggerBuilder.newTrigger().withIdentity(this.selectedItem.getLibelleJobPlanif(), "group1").withSchedule(CronScheduleBuilder.cronSchedule("5 * * * * ?")).build();
             sched.rescheduleJob(oldTrigger.getKey(), trigger);
 
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_update_ok")));
-            this.closeDialog = true;
          } catch (ASocleException e) {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_UPD_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "", e.getClientMessage()));
@@ -195,10 +201,12 @@ public class JobPlanifManagedBean extends AManageBean {
             SchedulerFactory sf = new StdSchedulerFactory();
             Scheduler sched = sf.getScheduler();
             sched.deleteJob(JobKey.jobKey(this.selectedItem.getLibelleJobPlanif(), "group1"));
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_delete_ok")));
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(),
+                  new FacesMessage(FacesMessage.SEVERITY_INFO, "", MessageController.getTraduction("p_message_delete_ok")));
             this.closeDialog = true;
          } catch (ASocleException e) {
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_DEL_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MessageController.getTraduction("p_message_delete_ko")));
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.DIALOG_DEL_MESSAGES.toString(),
+                  new FacesMessage(FacesMessage.SEVERITY_ERROR, "", MessageController.getTraduction("p_message_delete_ko")));
          } catch (SchedulerException e) {
             e.printStackTrace();
             SocleExceptionManager manager = new SocleExceptionManager(e);

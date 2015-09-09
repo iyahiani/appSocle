@@ -23,10 +23,10 @@ public class JobPlanifBean {
    @Inject
    private JobPlanifDataBean jobPlanifDataBean;
    @Inject
-   private JobDataBean       job;
+   private JobDataBean job;
 
    /**
-    * ² Constructeur
+    * Â² Constructeur
     */
    public JobPlanifBean(JobPlanifDataBean jobPlanifDataBean) {
       this.jobPlanifDataBean = jobPlanifDataBean;
