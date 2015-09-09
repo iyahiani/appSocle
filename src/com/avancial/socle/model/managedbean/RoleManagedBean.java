@@ -28,13 +28,13 @@ public class RoleManagedBean extends AManageBean {
    /**
     * 
     */
-   private static final long serialVersionUID = 1L;
+   private static final long  serialVersionUID = 1L;
    private List<RoleDataBean> selectedItems;
-   private String nomTechnique;
-   private String libelle;
+   private String             nomTechnique;
+   private String             libelle;
 
    @Inject
-   private RoleDataBean selectedItem;
+   private RoleDataBean       selectedItem;
 
    /**
     * Constructeur
@@ -69,8 +69,7 @@ public class RoleManagedBean extends AManageBean {
 
       try {
          dao.save(roleDataBean);
-         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(),
-               new FacesMessage(FacesMessage.SEVERITY_INFO, "message", MessageController.getTraduction("p_message_add_success_role")));
+         FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", MessageController.getTraduction("p_message_add_success_role")));
          // RequestContext.getCurrentInstance().update(":dataTable");
          this.closeDialog = true;
       } catch (ASocleException e) {
@@ -89,7 +88,7 @@ public class RoleManagedBean extends AManageBean {
          try {
             dao.update(this.selectedItem);
             this.closeDialog = true;
-            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifiï¿½"));
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifié"));
 
          } catch (ASocleException e) {
             e.printStackTrace();

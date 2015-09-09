@@ -27,11 +27,12 @@
 			<p:messages globalOnly="false" id="message_add" autoUpdate="true"
 				showDetail="true" />
 			<h:form>
-				<socle:jobPlanifForm/>
+				<socle:jobPlanifFormAjout />
 				<p:commandButton value="#{msg.p_dialog_bouton_sauver_libelle}"
 					type="submit" actionListener="#{jobPlanifManagedBean.add}"
 					onsuccess="if (#{jobPlanifManagedBean.closeDialog}=true) PF('Ajout').close()"
-					update=":dataTable" action="#{jobPlanifManagedBean.reload()}" />
+					update=":dataTable :idPageMessages"
+					action="#{jobPlanifManagedBean.reload()}" />
 				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
 					value="#{msg.p_dialog_bouton_annuler_libelle}" type="cancel" />
 			</h:form>
@@ -44,15 +45,16 @@
 			<p:messages globalOnly="false" id="message_upd" autoUpdate="true"
 				showDetail="true" />
 			<h:form>
-				
-				<socle:jobPlanifForm/>
-				
+				<socle:jobPlanifFormModif />
+
 				<br />
 				<br />
 				<p:commandButton value="#{msg.p_dialog_bouton_modifier_libelle}"
 					type="submit" actionListener="#{jobPlanifManagedBean.update}"
-					update=":idPageMessages"
-					oncomplete="if (#{jobPlanifManagedBean.closeDialog}=true) PF('Modif').close()"></p:commandButton>
+					update=":dataTable :idPageMessages"
+					oncomplete="if (#{jobPlanifManagedBean.closeDialog}=true) PF('Modif').close()"
+					> 
+					</p:commandButton>
 				<p:commandButton immediate="true" onclick="PF('Modif').close()"
 					value="#{msg.p_dialog_bouton_annuler_libelle}" type="cancel"></p:commandButton>
 			</h:form>
@@ -75,7 +77,7 @@
 			rowKey="#{item.idJobPlanif}">
 			<p:column headerText="action" width="50"
 				id="colonne_#{item.idJobPlanif}">
-				<p:commandLink id="delete_role" update="dataTable :idPageMessages"
+				<p:commandLink id="delete_item" update=":dataTable :idPageMessages"
 					action="#{jobPlanifManagedBean.delete}"
 					onsuccess="#{jobPlanifManagedBean.reload()}"
 					onclick="if (!confirm('#{msg.p_dialog_bouton_supprimer_confirm} #{item.nomTechniqueJobPlanif} (#{item.libelleJobPlanif}) ?')) return false">
@@ -84,7 +86,7 @@
 					<h:graphicImage id="img_delete"
 						name="private/image/data-delete.png" styleClass="actionButtons">
 					</h:graphicImage>
-					<p:tooltip id="toolTip" for="delete_role"
+					<p:tooltip id="toolTip" for="delete_item"
 						value="#{msg.p_bouton_supprimer_tip_jobPlanif} #{item.nomTechniqueJobPlanif} (#{item.libelleJobPlanif})" />
 				</p:commandLink>
 

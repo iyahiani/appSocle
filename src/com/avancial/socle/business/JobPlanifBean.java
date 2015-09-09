@@ -23,7 +23,7 @@ public class JobPlanifBean {
    @Inject
    private JobPlanifDataBean jobPlanifDataBean;
    @Inject
-   private JobDataBean job;
+   private JobDataBean       job;
 
    /**
     * ² Constructeur
@@ -205,7 +205,7 @@ public class JobPlanifBean {
     * @return the job
     */
    public JobDataBean getJob() {
-      return job;
+      return this.job;
    }
 
    /**
