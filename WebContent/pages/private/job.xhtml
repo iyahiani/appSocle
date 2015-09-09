@@ -120,8 +120,8 @@
 					action="#{jobManagedBean.delete}"
 					onsuccess="#{jobManagedBean.reload()}"
 					onclick="if (!confirm('#{msg.p_dialog_bouton_supprimer_confirm} #{item.nomTechniqueJob} (#{item.libelleJob}) ?')) return false">
-					<f:setPropertyActionListener value="#{job}"
-						target="#{jobManagedBean.selectedJob}" />
+					<f:setPropertyActionListener value="#{item}"
+						target="#{jobManagedBean.selectedItem}" />
 					<h:graphicImage id="img_delete"
 						name="private/image/data-delete.png" styleClass="actionButtons">
 					</h:graphicImage>
@@ -130,10 +130,9 @@
 				</p:commandLink>
 
 
-				<p:commandLink update=":modif" id="update_item"
-					oncomplete="PF('Modif').show()">
-					<f:setPropertyActionListener value="#{job}"
-						target="#{jobManagedBean.selectedItem}" />
+				<p:commandLink update=":modif" id="update_item"	oncomplete="PF('Modif').show()">
+					<f:setPropertyActionListener value="#{item}" target="#{jobManagedBean.selectedItem}" />
+					
 					<h:graphicImage name="private/image/pencil_edit1.png"
 						styleClass="actionButtons">
 						<p:tooltip for="update_item"
