@@ -77,9 +77,10 @@
 				</table>
 				<br />
 				<br />
-				<p:commandButton 
-					value="#{msg.p_dialog_bouton_modifier_libelle}" type="submit"
-					actionListener="#{roleManagedBean.update}" update=":dataTable :idPageMessages :modif"  onsuccess="if (#{roleManagedBean.closeDialog}==true) PF('modif').close()"></p:commandButton>
+				<p:commandButton value="#{msg.p_dialog_bouton_modifier_libelle}"
+					type="submit" actionListener="#{roleManagedBean.update}"
+					update=":dataTable :idPageMessages :modif"
+					onsuccess="if (#{roleManagedBean.closeDialog}=true) PF('modif').close()"></p:commandButton>
 				<p:commandButton immediate="true" onclick="PF('Modif').close()"
 					value="#{msg.p_dialog_bouton_annuler_libelle}" type="cancel"></p:commandButton>
 			</h:form>
