@@ -7,7 +7,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.avancial.socle.data.controller.dao.Item2RoleDao;
@@ -25,12 +27,19 @@ public class SecurityManagedBean implements Serializable {
     */
    private static final long              serialVersionUID = 1L;
    private Map<String, Item2RoleDataBean> listeItem2Role;
+   @Inject
+   private IhmManagedBean                 ihmManagedBean;
 
    /**
     * Constructeur
     */
    public SecurityManagedBean() {
       this.listeItem2Role = new HashMap<>();
+   }
+
+   @PostConstruct
+   public void init() {
+
       this.remplirListeItem2Role();
    }
 
@@ -53,7 +62,9 @@ public class SecurityManagedBean implements Serializable {
     */
    private void remplirListeItem2Role() {
       Item2RoleDao dao = new Item2RoleDao();
-      for (Item2RoleDataBean bean : dao.getAll()) {
+      if (null == this.ihmManagedBean)
+         return;
+      for (Item2RoleDataBean bean : dao.getitemByListId(this.ihmManagedBean.getCurrentUser().getRoles())) {
          this.listeItem2Role.put(bean.getNameItem2Role(), bean);
       }
 
