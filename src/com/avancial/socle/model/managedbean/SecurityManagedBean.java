@@ -15,6 +15,12 @@ import com.avancial.socle.data.controller.dao.Item2RoleDao;
 import com.avancial.socle.data.model.databean.Item2RoleDataBean;
 
 /**
+ * Gère les droits des utilisateurs sur les objets de l'application.<br/>
+ * Se base sur les rôles des utilisateurs et la table item2role.<br/>
+ * Sur une page, placer une des propriétés de l'objet security dans le rendered ou autre propriété de l'objet.<br/>
+ * ex : rendered=""{security.isRendered('pageJobPlanif')}" permet d'afficher l'élément si l'utilisateur a le droit rendered sur pageJobPlanif.
+ * 
+ * 
  * @author bruno
  *
  */
@@ -24,11 +30,14 @@ public class SecurityManagedBean implements Serializable {
    /**
     * 
     */
-   private static final long serialVersionUID = 1L;
+   private static final long              serialVersionUID = 1L;
    private Map<String, Item2RoleDataBean> listeItem2Role;
    @Inject
-   private IhmManagedBean ihmManagedBean;
-   private boolean noRole;
+   private IhmManagedBean                 ihmManagedBean;
+   /**
+    * Indique qu'un utilisateur n'a aucun rôle sur l'application²
+    */
+   private boolean                        noRole;
 
    /**
     * Constructeur
@@ -38,6 +47,8 @@ public class SecurityManagedBean implements Serializable {
    }
 
    /**
+    * Remplit la liste des droits des utilisateur
+    * 
     * @throws Exception
     * 
     */
@@ -49,6 +60,12 @@ public class SecurityManagedBean implements Serializable {
       }
    }
 
+   /**
+    * Indique si l'utilisateur a le droit d'afficher l'élément
+    * 
+    * @param itemName
+    * @return
+    */
    public boolean isRendered(String itemName) {
       Boolean result = false;
       Item2RoleDataBean bean = this.listeItem2Role.get(itemName);
@@ -58,7 +75,7 @@ public class SecurityManagedBean implements Serializable {
    }
 
    /**
-    * 
+    * Recharge les droits. A utiliser après un changement au niveau de la base de données.
     */
    public void reload() {
       this.listeItem2Role.clear();
@@ -71,6 +88,8 @@ public class SecurityManagedBean implements Serializable {
    }
 
    /**
+    * Remplit la liste des droits
+    * 
     * @throws Exception
     * 
     */
