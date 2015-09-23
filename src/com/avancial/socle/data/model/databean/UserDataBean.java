@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,47 +26,47 @@ public class UserDataBean implements Serializable {
    /**
     * 
     */
-   private static final long    serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
    @Id
-   protected Long               idUser;
-   protected String             nomUser;
-   protected String             prenomUser;
-   protected String             loginUser;
-   protected String             passwordUser;
-   protected String             mailUser;
-   protected String             cpUser;
-   protected String             telephonePro1User;
-   protected String             telephonePro2User;
-   protected String             telephonePortable1User;
-   protected String             fax1User;
-   protected String             adresseNumeroRueUser;
-   protected String             adresseNomRueUser;
-   protected String             adresseComplement1User;
-   protected String             adresseComplement2User;
-   protected String             adresseCodePostalUser;
-   protected String             adresseVilleUser;
-   protected String             attribut1User;
-   protected String             attribut2User;
-   protected String             attribut3User;
-   protected String             attribut4User;
-   protected String             attribut5User;
+   protected Long idUser;
+   protected String nomUser;
+   protected String prenomUser;
+   protected String loginUser;
+   protected String passwordUser;
+   protected String mailUser;
+   protected String cpUser;
+   protected String telephonePro1User;
+   protected String telephonePro2User;
+   protected String telephonePortable1User;
+   protected String fax1User;
+   protected String adresseNumeroRueUser;
+   protected String adresseNomRueUser;
+   protected String adresseComplement1User;
+   protected String adresseComplement2User;
+   protected String adresseCodePostalUser;
+   protected String adresseVilleUser;
+   protected String attribut1User;
+   protected String attribut2User;
+   protected String attribut3User;
+   protected String attribut4User;
+   protected String attribut5User;
    @Temporal(TemporalType.TIMESTAMP)
-   protected Date               dateCreateUser;
+   protected Date dateCreateUser;
    @Temporal(TemporalType.TIMESTAMP)
-   protected Date               dateUpdateUser;
+   protected Date dateUpdateUser;
    @Temporal(TemporalType.TIMESTAMP)
-   protected Date               dateLastUpdateUtilisateurUser;
+   protected Date dateLastUpdateUtilisateurUser;
    @OneToOne
    @JoinColumn(name = "idUserCreateUser")
-   protected UserDataBean       userCreateUser;
+   protected UserDataBean userCreateUser;
    @OneToOne
    @JoinColumn(name = "idUserUpdateUser")
-   protected UserDataBean       userUpdateUser;
-   protected boolean            robotUser;
-   protected String             tomcatRoleUser;
-   protected String             commentaireUtilisateurUser;
+   protected UserDataBean userUpdateUser;
+   protected boolean robotUser;
+   protected String tomcatRoleUser;
+   protected String commentaireUtilisateurUser;
 
-   @OneToMany
+   @OneToMany(fetch = FetchType.EAGER)
    @JoinTable(name = "socle_user2role", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idRole"))
    protected List<RoleDataBean> roles;
 

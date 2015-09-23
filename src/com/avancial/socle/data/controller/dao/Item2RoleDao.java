@@ -25,7 +25,7 @@ public class Item2RoleDao extends AbstractDao {
     * @param roles
     * @return
     */
-   public List<Item2RoleDataBean> getitemByListId(List<RoleDataBean> roles) {
+   public List<Item2RoleDataBean> getitemByListId(List<RoleDataBean> roles) throws Exception {
       this.getEntityManager().clear();
       Query query = this.getEntityManager().createQuery("FROM Item2RoleDataBean where idRole in (:roles) ");
       query.setParameter("roles", roles);

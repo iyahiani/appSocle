@@ -7,8 +7,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,15 +19,16 @@ import com.avancial.socle.data.model.databean.Item2RoleDataBean;
  *
  */
 @Named("security")
-@ApplicationScoped
+@SessionScoped
 public class SecurityManagedBean implements Serializable {
    /**
     * 
     */
-   private static final long              serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
    private Map<String, Item2RoleDataBean> listeItem2Role;
    @Inject
-   private IhmManagedBean                 ihmManagedBean;
+   private IhmManagedBean ihmManagedBean;
+   private boolean noRole;
 
    /**
     * Constructeur
@@ -37,10 +37,16 @@ public class SecurityManagedBean implements Serializable {
       this.listeItem2Role = new HashMap<>();
    }
 
-   @PostConstruct
+   /**
+    * @throws Exception
+    * 
+    */
    public void init() {
-
-      this.remplirListeItem2Role();
+      try {
+         this.remplirListeItem2Role();
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
    }
 
    public boolean isRendered(String itemName) {
@@ -51,23 +57,57 @@ public class SecurityManagedBean implements Serializable {
       return result;
    }
 
+   /**
+    * 
+    */
    public void reload() {
       this.listeItem2Role.clear();
-      this.remplirListeItem2Role();
+      try {
+         this.remplirListeItem2Role();
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
 
    }
 
    /**
+    * @throws Exception
     * 
     */
-   private void remplirListeItem2Role() {
-      Item2RoleDao dao = new Item2RoleDao();
-      if (null == this.ihmManagedBean)
+   private void remplirListeItem2Role() throws Exception {
+      this.listeItem2Role.clear();
+
+      this.noRole = false;
+      if (null != this.ihmManagedBean.getCurrentUser()) {
+         if (this.ihmManagedBean.isLogged() && this.ihmManagedBean.getCurrentUser().getRoles().size() == 0) {
+            this.noRole = true;
+            return;
+         }
+
+      } else
          return;
+      Item2RoleDao dao = new Item2RoleDao();
       for (Item2RoleDataBean bean : dao.getitemByListId(this.ihmManagedBean.getCurrentUser().getRoles())) {
          this.listeItem2Role.put(bean.getNameItem2Role(), bean);
       }
 
+   }
+
+   /**
+    * @param b
+    */
+   public void setNoRole(boolean b) {
+      this.noRole = b;
+
+   }
+
+   /**
+    * get value for noRole
+    * 
+    * @return the noRole
+    */
+   public boolean isNoRole() {
+      return this.noRole;
    }
 
 }

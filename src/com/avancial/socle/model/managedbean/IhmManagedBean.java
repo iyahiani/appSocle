@@ -28,11 +28,11 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
 @SessionScoped
 public class IhmManagedBean implements Serializable {
 
-   private static final long       serialVersionUID = 1L;
-   private UserDataBean            currentUser;
+   private static final long serialVersionUID = 1L;
+   private UserDataBean currentUser;
    private List<User2RoleDataBean> roles;
-   private String                  originalURL;
-   private Locale                  locale;
+   private String originalURL;
+   private Locale locale;
 
    /**
     * Teste si il y a un utilisateur de connecté
@@ -71,6 +71,7 @@ public class IhmManagedBean implements Serializable {
       // FIXME A Commenter
       if (this.getOriginalURL() == null) {
          this.setOriginalURL(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURL().toString());
+         System.out.println(this.getOriginalURL());
       }
 
       return SOCLE_constants.NAVIGATION_LOGIN.toString();
