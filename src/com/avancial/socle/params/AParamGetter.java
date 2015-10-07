@@ -13,10 +13,10 @@ import com.avancial.socle.data.controller.dao.RefDirectoryDao;
 import com.avancial.socle.params.beans.IParamBean;
 import com.avancial.socle.params.exception.ParamCollectionNotLoadedException;
 import com.avancial.socle.params.exception.ParamNotFoundException;
+import com.avancial.socle.resources.constants.SOCLE_constants;
 
 /**
- * Classe abstraite servant de base pour créer une classe implémentant la
- * gestion des paramètres d'une application
+ * Classe abstraite servant de base pour crï¿½er une classe implï¿½mentant la gestion des paramï¿½tres d'une application
  * 
  * 
  * @author bruno.legloahec
@@ -35,8 +35,8 @@ public abstract class AParamGetter implements IParamGetter {
       this.mapParamBean = new HashMap<>();
       this.initPathToWebInf();
 
-      // On instancie les Paramètres du socle
-      ParamReaderFileGeneric socle = new ParamReaderFileGeneric(this.pathToWebInf + "/classes/com/avancial/socle/resources/socle.properties");
+      // On instancie les Paramï¿½tres du socle
+      ParamReaderFileGeneric socle = new ParamReaderFileGeneric(this.pathToWebInf + SOCLE_constants.SOCLE_PROPERTIES_PATH.toString());
       socle.loadParams("socle");
       this.add(socle);
 
@@ -46,7 +46,7 @@ public abstract class AParamGetter implements IParamGetter {
    }
 
    /**
-    * Ajouter un reader de paramètre à la collection
+    * Ajouter un reader de paramï¿½tre ï¿½ la collection
     * 
     * @param iParamReader
     */
@@ -62,8 +62,7 @@ public abstract class AParamGetter implements IParamGetter {
    }
 
    /**
-    * Permet de récupérer le chemin d'accès au répertoire web-inf. Utilisé pour
-    * atteindre les fichiers de paramètres (.properties)
+    * Permet de rï¿½cupï¿½rer le chemin d'accï¿½s au rï¿½pertoire web-inf. Utilisï¿½ pour atteindre les fichiers de paramï¿½tres (.properties)
     */
    private void initPathToWebInf() {
       String path = "";
@@ -78,12 +77,12 @@ public abstract class AParamGetter implements IParamGetter {
    }
 
    /**
-    * Permet de récupérer le paramètre sous forme de bean
+    * Permet de rï¿½cupï¿½rer le paramï¿½tre sous forme de bean
     * 
     * @param paramType
-    *           Le nom de la collection des paramètres
+    *           Le nom de la collection des paramï¿½tres
     * @param paramName
-    *           Le nom d'un paramètre de cette collection
+    *           Le nom d'un paramï¿½tre de cette collection
     * @return parametre sous forme de bean
     * @throws ParamNotFoundException
     * @throws ParamCollectionNotLoadedException
@@ -101,10 +100,10 @@ public abstract class AParamGetter implements IParamGetter {
    }
 
    /**
-    * Permet de récupérer tous les paramètres associés à un type
+    * Permet de rï¿½cupï¿½rer tous les paramï¿½tres associï¿½s ï¿½ un type
     * 
     * @param paramType
-    * @return La liste des paramètres associés à la collection
+    * @return La liste des paramï¿½tres associï¿½s ï¿½ la collection
     * @throws ParamCollectionNotLoadedException
     */
    @Override
@@ -118,7 +117,7 @@ public abstract class AParamGetter implements IParamGetter {
    }
 
    /**
-    * @return Le chemin d'accès au répertoire Web-inf de l'application
+    * @return Le chemin d'accï¿½s au rï¿½pertoire Web-inf de l'application
     */
    protected String getPathToWebInf() {
 
