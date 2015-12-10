@@ -44,11 +44,17 @@
 					</tr>
 				</table>
 				<p:commandButton value="#{msg.p_dialog_bouton_sauver_libelle}"
+<<<<<<< HEAD
 					type="submit" actionListener="#{roleManagedBean.add}"
 					update=":dataTable" action="#{roleManagedBean.reload()}" 
 					oncomplete="if (handleSaveRequest(xhr, status, args)) PF('ajout').hide();" />
 
 				<p:commandButton immediate="true" onclick="PF('ajout').close()"
+=======
+					type="submit" actionListener="#{roleManagedBean.add}"  onsuccess="if (#{roleManagedBean.closeDialog}) PF('Ajout').close();"
+					 update=":dataTable" action="#{roleManagedBean.reload()}" />
+				<p:commandButton immediate="true" onclick="PF('Ajout').close()"
+>>>>>>> 6de9a06d47bbf25539325c568816440a4a4d7edf
 					value="#{msg.p_dialog_bouton_annuler_libelle}" type="cancel" />
 			</h:form>
 

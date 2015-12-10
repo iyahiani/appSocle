@@ -95,8 +95,12 @@ public class RoleManagedBean extends AManageBean {
          try {
             dao.update(this.selectedItem);
             this.closeDialog = true;
+<<<<<<< HEAD
             FacesContext.getCurrentInstance().addMessage
             (SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Rôle modifié"));
+=======
+            FacesContext.getCurrentInstance().addMessage(SOCLE_constants.PAGE_ID_MESSAGES.toString(), new FacesMessage(FacesMessage.SEVERITY_INFO, "message", "Enregistrement modifiï¿½"));
+>>>>>>> 6de9a06d47bbf25539325c568816440a4a4d7edf
 
          } catch (ASocleException e) {
             e.printStackTrace();
@@ -192,6 +196,7 @@ public class RoleManagedBean extends AManageBean {
     * @return the roleSelected
     */
 
+<<<<<<< HEAD
    public Boolean getCloseDialog() {
       return this.closeDialog;
    }
@@ -206,4 +211,6 @@ public class RoleManagedBean extends AManageBean {
       this.selectedItems = selectedItems;
    }
 
+=======
+>>>>>>> 6de9a06d47bbf25539325c568816440a4a4d7edf
 }
