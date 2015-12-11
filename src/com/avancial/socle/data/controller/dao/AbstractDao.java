@@ -17,7 +17,7 @@ import org.hibernate.Session;
  */
 public abstract class AbstractDao {
    private EntityManager entityManager;
-
+   
    /**
     * Constructeur
     */
@@ -37,7 +37,11 @@ public abstract class AbstractDao {
    protected void setEntityManager(EntityManager entityManager) {
       this.entityManager = entityManager;
    } 
-   public Session getSession() {
+   public Session getSession() { 
+     //if(this.getEntityManager().unwrap(Session.class)==null) System.out.println("erreur cration session");
       return this.getEntityManager().unwrap(Session.class);
-   }
+   } 
+  
+   
+  
 }

@@ -70,7 +70,9 @@ public class SecurityManagedBean implements Serializable {
       Boolean result = false;
       Item2RoleDataBean bean = this.listeItem2Role.get(itemName);
       if (null != bean)
-         result = bean.getIsRendered();
+      {
+         return bean.getIsRendered();
+      }
       return result;
    }
 
