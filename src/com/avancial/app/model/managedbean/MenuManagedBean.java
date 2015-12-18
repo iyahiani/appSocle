@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import com.avancial.app.resources.constants.APP_constants;
 import com.avancial.socle.resources.constants.SOCLE_constants;
 
 /**
@@ -43,7 +42,7 @@ public class MenuManagedBean implements Serializable {
       return SOCLE_constants.NAVIGATION_JOB_PLANIF.toString();
    }
 
-   public static String goTest() {
-      return APP_constants.NAVIGATION_TEST.toString();
+   public static String goRobot() {
+      return SOCLE_constants.NAVIGATION_ROBOT.toString();
    }
 }
