@@ -173,3 +173,7 @@ BloggerSans
 	display: block;
 	width: 85px;
 }
+
+.nagios {
+    visibility: hidden
+}
