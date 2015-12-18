@@ -28,7 +28,7 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<configuration>
-						<webXml>webContent\WEB-INF\web.xml</webXml>
+						<warSourceDirectory>src</warSourceDirectory>
 					</configuration>
 				</plugin>
 			</plugins>
