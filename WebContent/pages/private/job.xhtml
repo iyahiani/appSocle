@@ -5,9 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<ui:define name="title">#{p_job_titre}</ui:define>
+	<ui:define  name="title">#{p_job_titre}</ui:define>
 	<ui:define name="contenu">
 
+<p:outputPanel rendered="#{ihmManagedBean.isLogged() and security.isRendered('pageJob')}">
 
 		<p:ajaxStatus onstart="PF('statusDialog').show()"
 			onsuccess="PF('statusDialog').hide()" />
@@ -178,6 +179,6 @@
 
 			</p:column>
 		</p:dataTable>
-
+</p:outputPanel>
 	</ui:define>
 </ui:composition>
