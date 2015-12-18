@@ -40,7 +40,7 @@
 				<p:fieldset legend="#{msg.p_user_fieldset_connexion}" styleClass="classFieldsetUser">
 					<h:panelGrid columns="3">
 						<h:outputLabel for="idInputTextAjoutLoginUser" value="#{msg.p_user_login} :"/>
-						<p:inputText id="idInputTextAjoutLoginUser" maxlength="8" placeholder="#{msg.p_user_placeholder_login}" required="true" requiredMessage="#{msg.p_user_login} #{msg.p_user_vide} !" style="width: 256px;" validator="userValidator" value="#{userManagedBean.login}">
+						<p:inputText id="idInputTextAjoutLoginUser" maxlength="30" placeholder="#{msg.p_user_placeholder_login}" required="true" requiredMessage="#{msg.p_user_login} #{msg.p_user_vide} !" style="width: 256px;" validator="userValidator" value="#{userManagedBean.login}">
 							<f:attribute name="validatorExpression" value="#{userManagedBean.getExpression('LOGIN')}"/>
 							<f:attribute name="validatorMessage" value="#{msg.p_user_login} #{msg.p_user_invalide} !"/>
 							<p:ajax event="focus" immediate="true" listener="#{userManagedBean.addRule(msg.p_user_regle_login)}" update="idGrowlUser"/>
