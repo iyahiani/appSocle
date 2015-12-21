@@ -1,5 +1,5 @@
 <!-- RECETTE sur Lapetus--> 
-<Context antiJARLocking="true" path="/">
+<Context antiJARLocking="true" path="/appSocle">
 	<Resource name="BeanManager" auth="Container"
 		type="javax.enterprise.inject.spi.BeanManager" factory="org.jboss.weld.resources.ManagerObjectFactory" />
 
