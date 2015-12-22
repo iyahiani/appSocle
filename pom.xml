@@ -11,11 +11,6 @@
 			<url>http://vanguard:8081/nexus/content/repositories/AvancialSnapShots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-	
-	
-	
-	
-	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<finalName>appSocle</finalName>
