@@ -149,5 +149,5 @@
 		</dependencies>
 	</dependencyManagement>
 	<packaging>war</packaging>
-	<name>appSocle</name>
+
 </project>
