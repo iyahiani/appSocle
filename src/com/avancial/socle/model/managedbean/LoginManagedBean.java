@@ -28,17 +28,17 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
 @RequestScoped
 public class LoginManagedBean implements Serializable {
 
-   private static final long serialVersionUID = 1L;
-   private String login;
-   private String password;
+   private static final long   serialVersionUID = 1L;
+   private String              login;
+   private String              password;
 
    @Inject
-   private IhmManagedBean ihmManagedBean;
+   private IhmManagedBean      ihmManagedBean;
    @Inject
    private SecurityManagedBean securityManagedBean;
 
    // Dao de gestion des utilisateurs
-   private UserDao utilisateurDao = new UserDao();
+   private UserDao             utilisateurDao   = new UserDao();
 
    /**
     * Initialisation de l'url courante
@@ -65,8 +65,10 @@ public class LoginManagedBean implements Serializable {
       ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
       HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
       String url = this.ihmManagedBean.getOriginalURL();
+      System.out.println("login");
       try {
          request.login(this.login, this.password);
+         System.out.println("login : " + this.login);
          UserDataBean user = this.utilisateurDao.getUserByLogin(this.login);
          if (null != user) {
 
@@ -76,17 +78,9 @@ public class LoginManagedBean implements Serializable {
             this.ihmManagedBean.setOriginalURL(null);
 
          }
-         
-         
-         if (url.equalsIgnoreCase("http://localhost:8080/tgvair/pages/public/login.xhtml"))  {
-            
-            url = "http://localhost:8080/tgvair/pages/public/accueil.xhtml" ;
-         }
-         
-         externalContext.redirect(url); 
-         
 
-        
+         externalContext.redirect(url);
+
       } catch (ServletException e) {
          ContextController.addErrorMessage("login_connexion_erreur");
       }
