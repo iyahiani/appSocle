@@ -1,10 +1,9 @@
 package com.avancial.app.model.managedbean;
 
-import java.io.Serializable;
-
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import com.avancial.socle.model.managedbean.SocleMenuManagedBean;
 import com.avancial.socle.resources.constants.SOCLE_constants;
 
 /**
@@ -15,7 +14,7 @@ import com.avancial.socle.resources.constants.SOCLE_constants;
  */
 @Named("menu")
 @SessionScoped
-public class MenuManagedBean implements Serializable {
+public class MenuManagedBean extends SocleMenuManagedBean {
    private static final long serialVersionUID = 1L;
 
    public static String goAccueil() {
