@@ -1,2 +1,0 @@
-Ajout de la supervision nagios
-La classe MenuManagedBean doit maintenant hériter de SocleMenuManagedBean 
